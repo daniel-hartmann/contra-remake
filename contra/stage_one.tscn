@@ -188,10 +188,10 @@ tile_map_data = PackedByteArray("AAABAAsAAAAAAAAAAAAJAAwAAAAAAAQAAAAZAAwAAAAAAAQ
 tile_set = SubResource("TileSet_0f0lc")
 
 [node name="Bill" parent="." unique_id=2069213833 instance=ExtResource("5_0f0lc")]
-position = Vector2(61, 95)
+position = Vector2(50, 95)
 
 [node name="Camera2D" type="Camera2D" parent="Bill" unique_id=2004247389]
-position = Vector2(67, 25)
+position = Vector2(78, 25)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 1.0
