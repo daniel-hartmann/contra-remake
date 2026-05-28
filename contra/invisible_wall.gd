@@ -1,11 +1,34 @@
 extends StaticBody2D
 
+enum BoundType { LEFT_WALL, WATER }
+@export var bound_type: BoundType = BoundType.LEFT_WALL
+
 @export var camera: Camera2D
-@export var offset_x: float = -128 + 16
+
+var viewport_width: float
+var viewport_height: float
+
+
+func _ready() -> void:
+	viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+	viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 
 func _physics_process(_delta: float) -> void:
-	if camera:
-		var camera_center = camera.get_screen_center_position()
+	if not camera:
+		return
+	
+	var offset: float = 0.0
 
-		global_position.x = camera_center.x + offset_x
+	if bound_type == BoundType.LEFT_WALL:
+		offset = -(viewport_width / 2.0) + 8
+	elif bound_type == BoundType.WATER:
+		offset = (viewport_height / 2.0)
+		
+	var camera_center = camera.get_screen_center_position()
+	
+	if bound_type == BoundType.LEFT_WALL:
+		global_position.x = camera_center.x + offset
 		global_position.y = camera_center.y
+	elif bound_type == BoundType.WATER:
+		global_position.x = camera_center.x
+		global_position.y = camera_center.y + offset
