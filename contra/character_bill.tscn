@@ -5,55 +5,55 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cap6p"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(910, 0, 65, 67)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6x0jv"]
-atlas = ExtResource("2_kvjld")
-region = Rect2(585, 0, 65, 67)
+region = Rect2(911, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvjld"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(520, 0, 65, 67)
+region = Rect2(586, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6e7m"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(780, 67, 65, 67)
+region = Rect2(521, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0a2dj"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(845, 67, 65, 67)
+region = Rect2(781, 74, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqhe4"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(910, 67, 65, 67)
+region = Rect2(846, 74, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8x4f"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(975, 67, 65, 67)
+region = Rect2(911, 74, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvqsm"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(390, 0, 65, 67)
+region = Rect2(976, 74, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsl5y"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(455, 0, 65, 67)
+region = Rect2(391, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4383"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(520, 0, 65, 67)
+region = Rect2(456, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3o3f"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(585, 0, 65, 67)
+region = Rect2(521, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obin2"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(650, 0, 65, 67)
+region = Rect2(586, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bso8a"]
 atlas = ExtResource("2_kvjld")
-region = Rect2(715, 0, 65, 67)
+region = Rect2(651, 9, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x0jv"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(716, 9, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gyhaw"]
 animations = [{
@@ -67,7 +67,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6x0jv")
+"texture": SubResource("AtlasTexture_kvjld")
 }],
 "loop": true,
 "name": &"fall",
@@ -75,16 +75,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kvjld")
+"texture": SubResource("AtlasTexture_k6e7m")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k6e7m")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0a2dj")
 }, {
@@ -93,15 +90,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i8x4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvqsm")
 }],
 "loop": true,
 "name": &"jump",
 "speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nvqsm")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wsl5y")
 }, {
@@ -116,6 +113,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bso8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x0jv")
 }],
 "loop": true,
 "name": &"run",
@@ -123,7 +123,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodf2"]
-size = Vector2(15, 31)
+size = Vector2(15, 32)
 
 [node name="Bill" type="CharacterBody2D" unique_id=2069213833]
 script = ExtResource("1_cap6p")
@@ -131,10 +131,10 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"fall"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
-position = Vector2(0, 9)
+position = Vector2(0, 2)
 scale = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_oodf2")
 
