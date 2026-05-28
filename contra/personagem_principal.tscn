@@ -3,6 +3,26 @@
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_ksk2r"]
 [ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/Bill_and_Lance.png" id="2_ksk2r"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5mwq"]
+atlas = ExtResource("2_ksk2r")
+region = Rect2(716, 9, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksk2r"]
+atlas = ExtResource("2_ksk2r")
+region = Rect2(781, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyfsg"]
+atlas = ExtResource("2_ksk2r")
+region = Rect2(846, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5me7"]
+atlas = ExtResource("2_ksk2r")
+region = Rect2(911, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej2bu"]
+atlas = ExtResource("2_ksk2r")
+region = Rect2(976, 74, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwret"]
 atlas = ExtResource("2_ksk2r")
 region = Rect2(1, 9, 64, 64)
@@ -31,6 +51,31 @@ region = Rect2(326, 9, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_y5mwq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksk2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyfsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5me7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej2bu")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rwret")
 }, {
 "duration": 1.0,
@@ -54,7 +99,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodf2"]
-size = Vector2(13, 30)
+size = Vector2(13, 32)
 
 [node name="PersonagemPrincipal" type="Node2D" unique_id=1221290395]
 
@@ -65,8 +110,8 @@ script = ExtResource("1_ksk2r")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
 animation = &"run"
-frame_progress = 0.37141967
+frame_progress = 0.63131434
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bill" unique_id=675341387]
-position = Vector2(1.5, 0)
+position = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_oodf2")
