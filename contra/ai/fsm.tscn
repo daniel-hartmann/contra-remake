@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvg6qvs1cb15p"]
+
+[ext_resource type="Script" uid="uid://cha2epvpv5ixt" path="res://ai/fsm.gd" id="1_57voa"]
+
+[node name="FSM" type="Node" unique_id=139887271]
+script = ExtResource("1_57voa")

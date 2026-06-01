@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_cap6p"]
 [ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="2_kvjld"]
+[ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="3_0a2dj"]
+[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/states/state.tscn" id="5_i8x4f"]
+[ext_resource type="Script" uid="uid://dvgoqoq3lbpxy" path="res://ai/states/run.gd" id="5_nvqsm"]
+[ext_resource type="Script" uid="uid://dmou0mdolvm12" path="res://ai/states/crouch.gd" id="6_bqhe4"]
+[ext_resource type="Script" uid="uid://bm8mrvnhb271g" path="res://ai/states/idle.gd" id="6_i8x4f"]
+[ext_resource type="Script" uid="uid://xpbint81wmhk" path="res://ai/states/jump.gd" id="8_wsl5y"]
+[ext_resource type="Script" uid="uid://hyexsgagriit" path="res://ai/states/fall.gd" id="9_q4383"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cap6p"]
 atlas = ExtResource("2_kvjld")
@@ -139,6 +146,24 @@ scale = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_oodf2")
 
 [node name="DropTimer" type="Timer" parent="." unique_id=349652592]
-wait_time = 0.2
+wait_time = 0.1
+
+[node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_0a2dj")]
+initial_state = NodePath("Idle")
+
+[node name="Run" parent="FSM" unique_id=1973888264 instance=ExtResource("5_i8x4f")]
+script = ExtResource("5_nvqsm")
+
+[node name="Crouch" parent="FSM" unique_id=462747480 instance=ExtResource("5_i8x4f")]
+script = ExtResource("6_bqhe4")
+
+[node name="Idle" parent="FSM" unique_id=2046902714 instance=ExtResource("5_i8x4f")]
+script = ExtResource("6_i8x4f")
+
+[node name="Jump" parent="FSM" unique_id=1861781282 instance=ExtResource("5_i8x4f")]
+script = ExtResource("8_wsl5y")
+
+[node name="Fall" parent="FSM" unique_id=1322163449 instance=ExtResource("5_i8x4f")]
+script = ExtResource("9_q4383")
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

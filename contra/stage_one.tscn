@@ -217,5 +217,6 @@ bound_type = 1
 camera = NodePath("../Bill/Camera2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleFloor" unique_id=570228869]
+position = Vector2(-3.282828, 0)
 scale = Vector2(3.96, 1)
 shape = SubResource("RectangleShape2D_604sh")
