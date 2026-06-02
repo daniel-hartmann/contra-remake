@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_cap6p"]
 [ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="2_kvjld"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="3_0a2dj"]
-[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/states/state.tscn" id="5_i8x4f"]
-[ext_resource type="Script" uid="uid://dvgoqoq3lbpxy" path="res://ai/states/run.gd" id="5_nvqsm"]
-[ext_resource type="Script" uid="uid://dmou0mdolvm12" path="res://ai/states/crouch.gd" id="6_bqhe4"]
-[ext_resource type="Script" uid="uid://bm8mrvnhb271g" path="res://ai/states/idle.gd" id="6_i8x4f"]
-[ext_resource type="Script" uid="uid://xpbint81wmhk" path="res://ai/states/jump.gd" id="8_wsl5y"]
-[ext_resource type="Script" uid="uid://hyexsgagriit" path="res://ai/states/fall.gd" id="9_q4383"]
+[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_i8x4f"]
+[ext_resource type="Script" uid="uid://dvgoqoq3lbpxy" path="res://ai/states/ground/run.gd" id="5_nvqsm"]
+[ext_resource type="Script" uid="uid://b7pdmf7qf4ra6" path="res://ai/states/ground.gd" id="5_q4383"]
+[ext_resource type="Script" uid="uid://dmou0mdolvm12" path="res://ai/states/ground/crouch.gd" id="6_bqhe4"]
+[ext_resource type="Script" uid="uid://bm8mrvnhb271g" path="res://ai/states/ground/idle.gd" id="6_i8x4f"]
+[ext_resource type="Script" uid="uid://xpbint81wmhk" path="res://ai/states/air/jump.gd" id="8_wsl5y"]
+[ext_resource type="Script" uid="uid://ckr6867g8y714" path="res://ai/states/air.gd" id="9_b3o3f"]
+[ext_resource type="Script" uid="uid://hyexsgagriit" path="res://ai/states/air/fall.gd" id="9_q4383"]
+[ext_resource type="Script" uid="uid://dyjwpfwc8fpy" path="res://ai/states/water.gd" id="12_obin2"]
+[ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cap6p"]
 atlas = ExtResource("2_kvjld")
@@ -62,6 +66,14 @@ region = Rect2(651, 9, 64, 64)
 atlas = ExtResource("2_kvjld")
 region = Rect2(716, 9, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuy7w"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(66, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpwgg"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(131, 139, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gyhaw"]
 animations = [{
 "frames": [{
@@ -105,6 +117,11 @@ animations = [{
 "name": &"jump",
 "speed": 6.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wsl5y")
@@ -127,6 +144,17 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuy7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpwgg")
+}],
+"loop": true,
+"name": &"water",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodf2"]
@@ -138,7 +166,8 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"run"
+animation = &"water"
+frame_progress = 0.6335863
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -149,21 +178,38 @@ shape = SubResource("RectangleShape2D_oodf2")
 wait_time = 0.1
 
 [node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_0a2dj")]
+initial_state = NodePath("Ground")
+
+[node name="Ground" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_i8x4f")]
+script = ExtResource("5_q4383")
 initial_state = NodePath("Idle")
 
-[node name="Run" parent="FSM" unique_id=1973888264 instance=ExtResource("5_i8x4f")]
+[node name="Run" parent="FSM/Ground" unique_id=1973888264 instance=ExtResource("5_i8x4f")]
 script = ExtResource("5_nvqsm")
 
-[node name="Crouch" parent="FSM" unique_id=462747480 instance=ExtResource("5_i8x4f")]
+[node name="Crouch" parent="FSM/Ground" unique_id=462747480 instance=ExtResource("5_i8x4f")]
 script = ExtResource("6_bqhe4")
 
-[node name="Idle" parent="FSM" unique_id=2046902714 instance=ExtResource("5_i8x4f")]
+[node name="Idle" parent="FSM/Ground" unique_id=1196879441 instance=ExtResource("5_i8x4f")]
 script = ExtResource("6_i8x4f")
 
-[node name="Jump" parent="FSM" unique_id=1861781282 instance=ExtResource("5_i8x4f")]
+[node name="Air" parent="FSM" unique_id=723874564 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_i8x4f")]
+script = ExtResource("9_b3o3f")
+initial_state = NodePath("Fall")
+
+[node name="Jump" parent="FSM/Air" unique_id=1861781282 instance=ExtResource("5_i8x4f")]
 script = ExtResource("8_wsl5y")
 
-[node name="Fall" parent="FSM" unique_id=1322163449 instance=ExtResource("5_i8x4f")]
+[node name="Fall" parent="FSM/Air" unique_id=1322163449 instance=ExtResource("5_i8x4f")]
 script = ExtResource("9_q4383")
+
+[node name="Water" parent="FSM" unique_id=954525381 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_i8x4f")]
+script = ExtResource("12_obin2")
+initial_state = NodePath("Swim")
+
+[node name="Swim" parent="FSM/Water" unique_id=1038560956 instance=ExtResource("5_i8x4f")]
+script = ExtResource("13_bso8a")
+
+[node name="Dive" parent="FSM/Water" unique_id=46863774 instance=ExtResource("5_i8x4f")]
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

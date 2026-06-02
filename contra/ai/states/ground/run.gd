@@ -8,16 +8,12 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 
-	if not character.is_on_floor():
-		transitioned.emit(self, "fall")
+	if not character.is_on_floor() or Input.is_action_just_pressed("jump"):
+		transitioned.emit(self, "air")
 		return
 
 	if Input.is_action_pressed("down") and direction == 0:
 		transitioned.emit(self, "crouch")
-		return
-
-	if Input.is_action_just_pressed("jump"):
-		transitioned.emit(self, "jump")
 		return
 
 	if direction == 0:

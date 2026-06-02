@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://chagc0f224fd0"]
+[gd_scene format=3 uid="uid://cdayjkokrntsf"]
 
-[ext_resource type="Script" uid="uid://bm8mrvnhb271g" path="res://ai/states/idle.gd" id="1_3sgeo"]
+[ext_resource type="Script" uid="uid://bm8mrvnhb271g" path="res://ai/states/ground/idle.gd" id="1_3sgeo"]
 
 [node name="Idle" type="Node" unique_id=2046902714]
 script = ExtResource("1_3sgeo")

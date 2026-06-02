@@ -1,13 +1,13 @@
 class_name FSM extends Node
 
-@export var initial_state: State
+@export var initial_state: ParentState
 
 var states: Dictionary = {}
-var current_state: State
+var current_state: ParentState
 
 func _ready() -> void:
 	for child in get_children():
-		if child is State:
+		if child is ParentState:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_child_transition)
 
@@ -28,11 +28,13 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 
-func on_child_transition(state: State, new_state_name: String):
+func on_child_transition(state: ParentState, new_state_name: String):
+	print("Trying to enter parent state ", new_state_name)
+	print("Current state: ", current_state)
 	if state != current_state:
 		return
 
-	var new_state = states.get(new_state_name)
+	var new_state = states.get(new_state_name.to_lower())
 	
 	if not new_state:
 		return
@@ -42,3 +44,5 @@ func on_child_transition(state: State, new_state_name: String):
 
 	new_state.enter()
 	current_state = new_state
+	
+	print("on parent state ", current_state)

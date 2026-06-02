@@ -1,12 +1,18 @@
-class_name Fall extends State
+class_name Air extends ParentState
 
 @onready var character := owner as CharacterBody2D
 
 func enter() -> void:
-	character.is_jumping = false
-	character.animated_sprite.play("fall")
+	if Input.is_action_just_pressed("jump"):
+		enter_child("jump")
+	else:
+		enter_child("fall")
 
-func physics_update(delta: float) -> void:
+func _shared_physics(delta: float) -> void:
+	if Input.is_action_just_pressed("jump"):
+		transitioned.emit(self, "jump")
+		return
+
 	var direction := Input.get_axis("left", "right")
 
 	if direction:
@@ -20,7 +26,7 @@ func physics_update(delta: float) -> void:
 		)
 
 	if character.is_on_floor():
-		if direction:
-			transitioned.emit(self, "run")
+		if character.is_on_water:
+			transitioned.emit(self, "water")
 		else:
-			transitioned.emit(self, "idle")
+			transitioned.emit(self, "ground")

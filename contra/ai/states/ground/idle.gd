@@ -9,11 +9,7 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 
-	character.velocity.x = move_toward(
-		character.velocity.x,
-		0,
-		character.SPEED
-	)
+	character.velocity.x = move_toward(character.velocity.x, 0, character.SPEED)
 
 	if not character.is_on_floor():
 		transitioned.emit(self, "fall")
@@ -24,7 +20,8 @@ func physics_update(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("jump"):
-		transitioned.emit(self, "jump")
+		print("GOING TO JUMP")
+		transitioned.emit(self, "air")
 		return
 
 	if direction != 0:

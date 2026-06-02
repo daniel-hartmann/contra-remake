@@ -169,6 +169,8 @@ sources/0 = SubResource("TileSetAtlasSource_604sh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_604sh"]
 size = Vector2(16, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f0lc"]
+
 [node name="StageOne" type="Node2D" unique_id=2045241351]
 
 [node name="DELETE_StageReference" type="Sprite2D" parent="." unique_id=861663753]
@@ -210,7 +212,7 @@ scale = Vector2(1, 3.4600003)
 shape = SubResource("RectangleShape2D_604sh")
 
 [node name="InvisibleFloor" type="StaticBody2D" parent="." unique_id=511975222 node_paths=PackedStringArray("camera")]
-position = Vector2(155, 230)
+position = Vector2(155, 232)
 scale = Vector2(3.96, 1)
 script = ExtResource("5_ph73p")
 bound_type = 1
@@ -220,3 +222,14 @@ camera = NodePath("../Bill/Camera2D")
 position = Vector2(-3.282828, 0)
 scale = Vector2(3.96, 1)
 shape = SubResource("RectangleShape2D_604sh")
+
+[node name="WaterArea" type="Area2D" parent="InvisibleFloor" unique_id=1281372479]
+position = Vector2(-5.3030314, -19.999998)
+scale = Vector2(1.85, 1)
+
+[node name="WaterCollision" type="CollisionShape2D" parent="InvisibleFloor/WaterArea" unique_id=44140728]
+scale = Vector2(1.85, 1)
+shape = SubResource("RectangleShape2D_0f0lc")
+
+[connection signal="body_entered" from="InvisibleFloor/WaterArea" to="Bill" method="_on_water_area_body_entered"]
+[connection signal="body_exited" from="InvisibleFloor/WaterArea" to="Bill" method="_on_water_area_body_exited"]
