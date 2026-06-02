@@ -105,6 +105,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_pu5s7")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph73p"]
+size = Vector2(64, 25.82064)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_604sh"]
 texture = ExtResource("3_1jgdb")
@@ -172,6 +173,7 @@ sources/0 = SubResource("TileSetAtlasSource_604sh")
 size = Vector2(16, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f0lc"]
+size = Vector2(20.008865, 17.756256)
 
 [node name="StageOne" type="Node2D" unique_id=2045241351]
 
@@ -187,10 +189,14 @@ tile_map_data = PackedByteArray("AAAAAAAAAAANAAIAAAABAAAAAAANAAIAAAACAAAAAAANAAI
 tile_set = SubResource("TileSet_1jgdb")
 
 [node name="BackToTheGround" type="Area2D" parent="Tiles" unique_id=1748717209]
-position = Vector2(298, 224)
+position = Vector2(320, 223)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/BackToTheGround" unique_id=513111797]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(1, 0.76)
 shape = SubResource("RectangleShape2D_ph73p")
+debug_color = Color(0.96264964, 0, 0.41934624, 0.78039217)
 
 [node name="BackgroundAnimation" type="TileMapLayer" parent="." unique_id=1215243748]
 texture_filter = 1
@@ -231,14 +237,14 @@ position = Vector2(-3.282828, 0)
 scale = Vector2(3.96, 1)
 shape = SubResource("RectangleShape2D_604sh")
 
-[node name="WaterArea" type="Area2D" parent="InvisibleFloor" unique_id=1281372479]
-position = Vector2(-5.3030314, -19.999998)
-scale = Vector2(1.85, 1)
+[node name="WaterArea" type="Area2D" parent="." unique_id=1281372479]
+position = Vector2(148, 220.00002)
+scale = Vector2(3.74, 0.95)
 
-[node name="WaterCollision" type="CollisionShape2D" parent="InvisibleFloor/WaterArea" unique_id=44140728]
-scale = Vector2(1.85, 1)
+[node name="WaterCollision" type="CollisionShape2D" parent="WaterArea" unique_id=44140728]
+position = Vector2(0.01657486, 1.0658112)
+scale = Vector2(3.74, 0.95)
 shape = SubResource("RectangleShape2D_0f0lc")
 
 [connection signal="body_entered" from="Tiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
-[connection signal="body_entered" from="InvisibleFloor/WaterArea" to="Bill" method="_on_water_area_body_entered"]
-[connection signal="body_exited" from="InvisibleFloor/WaterArea" to="Bill" method="_on_water_area_body_exited"]
+[connection signal="body_entered" from="WaterArea" to="Bill" method="_on_water_area_body_entered"]

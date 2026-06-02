@@ -13,6 +13,10 @@ func _shared_physics(delta: float) -> void:
 		transitioned.emit(self, "jump")
 		return
 
+	if character.is_on_water:
+		transitioned.emit(self, "water")
+		return
+
 	var direction := Input.get_axis("left", "right")
 
 	if direction:
@@ -26,5 +30,4 @@ func _shared_physics(delta: float) -> void:
 		)
 
 	if character.is_on_floor():
-		if not character.is_on_water:
-			transitioned.emit(self, "ground")
+		transitioned.emit(self, "ground")
