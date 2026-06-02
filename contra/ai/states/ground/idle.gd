@@ -20,7 +20,6 @@ func physics_update(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("jump"):
-		print("GOING TO JUMP")
 		transitioned.emit(self, "air")
 		return
 

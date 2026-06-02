@@ -12,13 +12,11 @@ func _ready() -> void:
 			child.transitioned.connect(_on_child_transition)
 
 func enter_child(state_name: String) -> void:
-	print("Trying to enter child state ", state_name, " from ", self.name)
-	print(states)
 	var s = states.get(state_name)
 	if s:
 		s.enter()
 		current_state = s
-		print("on child state ", s)
+		Log.info("on state " + self.name + " -> " + s.name)
 
 func _on_child_transition(state: State, new_name: String) -> void:
 	if state != current_state:

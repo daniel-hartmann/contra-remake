@@ -40,3 +40,9 @@ func _on_water_area_body_exited(body: Node2D) -> void:
 func _on_water_timer_timeout() -> void:
 	print("_on_water_timer_timeout")
 	$FSM.on_child_transition($FSM.current_state, "water")
+
+
+func _on_back_to_the_ground_body_entered(body: Node2D) -> void:
+	if body.name == "Bill" and is_on_water:
+		print("_on_back_to_the_ground_body_entered")
+		$FSM.on_child_transition($FSM.current_state, "ground")
