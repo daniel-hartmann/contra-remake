@@ -26,7 +26,5 @@ func _shared_physics(delta: float) -> void:
 		)
 
 	if character.is_on_floor():
-		if character.is_on_water:
-			transitioned.emit(self, "water")
-		else:
+		if not character.is_on_water:
 			transitioned.emit(self, "ground")

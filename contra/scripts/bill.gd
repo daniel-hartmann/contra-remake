@@ -22,13 +22,21 @@ func _on_drop_timer_timeout() -> void:
 
 
 func _on_water_area_body_entered(body: Node2D) -> void:
-	print("_on_water_area_body_entered")
-	print(body)
-	if body.name == "Bill":
+	if body.name == "Bill" and not is_on_water:
+		print("_on_water_area_body_entered")
+		print(body)
 		is_on_water = true
-		$FSM.on_child_transition($FSM.current_state, "water")
+		animated_sprite.play("water_in")
+		$WaterTimer.start()
+		
 
 
 func _on_water_area_body_exited(body: Node2D) -> void:
-	if body.name == "Bill":
+	if body.name == "Bill" and is_on_water:
+		print("_on_water_area_body_exited")
 		$FSM.on_child_transition($FSM.current_state, "ground")
+
+
+func _on_water_timer_timeout() -> void:
+	print("_on_water_timer_timeout")
+	$FSM.on_child_transition($FSM.current_state, "water")

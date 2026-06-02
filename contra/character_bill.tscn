@@ -83,6 +83,14 @@ region = Rect2(586, 139, 64, 64)
 atlas = ExtResource("2_kvjld")
 region = Rect2(651, 139, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjc0q"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(1, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7r8q"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(716, 139, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gyhaw"]
 animations = [{
 "frames": [{
@@ -170,6 +178,22 @@ animations = [{
 "loop": true,
 "name": &"water_dive",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjc0q")
+}],
+"loop": true,
+"name": &"water_in",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7r8q")
+}],
+"loop": true,
+"name": &"water_out",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodf2"]
@@ -181,7 +205,7 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"water_dive"
+animation = &"water_in"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -190,6 +214,11 @@ shape = SubResource("RectangleShape2D_oodf2")
 
 [node name="DropTimer" type="Timer" parent="." unique_id=349652592]
 wait_time = 0.1
+one_shot = true
+
+[node name="WaterTimer" type="Timer" parent="." unique_id=1343224375]
+wait_time = 0.1
+one_shot = true
 
 [node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_0a2dj")]
 initial_state = NodePath("Ground")
@@ -228,3 +257,4 @@ script = ExtResource("13_bso8a")
 script = ExtResource("14_6x0jv")
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="WaterTimer" to="." method="_on_water_timer_timeout"]
