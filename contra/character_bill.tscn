@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://hyexsgagriit" path="res://ai/states/air/fall.gd" id="9_q4383"]
 [ext_resource type="Script" uid="uid://dyjwpfwc8fpy" path="res://ai/states/water.gd" id="12_obin2"]
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
+[ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cap6p"]
 atlas = ExtResource("2_kvjld")
@@ -74,6 +75,14 @@ region = Rect2(66, 139, 64, 64)
 atlas = ExtResource("2_kvjld")
 region = Rect2(131, 139, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_svubs"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(586, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm2x4"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(651, 139, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gyhaw"]
 animations = [{
 "frames": [{
@@ -117,11 +126,6 @@ animations = [{
 "name": &"jump",
 "speed": 6.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wsl5y")
@@ -155,6 +159,17 @@ animations = [{
 "loop": true,
 "name": &"water",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svubs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm2x4")
+}],
+"loop": true,
+"name": &"water_dive",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodf2"]
@@ -166,8 +181,7 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"water"
-frame_progress = 0.6335863
+animation = &"water_dive"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -211,5 +225,6 @@ initial_state = NodePath("Swim")
 script = ExtResource("13_bso8a")
 
 [node name="Dive" parent="FSM/Water" unique_id=46863774 instance=ExtResource("5_i8x4f")]
+script = ExtResource("14_6x0jv")
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
