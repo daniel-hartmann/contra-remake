@@ -1,11 +1,14 @@
-class_name Run extends State
+class_name Run extends ParentState
 
 @onready var character := owner as CharacterBody2D
 
 func enter() -> void:
-	character.animated_sprite.play("run")
+	enter_child("runnoaim")
+	
+func exit() -> void:
+	enter_child("runnoaim")
 
-func physics_update(delta: float) -> void:
+func _shared_physics(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 
 	if not character.is_on_floor() or Input.is_action_just_pressed("jump"):
