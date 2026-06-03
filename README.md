@@ -10,8 +10,9 @@ na Godot. O objetivo dos protótipos é testar cada uma das mecânicas isoladame
 do resto do jogo;
 
 ### Nossa lista de tarefas
-- [ ] Implementar caminhar
-- [ ] Implementar o pulo
+- [x] Implementar caminhar
+- [x] Implementar o pulo
+- [ ] Implementar a mira
 - [ ] Implementar o tiro
 
 
