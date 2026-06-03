@@ -3,7 +3,7 @@ class_name Swim extends State
 @onready var character := owner as CharacterBody2D
 
 func enter() -> void:
-	character.animated_sprite.play("water")
+	character.animated_sprite.play("water_in")
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")

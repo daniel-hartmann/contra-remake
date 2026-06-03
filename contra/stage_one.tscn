@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://back_to_the_ground.tscn" id="3_j4x6s"]
 [ext_resource type="PackedScene" uid="uid://ulp856gu8hwl" path="res://character_bill.tscn" id="5_0f0lc"]
 [ext_resource type="Script" uid="uid://8bhxvorq3x5v" path="res://invisible_wall.gd" id="5_ph73p"]
-[ext_resource type="Script" uid="uid://bmivl2b2xenhp" path="res://water_area.gd" id="6_ph73p"]
+[ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://water_area.tscn" id="7_j4x6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -171,9 +171,6 @@ sources/0 = SubResource("TileSetAtlasSource_604sh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_604sh"]
 size = Vector2(16, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f0lc"]
-size = Vector2(20.008865, 7.756241)
-
 [node name="StageOne" type="Node2D" unique_id=2045241351]
 
 [node name="DELETE_StageReference" type="Sprite2D" parent="." unique_id=861663753]
@@ -233,19 +230,8 @@ position = Vector2(-3.282828, 0)
 scale = Vector2(3.96, 1)
 shape = SubResource("RectangleShape2D_604sh")
 
-[node name="WaterArea" type="Area2D" parent="InvisibleFloor" unique_id=1281372479]
+[node name="WaterArea" parent="InvisibleFloor" unique_id=1346483048 instance=ExtResource("7_j4x6s")]
 position = Vector2(-1.7676735, -11.999985)
-scale = Vector2(0.9444444, 0.9499999)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("6_ph73p")
-
-[node name="WaterCollision" type="CollisionShape2D" parent="InvisibleFloor/WaterArea" unique_id=44140728]
-position = Vector2(0.01657486, -1.5789185)
-scale = Vector2(3.74, 0.95)
-shape = SubResource("RectangleShape2D_0f0lc")
-debug_color = Color(0.047058824, 0.12156863, 0.6117647, 0.41960785)
 
 [connection signal="body_entered" from="Tiles/BackToTheGround1" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="Tiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]
-[connection signal="body_entered" from="InvisibleFloor/WaterArea" to="Bill" method="_on_water_area_body_entered"]

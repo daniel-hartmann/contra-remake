@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c2odvdw3x71rj"]
+
+[ext_resource type="Script" uid="uid://bmivl2b2xenhp" path="res://water_area.gd" id="1_6fcsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f0lc"]
+size = Vector2(20.008865, 7.756241)
+
+[node name="WaterArea" type="Area2D" unique_id=1346483048]
+scale = Vector2(0.9444444, 0.9499999)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_6fcsu")
+
+[node name="WaterCollision" type="CollisionShape2D" parent="." unique_id=1522842754]
+position = Vector2(0.01657486, -1.5789185)
+scale = Vector2(3.74, 0.95)
+shape = SubResource("RectangleShape2D_0f0lc")
+debug_color = Color(0.047058824, 0.12156863, 0.6117647, 0.41960785)
+
+[node name="WaterTimer" type="Timer" parent="." unique_id=1997797280]
+wait_time = 0.1
+one_shot = true
