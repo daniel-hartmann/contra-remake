@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ce0gcf8qwk8io"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph73p"]
+size = Vector2(64, 7.647167)
+
+[node name="BackToTheGround" type="Area2D" unique_id=1771265041]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=357953116]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, -6.9059143)
+scale = Vector2(1, 0.76)
+shape = SubResource("RectangleShape2D_ph73p")
+debug_color = Color(0.96264964, 0, 0.41934624, 0.78039217)
