@@ -1,10 +1,12 @@
 extends CharacterBody2D
+class_name Player
 
 const SPEED = 60.0
 const JUMP_VELOCITY = -230.0
 
 var is_jumping := false
 var is_on_water := false
+var is_climbing := false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -48,6 +50,7 @@ func _on_back_to_the_ground_body_entered(body: Node2D) -> void:
 		print("_on_back_to_the_ground_body_entered")
 		is_on_water = false
 		animated_sprite.play("water_out")
+		is_climbing = true
 		$BackToGroundTimer.start()
 		#$FSM.current_state.enter_child("climb")
 
@@ -55,5 +58,6 @@ func _on_back_to_the_ground_body_entered(body: Node2D) -> void:
 func _on_back_to_ground_timer_timeout() -> void:
 	print("_on_back_to_ground_timer_timeout")
 	is_on_water = false
+	is_climbing = false
 	global_position.y -= 16
 	$FSM.on_child_transition($FSM.current_state, "ground")

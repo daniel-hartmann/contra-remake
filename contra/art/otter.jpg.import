@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pb8clpdytpbq"
-path="res://.godot/imported/bill_and_lance.png-b262764aceec710209c3c0be2bf88cd0.ctex"
+uid="uid://n0i3pki7yknx"
+path="res://.godot/imported/otter.jpg-4b2a732a2bf91533233a4f71414d8e55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/character/bill_and_lance.png"
-dest_files=["res://.godot/imported/bill_and_lance.png-b262764aceec710209c3c0be2bf88cd0.ctex"]
+source_file="res://art/otter.jpg"
+dest_files=["res://.godot/imported/otter.jpg-4b2a732a2bf91533233a4f71414d8e55.ctex"]
 
 [params]
 

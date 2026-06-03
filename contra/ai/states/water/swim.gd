@@ -17,4 +17,8 @@ func physics_update(delta: float) -> void:
 		return
 
 	character.velocity.x = direction * character.SPEED
+	
+	if character.is_climbing:
+		character.velocity.x = 0
+	
 	character.animated_sprite.flip_h = direction < 0
