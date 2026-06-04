@@ -7,13 +7,20 @@ func _ready() -> void:
 
 func _on_body_entered(node):
 	if node is Player and not node.is_on_water:
-		print("_on_water_area_body_entered")
 		node.is_on_water = true
-		$WaterTimer.timeout.connect(_on_water_timer_timeout.bind(node))
-		#node.animated_sprite.play("water_in")
-		#$FSM.on_chi∫˜ld_transition($FSM.current_state, "water")
+		$WaterTimer.timeout.connect(_player_on_water_timer_timeout.bind(node))
+		$WaterTimer.start()
+		return
+	
+	if node is Enemy:
+		node.animated_sprite.play("water_in")
+		$WaterTimer.timeout.connect(_enemy_on_water_timer_timeout.bind(node))
 		$WaterTimer.start()
 
 
-func _on_water_timer_timeout(node) -> void:
+func _player_on_water_timer_timeout(node) -> void:
 	node.animated_sprite.play("water")
+
+
+func _enemy_on_water_timer_timeout(node) -> void:
+	node.queue_free()
