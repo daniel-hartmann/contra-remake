@@ -8,6 +8,8 @@ func _ready() -> void:
 func _on_body_entered(node):
 	if node is Player and not node.is_on_water:
 		node.is_on_water = true
+		node.animated_sprite.play("water_in")
+		print("WATER IN")
 		$WaterTimer.timeout.connect(_player_on_water_timer_timeout.bind(node))
 		$WaterTimer.start()
 		return
@@ -20,6 +22,7 @@ func _on_body_entered(node):
 
 func _player_on_water_timer_timeout(node) -> void:
 	node.animated_sprite.play("water")
+	
 
 
 func _enemy_on_water_timer_timeout(node) -> void:

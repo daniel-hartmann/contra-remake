@@ -6,5 +6,10 @@ func enter() -> void:
 	enter_child("idle")  # default child
 
 func _shared_physics(delta: float) -> void:
+	if character.is_on_water:
+		if character.animated_sprite.animation != "water_in":
+			transitioned.emit(self, "water")
+		return
+
 	if not character.is_on_floor():
 		transitioned.emit(self, "air")

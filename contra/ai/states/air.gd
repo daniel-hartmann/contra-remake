@@ -14,7 +14,8 @@ func _shared_physics(delta: float) -> void:
 		return
 
 	if character.is_on_water:
-		transitioned.emit(self, "water")
+		if character.animated_sprite.animation != "water_in":
+			transitioned.emit(self, "water")
 		return
 
 	var direction := Input.get_axis("left", "right")
