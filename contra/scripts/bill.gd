@@ -10,6 +10,7 @@ var is_climbing := false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+const BULLET = preload("res://Bullet.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity
@@ -49,3 +50,28 @@ func _on_back_to_ground_timer_timeout() -> void:
 	is_climbing = false
 	global_position.y -= 16
 	$FSM.on_child_transition($FSM.current_state, "ground")
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("shoot"):
+		shoot()
+
+func shoot():
+	# 1. Create an instance of the bullet
+	var b = BULLET.instantiate()
+	# 2. Set the bullet's position and rotation
+	b.global_position = $Mira.global_position
+	
+	if $"FSM".current_state.name == "Ground":
+		if $"FSM".current_state.current_state.name == "Run":
+			if $"FSM".current_state.current_state.current_state.name == "RunAimHigh":
+				b.global_rotation_degrees = -40
+			elif $"FSM".current_state.current_state.current_state.name == "RunAimLow":
+				b.global_rotation_degrees = 40
+		elif $"FSM".current_state.current_state.name == "AimUp":
+			b.global_rotation_degrees = -90
+			
+	if $AnimatedSprite2D.flip_h:
+		b.global_rotation_degrees = 180 - b.global_rotation_degrees
+
+	# 3. Add it to the main scene (instead of the player, so it doesn't move with the player)
+	get_parent().add_child(b)

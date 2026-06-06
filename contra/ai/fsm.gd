@@ -1,9 +1,9 @@
 class_name FSM extends Node
 
 @export var initial_state: ParentState
+var current_state: ParentState
 
 var states: Dictionary = {}
-var current_state: ParentState
 
 func _ready() -> void:
 	for child in get_children():

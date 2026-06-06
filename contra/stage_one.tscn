@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://back_to_the_ground.tscn" id="3_j4x6s"]
 [ext_resource type="PackedScene" uid="uid://ulp856gu8hwl" path="res://character_bill.tscn" id="5_0f0lc"]
 [ext_resource type="Script" uid="uid://8bhxvorq3x5v" path="res://invisible_wall.gd" id="5_ph73p"]
-[ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://water_area.tscn" id="7_j4x6s"]
+[ext_resource type="PackedScene" path="res://water_area.tscn" id="7_j4x6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
