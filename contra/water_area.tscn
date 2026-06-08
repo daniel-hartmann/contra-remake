@@ -8,7 +8,7 @@ size = Vector2(20.008865, 7.756241)
 [node name="WaterArea" type="Area2D" unique_id=1346483048]
 scale = Vector2(0.9444444, 0.9499999)
 collision_layer = 4
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_6fcsu")
 
 [node name="WaterCollision" type="CollisionShape2D" parent="." unique_id=1522842754]

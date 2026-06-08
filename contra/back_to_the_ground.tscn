@@ -3,8 +3,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph73p"]
 size = Vector2(64, 7.647167)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xmwu"]
+size = Vector2(62, 1.7346935)
+
 [node name="BackToTheGround" type="Area2D" unique_id=1771265041]
-collision_mask = 3
+collision_layer = 16
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=357953116]
 light_mask = 3
@@ -13,3 +17,14 @@ position = Vector2(0, -6.9059143)
 scale = Vector2(1, 0.76)
 shape = SubResource("RectangleShape2D_ph73p")
 debug_color = Color(0.96264964, 0, 0.41934624, 0.78039217)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1749592536]
+position = Vector2(0, -4.11)
+collision_layer = 16
+collision_mask = 10
+
+[node name="REMOVEME_AND_FIX_IT_ON_THE_TILES" type="CollisionShape2D" parent="StaticBody2D" unique_id=1104602445]
+position = Vector2(0, -4.0400004)
+scale = Vector2(1.02, 0.98)
+shape = SubResource("RectangleShape2D_7xmwu")
+debug_color = Color(0.92156863, 1, 0.24705882, 0.41960785)
