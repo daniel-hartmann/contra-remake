@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://ulp856gu8hwl"]
 
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_cap6p"]
-[ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="2_kvjld"]
+[ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/Bill_and_Lance.png" id="2_kvjld"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="3_0a2dj"]
 [ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_i8x4f"]
 [ext_resource type="Script" uid="uid://dvgoqoq3lbpxy" path="res://ai/states/ground/run.gd" id="5_nvqsm"]
 [ext_resource type="Script" uid="uid://b7pdmf7qf4ra6" path="res://ai/states/ground.gd" id="5_q4383"]
 [ext_resource type="Script" uid="uid://dmou0mdolvm12" path="res://ai/states/ground/crouch.gd" id="6_bqhe4"]
 [ext_resource type="Script" uid="uid://bm8mrvnhb271g" path="res://ai/states/ground/idle.gd" id="6_i8x4f"]
-[ext_resource type="Script" uid="uid://bkxpr83akxemj" path="res://ai/run_aim_high.gd" id="7_xuy7w"]
-[ext_resource type="Script" uid="uid://c4tvfnxrqbgbt" path="res://ai/run_aim_low.gd" id="8_vpwgg"]
+[ext_resource type="Script" uid="uid://bkxpr83akxemj" path="res://ai/states/ground/run_children/run_aim_high.gd" id="7_xuy7w"]
+[ext_resource type="Script" uid="uid://c4tvfnxrqbgbt" path="res://ai/states/ground/run_children/run_aim_low.gd" id="8_vpwgg"]
 [ext_resource type="Script" uid="uid://xpbint81wmhk" path="res://ai/states/air/jump.gd" id="8_wsl5y"]
 [ext_resource type="Script" uid="uid://ckr6867g8y714" path="res://ai/states/air.gd" id="9_b3o3f"]
 [ext_resource type="Script" uid="uid://hyexsgagriit" path="res://ai/states/air/fall.gd" id="9_q4383"]
-[ext_resource type="Script" uid="uid://dpu0qli6qnafr" path="res://ai/run_no_aim.gd" id="9_svubs"]
+[ext_resource type="Script" uid="uid://dpu0qli6qnafr" path="res://ai/states/ground/run_children/run_no_aim.gd" id="9_svubs"]
 [ext_resource type="Script" uid="uid://dyjwpfwc8fpy" path="res://ai/states/water.gd" id="12_obin2"]
+[ext_resource type="Script" uid="uid://brgfrrte3osso" path="res://ai/aim_up.gd" id="12_u7r8q"]
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
+[ext_resource type="Script" uid="uid://66rta5t80j3g" path="res://mira.gd" id="19_mjc0q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fa56t"]
 atlas = ExtResource("2_kvjld")
@@ -301,7 +303,7 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"water"
+animation = &"crouch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -343,6 +345,9 @@ script = ExtResource("6_bqhe4")
 [node name="Idle" parent="FSM/Ground" unique_id=1196879441 instance=ExtResource("5_i8x4f")]
 script = ExtResource("6_i8x4f")
 
+[node name="AimUp" parent="FSM/Ground" unique_id=57629053 instance=ExtResource("5_i8x4f")]
+script = ExtResource("12_u7r8q")
+
 [node name="Air" parent="FSM" unique_id=723874564 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_i8x4f")]
 script = ExtResource("9_b3o3f")
 initial_state = NodePath("Fall")
@@ -365,6 +370,10 @@ script = ExtResource("14_6x0jv")
 
 [node name="Climb" parent="FSM/Water" unique_id=1623163263 instance=ExtResource("5_i8x4f")]
 script = ExtResource("16_svubs")
+
+[node name="Mira" type="Marker2D" parent="." unique_id=1812594340]
+position = Vector2(16, 9)
+script = ExtResource("19_mjc0q")
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
 [connection signal="timeout" from="BackToGroundTimer" to="." method="_on_back_to_ground_timer_timeout"]

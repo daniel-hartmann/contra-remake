@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pb8clpdytpbq"
-path="res://.godot/imported/Bill_and_Lance.png-f9296a7f06d4572028d1bc74cf5d4aff.ctex"
+uid="uid://c2s48yi3dsgyi"
+path="res://.godot/imported/standard.png-9f22ebef88accbce20d4f6b5f248be4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/character/Bill_and_Lance.png"
-dest_files=["res://.godot/imported/Bill_and_Lance.png-f9296a7f06d4572028d1bc74cf5d4aff.ctex"]
+source_file="res://art/bullets/standard.png"
+dest_files=["res://.godot/imported/standard.png-9f22ebef88accbce20d4f6b5f248be4e.ctex"]
 
 [params]
 

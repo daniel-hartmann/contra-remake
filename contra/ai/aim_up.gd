@@ -1,10 +1,10 @@
-class_name Idle extends State
+class_name AimUp extends State
 
 @onready var character := owner as CharacterBody2D
 
 func enter() -> void:
 	character.is_jumping = false
-	character.animated_sprite.play("idle")
+	character.animated_sprite.play("aim_up")
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
@@ -18,10 +18,6 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_pressed("down"):
 		transitioned.emit(self, "crouch")
 		return
-		
-	if Input.is_action_just_pressed("up"):
-		transitioned.emit(self, "aimup")
-		return
 
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "air")
@@ -29,3 +25,7 @@ func physics_update(delta: float) -> void:
 
 	if direction != 0:
 		transitioned.emit(self, "run")
+		return
+		
+	if !Input.is_action_pressed("up"):
+		transitioned.emit(self, "idle")
