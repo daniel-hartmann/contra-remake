@@ -26,4 +26,4 @@ func _player_on_water_timer_timeout(node) -> void:
 
 
 func _enemy_on_water_timer_timeout(node) -> void:
-	node.queue_free()
+	node.hide()
