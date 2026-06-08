@@ -18,12 +18,22 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() / 2 * delta
 
 	move_and_slide()
-	
-	# Detect collisions after moving
+	#
+	## Detect collisions after moving
 	#for i in range(get_slide_collision_count()):
 		#var collision = get_slide_collision(i)
 		#var collider = collision.get_collider()
-		#
+#
+		#if collider is TileMapLayer:
+			#var tile_set = collider.tile_set
+			#if tile_set:
+				## 0 refers to the first Physics Layer setup in your TileSet inspector
+				#var layer = tile_set.get_physics_layer_collision_layer(0)
+				#var mask = tile_set.get_physics_layer_collision_mask(0)
+				#print("Hit a TileMapLayer tile. Layer: ", layer, " Mask: ", mask)
+#
+#
+#
 		## Check if the collided object is a specific StaticBody2D
 		#if collider.name == "YourStaticBodyName":
 			#print("Collided with the specific StaticBody2D!")

@@ -13,8 +13,8 @@ collision_mask = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=357953116]
 light_mask = 3
 visibility_layer = 3
-position = Vector2(0, -6.9059143)
-scale = Vector2(1, 0.76)
+position = Vector2(0, -6)
+scale = Vector2(1.05, 0.76)
 shape = SubResource("RectangleShape2D_ph73p")
 debug_color = Color(0.96264964, 0, 0.41934624, 0.78039217)
 
@@ -23,7 +23,7 @@ position = Vector2(0, -4.11)
 collision_layer = 16
 collision_mask = 10
 
-[node name="REMOVEME_AND_FIX_IT_ON_THE_TILES" type="CollisionShape2D" parent="StaticBody2D" unique_id=1104602445]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1104602445]
 position = Vector2(0, -4.0400004)
 scale = Vector2(1.02, 0.98)
 shape = SubResource("RectangleShape2D_7xmwu")
