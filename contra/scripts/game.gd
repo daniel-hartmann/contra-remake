@@ -1,5 +1,8 @@
 extends Node
 
+var player_lives = 3;
+
+
 func _ready() -> void:
 	change_screen(preload("res://scenes/stages/stage_one.tscn").instantiate())
 
