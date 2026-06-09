@@ -8,7 +8,7 @@ var console_tween: Tween
 func _ready() -> void:
 	Log.minimum_level = Log.Level.DEBUG
 
-	change_screen(preload("res://stage_one.tscn").instantiate())
+	change_screen(preload("res://scenes/game.tscn").instantiate())
 
 	# Start hidden above the screen
 	console_scene.position.y = get_window().size.y - 20
