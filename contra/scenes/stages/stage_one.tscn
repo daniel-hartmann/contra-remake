@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cjl0tofgej0p8" path="res://art/stages/tileset_stage_one_animation.png" id="3_1jgdb"]
 [ext_resource type="Texture2D" uid="uid://cnorwcvtc83f1" path="res://art/enemies/defense_wall.png" id="3_j4x6s"]
 [ext_resource type="Texture2D" uid="uid://bkubv4ulbb88x" path="res://art/stages/Arbustoselva02.png" id="4_3knft"]
-[ext_resource type="PackedScene" uid="uid://ulp856gu8hwl" path="res://character_bill.tscn" id="5_0f0lc"]
+[ext_resource type="PackedScene" uid="uid://ulp856gu8hwl" path="res://scenes/character_bill.tscn" id="5_0f0lc"]
 [ext_resource type="Script" uid="uid://8bhxvorq3x5v" path="res://invisible_wall.gd" id="5_ph73p"]
 [ext_resource type="Texture2D" uid="uid://er8xxs4sgnii" path="res://art/stages/Arbustoselva.png" id="5_rafbn"]
 [ext_resource type="Texture2D" uid="uid://b3tsx2qkco611" path="res://art/stages/Pontequebrada02.png" id="6_vo3vd"]
 [ext_resource type="Texture2D" uid="uid://bu03dqr5p8f5q" path="res://art/stages/Pontequebrada.png" id="7_h4i58"]
-[ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://water_area.tscn" id="7_j4x6s"]
-[ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://back_to_the_ground.tscn" id="12_vo3vd"]
+[ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://scenes/water_area.tscn" id="7_j4x6s"]
+[ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://scenes/back_to_the_ground.tscn" id="12_vo3vd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")

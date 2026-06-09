@@ -10,7 +10,7 @@ var is_climbing := false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-const BULLET = preload("res://Bullet.tscn")
+const BULLET = preload("res://scenes/Bullet.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity
