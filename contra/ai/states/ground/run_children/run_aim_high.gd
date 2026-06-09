@@ -10,4 +10,5 @@ func physics_update(delta: float) -> void:
 		transitioned.emit(self, "runaimdown")
 	
 	elif !Input.is_action_pressed("up"):
+		# TODO: check if it's pressing right or left and firing?
 		transitioned.emit(self, "runnoaim")

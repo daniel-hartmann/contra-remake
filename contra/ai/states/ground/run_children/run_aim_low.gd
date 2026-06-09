@@ -11,4 +11,3 @@ func physics_update(delta: float) -> void:
 	
 	elif !Input.is_action_pressed("down"):
 		transitioned.emit(self, "runnoaim")
-		

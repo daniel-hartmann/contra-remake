@@ -371,6 +371,7 @@ size = Vector2(16, 20)
 [node name="StageOne" type="Node2D" unique_id=2045241351]
 
 [node name="DELETE_StageReference" type="Sprite2D" parent="." unique_id=861663753]
+visible = false
 modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(1730, 130.5)
 texture = ExtResource("1_pu5s7")
