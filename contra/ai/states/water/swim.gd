@@ -6,7 +6,7 @@ class_name Swim extends State
 func enter() -> void:
 	character.animated_sprite.play("water")
 	# TODO: set different collision shapes for each state
-	#character.get_node("Hitbox").get("Collision").shape = test
+	#character.hitbox_shape.shape = collision_shape
 
 
 func physics_update(delta: float) -> void:

@@ -13,7 +13,6 @@ func _ready() -> void:
 	console_scene.hide()
 	add_child(console_scene)
 
-	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_console"):

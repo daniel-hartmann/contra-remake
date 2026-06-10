@@ -9,6 +9,7 @@ var is_on_water := false
 var is_climbing := false
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var hitbox_shape = $Hitbox/CollisionShape2D
 
 
 const BULLET = preload("res://scenes/Bullet.tscn")
