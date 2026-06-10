@@ -2,26 +2,17 @@
 
 [ext_resource type="Script" uid="uid://co88q1obmvnbp" path="res://utils/console.gd" id="1_yvq8f"]
 
-[node name="ConsoleControl" type="Control" unique_id=967271139]
-layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(0, -140)
-size_flags_horizontal = 3
-size_flags_vertical = 8
+[node name="ConsoleControl" type="CanvasLayer" unique_id=2020632038]
 
 [node name="ConsolePanel" type="Panel" parent="." unique_id=27299557]
-layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.708
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 0.08000183
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 8
 
 [node name="Console" type="RichTextLabel" parent="ConsolePanel" unique_id=1081764837]
 layout_mode = 1

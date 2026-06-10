@@ -11,13 +11,13 @@ func _ready() -> void:
 	change_screen(preload("res://scenes/game.tscn").instantiate())
 
 	# Start hidden above the screen
-	console_scene.position.y = get_window().size.y - 20
+	#console_scene.position.y = get_window().size.y - 20
 	add_child(console_scene)
 
 func _physics_process(delta: float) -> void:
 	# Make the console follow the camera
 	var camera_bounds = get_camera_bounds()
-	console_scene.global_position.x = camera_bounds.position.x
+	#console_scene.global_position.x = camera_bounds.position.x
 	
 
 func _input(event: InputEvent) -> void:

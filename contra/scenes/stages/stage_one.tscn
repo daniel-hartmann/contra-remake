@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bu03dqr5p8f5q" path="res://art/stages/Pontequebrada.png" id="7_h4i58"]
 [ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://scenes/water_area.tscn" id="7_j4x6s"]
 [ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://scenes/back_to_the_ground.tscn" id="12_vo3vd"]
+[ext_resource type="PackedScene" uid="uid://x1inmewwvvp6" path="res://scenes/enemies/delivery_man.tscn" id="13_cdavw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -443,6 +444,9 @@ scale = Vector2(3, 1)
 
 [node name="DeliveryManSpawner" type="Marker2D" parent="." unique_id=878556118]
 position = Vector2(273, 97)
+
+[node name="DeliveryMan" parent="." unique_id=2049056016 instance=ExtResource("13_cdavw")]
+position = Vector2(165, 86)
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

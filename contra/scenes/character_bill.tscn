@@ -20,6 +20,10 @@
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
 [ext_resource type="Script" path="res://mira.gd" id="19_mjc0q"]
+[ext_resource type="Script" uid="uid://ckrm36e73gqv2" path="res://ai/states/death.gd" id="20_nf30t"]
+[ext_resource type="Script" uid="uid://csdkr03n3rrvt" path="res://ai/states/death/dying.gd" id="21_bbfoi"]
+[ext_resource type="Script" uid="uid://dwrwsioxau11l" path="res://ai/states/death/dead.gd" id="22_cdaf2"]
+[ext_resource type="Shape2D" uid="uid://qw558dln2vm7" path="res://ai/states/ground/collisions/idle.tres" id="24_cdaf2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fa56t"]
 atlas = ExtResource("2_kvjld")
@@ -28,6 +32,26 @@ region = Rect2(781, 9, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cap6p"]
 atlas = ExtResource("2_kvjld")
 region = Rect2(911, 9, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sheri"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(781, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf30t"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(846, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5xm8"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(911, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbfoi"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(976, 139, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdaf2"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(976, 204, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvjld"]
 atlas = ExtResource("2_kvjld")
@@ -153,6 +177,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sheri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf30t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5xm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbfoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdaf2")
+}],
+"loop": false,
+"name": &"dying",
 "speed": 5.0
 }, {
 "frames": [{
@@ -303,7 +347,7 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"crouch"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -371,9 +415,28 @@ script = ExtResource("14_6x0jv")
 [node name="Climb" parent="FSM/Water" unique_id=1623163263 instance=ExtResource("5_i8x4f")]
 script = ExtResource("16_svubs")
 
+[node name="Death" parent="FSM" unique_id=287310215 instance=ExtResource("5_i8x4f")]
+script = ExtResource("20_nf30t")
+
+[node name="Dying" parent="FSM/Death" unique_id=1878998748 instance=ExtResource("5_i8x4f")]
+script = ExtResource("21_bbfoi")
+
+[node name="Dead" parent="FSM/Death" unique_id=1618847600 instance=ExtResource("5_i8x4f")]
+script = ExtResource("22_cdaf2")
+
 [node name="Mira" type="Marker2D" parent="." unique_id=1812594340]
 position = Vector2(16, 9)
 script = ExtResource("19_mjc0q")
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=98476804]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1108394438]
+position = Vector2(0, 1.5)
+shape = ExtResource("24_cdaf2")
+debug_color = Color(1, 0, 0, 0.15686275)
+
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
 [connection signal="timeout" from="BackToGroundTimer" to="." method="_on_back_to_ground_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

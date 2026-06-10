@@ -126,12 +126,12 @@ size = Vector2(10, 32)
 
 [node name="DeliveryMan" type="CharacterBody2D" unique_id=2049056016]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 21
 script = ExtResource("1_q30k0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783436894]
 sprite_frames = SubResource("SpriteFrames_pdb48")
-animation = &"dead"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489994856]
 shape = SubResource("RectangleShape2D_af202")

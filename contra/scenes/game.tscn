@@ -13,14 +13,9 @@ script = ExtResource("1_uwrxv")
 
 [node name="StageOne" parent="." unique_id=2045241351 instance=ExtResource("2_yqjtg")]
 
-[node name="HUD" type="Control" parent="." unique_id=1899950861]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HUD" type="CanvasLayer" parent="." unique_id=569901477]
 
 [node name="Lives" type="HBoxContainer" parent="HUD" unique_id=1575512890]
-layout_mode = 0
 offset_left = 17.0
 offset_top = 18.0
 offset_right = 61.0

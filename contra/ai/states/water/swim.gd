@@ -1,9 +1,13 @@
 class_name Swim extends State
 
 @onready var character := owner as CharacterBody2D
+@export var collision_shape: Shape2D
 
 func enter() -> void:
 	character.animated_sprite.play("water")
+	# TODO: set different collision shapes for each state
+	#character.get_node("Hitbox").get("Collision").shape = test
+
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")

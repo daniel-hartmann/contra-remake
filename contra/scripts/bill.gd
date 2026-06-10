@@ -10,6 +10,7 @@ var is_climbing := false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+
 const BULLET = preload("res://scenes/Bullet.tscn")
 
 func _physics_process(delta: float) -> void:
@@ -85,3 +86,7 @@ func shoot():
 
 	# 3. Add it to the main scene (instead of the player, so it doesn't move with the player)
 	get_parent().add_child(b)
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	PlayerStats.player_died()
