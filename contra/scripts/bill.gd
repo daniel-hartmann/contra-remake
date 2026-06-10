@@ -89,4 +89,4 @@ func shoot():
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	PlayerStats.player_died()
+	$FSM.on_child_transition($FSM.current_state, "death")

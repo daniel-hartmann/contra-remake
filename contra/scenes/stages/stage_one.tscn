@@ -392,6 +392,9 @@ position = Vector2(50, 95)
 
 [node name="Camera2D" type="Camera2D" parent="Bill" unique_id=2004247389]
 position = Vector2(79, 25)
+limit_left = 0
+limit_top = 0
+limit_bottom = 240
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 1.0
