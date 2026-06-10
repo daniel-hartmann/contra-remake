@@ -11,6 +11,7 @@ func _ready() -> void:
 
 
 func toggle_lives_visibility() -> void:
+	print("toggle_lives_visibility")
 	# Three lives is 2 symbols in the HUD.
 	var lives = hud.get_node("Lives").get_children()
 	for i in range(0, PlayerStats.current_lives - 1):

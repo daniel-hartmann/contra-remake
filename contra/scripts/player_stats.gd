@@ -8,6 +8,7 @@ signal game_over
 
 func player_died():
 	current_lives -= 1
+	print("emitting lives_changed")
 	lives_changed.emit()
 
 	if current_lives <= 0:

@@ -2,7 +2,6 @@ extends Node
 
 var console_scene := preload("res://utils/console_control.tscn").instantiate()
 var console_is_opened := false
-var console_tween: Tween
 
 
 func _ready() -> void:
@@ -10,14 +9,10 @@ func _ready() -> void:
 
 	change_screen(preload("res://scenes/game.tscn").instantiate())
 
-	# Start hidden above the screen
-	#console_scene.position.y = get_window().size.y - 20
+	# Console starts hidden
+	console_scene.hide()
 	add_child(console_scene)
 
-func _physics_process(delta: float) -> void:
-	# Make the console follow the camera
-	var camera_bounds = get_camera_bounds()
-	#console_scene.global_position.x = camera_bounds.position.x
 	
 
 func _input(event: InputEvent) -> void:
@@ -35,17 +30,12 @@ func get_camera_bounds() -> Rect2:
 
 
 func toggle_console():
-	console_is_opened = !console_is_opened
-
-	if console_tween:
-		console_tween.kill()
-
-	console_tween = create_tween()
-
 	if console_is_opened:
-		console_tween.tween_property(console_scene, "position:y", 140, 0.25)
+		console_scene.hide()
 	else:
-		console_tween.tween_property(console_scene, "position:y", get_window().size.y, 0.25)
+		console_scene.show()
+
+	console_is_opened = !console_is_opened
 
 
 func change_screen(scene):
