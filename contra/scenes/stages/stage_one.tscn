@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://scenes/water_area.tscn" id="7_j4x6s"]
 [ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://scenes/back_to_the_ground.tscn" id="12_vo3vd"]
 [ext_resource type="PackedScene" uid="uid://x1inmewwvvp6" path="res://scenes/enemies/delivery_man.tscn" id="13_cdavw"]
+[ext_resource type="Script" uid="uid://bjfdxg2guqiop" path="res://scripts/death_area.gd" id="14_uk6q6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -369,6 +370,8 @@ sources/0 = SubResource("TileSetAtlasSource_604sh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_604sh"]
 size = Vector2(16, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdavw"]
+
 [node name="StageOne" type="Node2D" unique_id=2045241351]
 
 [node name="DELETE_StageReference" type="Sprite2D" parent="." unique_id=861663753]
@@ -414,21 +417,6 @@ camera = NodePath("../Bill/Camera2D")
 scale = Vector2(1, 3.4600003)
 shape = SubResource("RectangleShape2D_604sh")
 
-[node name="InvisibleFloor" type="StaticBody2D" parent="." unique_id=511975222 node_paths=PackedStringArray("camera")]
-position = Vector2(155, 232)
-scale = Vector2(3.96, 1)
-script = ExtResource("5_ph73p")
-bound_type = 1
-camera = NodePath("../Bill/Camera2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleFloor" unique_id=570228869]
-position = Vector2(-3.282828, 0)
-scale = Vector2(3.96, 1)
-shape = SubResource("RectangleShape2D_604sh")
-
-[node name="WaterArea" parent="InvisibleFloor" unique_id=1346483048 instance=ExtResource("7_j4x6s")]
-position = Vector2(-1.7676735, -11.999985)
-
 [node name="BottomTiles" type="Node" parent="." unique_id=1440531069]
 
 [node name="BackToTheGround" parent="BottomTiles" unique_id=1771265041 instance=ExtResource("12_vo3vd")]
@@ -450,6 +438,21 @@ position = Vector2(273, 97)
 
 [node name="DeliveryMan" parent="." unique_id=2049056016 instance=ExtResource("13_cdavw")]
 position = Vector2(165, 86)
+
+[node name="WaterArea" parent="." unique_id=1346483048 instance=ExtResource("7_j4x6s")]
+position = Vector2(865.26, 220)
+scale = Vector2(23.1, 0.95)
+
+[node name="DeathArea" type="Area2D" parent="." unique_id=1788931267]
+position = Vector2(1660, 250)
+scale = Vector2(14, 1)
+collision_layer = 64
+collision_mask = 10
+script = ExtResource("14_uk6q6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea" unique_id=703553049]
+scale = Vector2(14, 1)
+shape = SubResource("RectangleShape2D_cdavw")
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

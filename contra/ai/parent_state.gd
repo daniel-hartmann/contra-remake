@@ -22,6 +22,9 @@ func _on_child_transition(state: State, new_name: String) -> void:
 	if state != current_state:
 		return
 
+	if current_state is Dying or current_state is Dead:
+		return
+
 	if states.has(new_name):
 		current_state.exit()
 		enter_child(new_name)

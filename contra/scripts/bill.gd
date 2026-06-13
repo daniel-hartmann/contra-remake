@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -230.0
 var is_jumping := false
 var is_on_water := false
 var is_climbing := false
+var is_dead := false
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hitbox_shape = $Hitbox/CollisionShape2D
@@ -88,6 +89,26 @@ func shoot():
 	# 3. Add it to the main scene (instead of the player, so it doesn't move with the player)
 	get_parent().add_child(b)
 
+func reset() -> void:
+	is_jumping = false
+	is_on_water = false
+	is_climbing = false
+	is_dead = false
+
+
+func die() -> void:
+	reset()
+	$FSM.on_child_transition($FSM.current_state, "death")
+	is_dead = true
+
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	$FSM.on_child_transition($FSM.current_state, "death")
+	if body is Enemy:
+		die()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	print(area)
+	if area is DeathArea:
+		print("DeathArea")
+		die()

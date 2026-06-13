@@ -430,7 +430,7 @@ script = ExtResource("19_mjc0q")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=98476804]
 collision_layer = 32
-collision_mask = 8
+collision_mask = 72
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1108394438]
 position = Vector2(0, 1.5)
@@ -439,4 +439,5 @@ debug_color = Color(1, 0, 0, 0.15686275)
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
 [connection signal="timeout" from="BackToGroundTimer" to="." method="_on_back_to_ground_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

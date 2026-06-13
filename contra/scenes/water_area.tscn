@@ -5,6 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f0lc"]
 size = Vector2(20.008865, 7.756241)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unnje"]
+size = Vector2(18.983955, 20)
+
 [node name="WaterArea" type="Area2D" unique_id=1346483048]
 scale = Vector2(0.9444444, 0.9499999)
 collision_layer = 4
@@ -20,3 +23,12 @@ debug_color = Color(0.047058824, 0.12156863, 0.6117647, 0.41960785)
 [node name="WaterTimer" type="Timer" parent="." unique_id=1997797280]
 wait_time = 0.1
 one_shot = true
+
+[node name="InvisibleFloor" type="StaticBody2D" parent="." unique_id=685984257]
+position = Vector2(16.941177, 12.631579)
+scale = Vector2(3.96, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleFloor" unique_id=1779250314]
+position = Vector2(-4.144389, 0)
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_unnje")
