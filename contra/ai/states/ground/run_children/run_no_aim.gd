@@ -11,6 +11,11 @@ func physics_update(delta: float) -> void:
 	if direction == 0.0:
 		return
 
+	# FIXME: 
+	if Input.is_action_pressed("shoot"):
+		character.animated_sprite.play("run_aim_mid")
+		
+
 	if Input.is_action_pressed("up"):
 		transitioned.emit(self, "runaimhigh")
 		

@@ -270,7 +270,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_evolb")
 }],
-"loop": true,
+"loop": false,
 "name": &"run_aim_mid",
 "speed": 5.0
 }, {
@@ -347,7 +347,7 @@ script = ExtResource("1_cap6p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"idle"
+animation = &"run_aim_mid"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
