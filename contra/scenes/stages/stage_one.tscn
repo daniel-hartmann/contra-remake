@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b3tsx2qkco611" path="res://art/stages/Pontequebrada02.png" id="6_vo3vd"]
 [ext_resource type="Texture2D" uid="uid://bu03dqr5p8f5q" path="res://art/stages/Pontequebrada.png" id="7_h4i58"]
 [ext_resource type="PackedScene" uid="uid://c2odvdw3x71rj" path="res://scenes/water_area.tscn" id="7_j4x6s"]
+[ext_resource type="Script" uid="uid://dauki7dbge7mt" path="res://scenes/enemies/spawner.gd" id="11_uk6q6"]
 [ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://scenes/back_to_the_ground.tscn" id="12_vo3vd"]
 [ext_resource type="PackedScene" uid="uid://x1inmewwvvp6" path="res://scenes/enemies/delivery_man.tscn" id="13_cdavw"]
 [ext_resource type="Script" uid="uid://bjfdxg2guqiop" path="res://scripts/death_area.gd" id="14_uk6q6"]
@@ -404,7 +405,7 @@ editor_draw_drag_margin = true
 [node name="InvisibleWall" type="StaticBody2D" parent="." unique_id=660271427 node_paths=PackedStringArray("camera")]
 position = Vector2(8, 120.00001)
 scale = Vector2(1, 3.46)
-collision_layer = 8
+collision_layer = 2
 collision_mask = 2
 script = ExtResource("5_ph73p")
 camera = NodePath("../Bill/Camera2D")
@@ -429,11 +430,20 @@ scale = Vector2(1.5, 1)
 position = Vector2(1824, 225)
 scale = Vector2(3, 1)
 
-[node name="DeliveryManSpawner" type="Marker2D" parent="." unique_id=878556118]
+[node name="DeliveryManSpawner1" type="Marker2D" parent="." unique_id=878556118 node_paths=PackedStringArray("enemy")]
 position = Vector2(273, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+enemy = NodePath("../DeliveryMan")
+
+[node name="DeliveryManSpawner2" type="Marker2D" parent="." unique_id=210507987 node_paths=PackedStringArray("enemy")]
+position = Vector2(358, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+enemy = NodePath("../DeliveryMan")
 
 [node name="DeliveryMan" parent="." unique_id=2049056016 instance=ExtResource("13_cdavw")]
-position = Vector2(165, 86)
+position = Vector2(300, 298)
 
 [node name="WaterArea" parent="." unique_id=1346483048 instance=ExtResource("7_j4x6s")]
 position = Vector2(865.26, 220)

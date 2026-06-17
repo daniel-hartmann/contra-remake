@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_q30k0"]
 [ext_resource type="Script" uid="uid://cxjujif8bm0j7" path="res://ai/delivery_man/enemy_run.gd" id="6_pdb48"]
 [ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="7_pdb48"]
+[ext_resource type="Script" uid="uid://c4wmanpie4qqd" path="res://ai/delivery_man/enemy_dying.gd" id="9_af202"]
+[ext_resource type="Script" uid="uid://bt7dbb1mqg3hm" path="res://ai/delivery_man/enemy_dead.gd" id="10_kli4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_af202"]
 atlas = ExtResource("2_suss3")
@@ -69,7 +71,7 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_3yxhj")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -77,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pdb48")
 }],
-"loop": true,
+"loop": false,
 "name": &"dying",
 "speed": 5.0
 }, {
@@ -124,6 +126,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_af202"]
 size = Vector2(10, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdb48"]
+size = Vector2(12, 34)
+
 [node name="DeliveryMan" type="CharacterBody2D" unique_id=2049056016]
 collision_layer = 8
 collision_mask = 21
@@ -131,7 +136,7 @@ script = ExtResource("1_q30k0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783436894]
 sprite_frames = SubResource("SpriteFrames_pdb48")
-animation = &"run"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489994856]
 shape = SubResource("RectangleShape2D_af202")
@@ -139,15 +144,26 @@ shape = SubResource("RectangleShape2D_af202")
 [node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("4_ex8cw")]
 initial_state = NodePath("DefaultParentState")
 
-[node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_q30k0")]
+[node name="DefaultParentState" parent="FSM" unique_id=2046902714 instance=ExtResource("5_q30k0")]
 script = ExtResource("7_pdb48")
-initial_state = NodePath("Run")
 
-[node name="Run" parent="FSM/DefaultParentState" unique_id=320077909 instance=ExtResource("5_q30k0")]
+[node name="EnemyRun" parent="FSM/DefaultParentState" unique_id=320077909 instance=ExtResource("5_q30k0")]
 script = ExtResource("6_pdb48")
 
-[node name="Jump" parent="FSM/DefaultParentState" unique_id=648525614 instance=ExtResource("5_q30k0")]
+[node name="EnemyJump" parent="FSM/DefaultParentState" unique_id=648525614 instance=ExtResource("5_q30k0")]
 
-[node name="Dying" parent="FSM/DefaultParentState" unique_id=727090820 instance=ExtResource("5_q30k0")]
+[node name="EnemyDying" parent="FSM/DefaultParentState" unique_id=727090820 instance=ExtResource("5_q30k0")]
+script = ExtResource("9_af202")
 
-[node name="Dead" parent="FSM/DefaultParentState" unique_id=74042519 instance=ExtResource("5_q30k0")]
+[node name="EnemyDead" parent="FSM/DefaultParentState" unique_id=74042519 instance=ExtResource("5_q30k0")]
+script = ExtResource("10_kli4f")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1961479571]
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2117967310]
+shape = SubResource("RectangleShape2D_pdb48")
+debug_color = Color(0.9529412, 0, 0, 0.41960785)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
