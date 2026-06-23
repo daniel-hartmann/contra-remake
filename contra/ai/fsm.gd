@@ -32,9 +32,6 @@ func on_child_transition(state: ParentState, new_state_name: String):
 	if state != current_state:
 		return
 
-	if current_state is Death:
-		return
-
 	var new_state = states.get(new_state_name.to_lower())
 	
 	if not new_state:

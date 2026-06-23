@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
+[ext_resource type="Script" uid="uid://d3l2it1hor3vc" path="res://ai/states/air/respawn.gd" id="18_rxhkk"]
 [ext_resource type="Script" uid="uid://66rta5t80j3g" path="res://mira.gd" id="19_mjc0q"]
 [ext_resource type="Script" uid="uid://ckrm36e73gqv2" path="res://ai/states/death.gd" id="20_nf30t"]
 [ext_resource type="Script" uid="uid://csdkr03n3rrvt" path="res://ai/states/death/dying.gd" id="21_bbfoi"]
@@ -45,6 +46,10 @@ region = Rect2(911, 9, 64, 64)
 atlas = ExtResource("2_kvjld")
 region = Rect2(976, 9, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdaf2"]
+atlas = ExtResource("2_kvjld")
+region = Rect2(976, 204, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_sheri"]
 atlas = ExtResource("2_kvjld")
 region = Rect2(781, 139, 64, 64)
@@ -60,10 +65,6 @@ region = Rect2(911, 139, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbfoi"]
 atlas = ExtResource("2_kvjld")
 region = Rect2(976, 139, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cdaf2"]
-atlas = ExtResource("2_kvjld")
-region = Rect2(976, 204, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvjld"]
 atlas = ExtResource("2_kvjld")
@@ -266,6 +267,14 @@ animations = [{
 "loop": false,
 "name": &"crouch_firing",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_cdaf2")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -509,9 +518,7 @@ script = ExtResource("1_cap6p")
 [node name="TorsoAnimation" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"run_aim_mid_firing"
-frame = 2
-frame_progress = 1.0
+animation = &"dead"
 
 [node name="LegsAnimation" type="AnimatedSprite2D" parent="." unique_id=1582006528]
 texture_filter = 1
@@ -568,6 +575,9 @@ initial_state = NodePath("Fall")
 
 [node name="Jump" parent="FSM/Air" unique_id=1861781282 instance=ExtResource("5_i8x4f")]
 script = ExtResource("8_wsl5y")
+
+[node name="Respawn" parent="FSM/Air" unique_id=174505642 instance=ExtResource("5_i8x4f")]
+script = ExtResource("18_rxhkk")
 
 [node name="Fall" parent="FSM/Air" unique_id=1322163449 instance=ExtResource("5_i8x4f")]
 script = ExtResource("9_q4383")

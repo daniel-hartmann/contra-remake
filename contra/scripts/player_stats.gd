@@ -8,7 +8,6 @@ signal game_over
 
 func player_died():
 	current_lives -= 1
-	print("emitting lives_changed")
 	lives_changed.emit()
 
 	if current_lives <= 0:
@@ -19,5 +18,4 @@ func player_died():
 
 func respawn_player():
 	# TODO: move player to new spawn point
-	Log.warning("TODO: respawn player")
 	pass

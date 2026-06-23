@@ -32,16 +32,13 @@ func _on_drop_timer_timeout() -> void:
 
 func _on_back_to_the_ground_body_entered(body: Node2D) -> void:
 	if body.name == "Bill" and is_on_water:
-		print("_on_back_to_the_ground_body_entered")
 		is_on_water = false
 		torso_animation.play("water_out")
 		legs_animation.play("not_running_legs")
 		is_climbing = true
 		$BackToGroundTimer.start()
-		#$FSM.current_state.enter_child("climb")
 
 func _on_back_to_ground_timer_timeout() -> void:
-	print("_on_back_to_ground_timer_timeout")
 	is_on_water = false
 	is_climbing = false
 	global_position.y -= 16
@@ -75,6 +72,16 @@ func shoot():
 	# 3. Add it to the main scene (instead of the player, so it doesn't move with the player)
 	get_parent().add_child(b)
 
+func respawn() -> void:
+	reset()
+	global_position.y = 10
+
+	# set respawn state
+	fsm.on_child_transition(fsm.current_state, "air")
+	fsm.current_state.enter_child("respawn")
+	
+	# TODO: set temporarily as invincible
+
 func reset() -> void:
 	is_jumping = false
 	is_on_water = false
@@ -99,7 +106,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		die()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	print(area)
 	if area is DeathArea:
 		print("DeathArea")
 		die()
