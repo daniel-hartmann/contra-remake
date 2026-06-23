@@ -4,7 +4,8 @@ class_name Swim extends State
 @export var collision_shape: Shape2D
 
 func enter() -> void:
-	character.animated_sprite.play("water")
+	character.torso_animation.play("water")
+	character.legs_animation.play("not_running_legs")
 	# TODO: set different collision shapes for each state
 	#character.hitbox_shape.shape = collision_shape
 
@@ -24,5 +25,17 @@ func physics_update(delta: float) -> void:
 	
 	if character.is_climbing:
 		character.velocity.x = 0
+		
+	if Input.is_action_pressed("up") and Input.is_action_just_pressed("shoot"):
+		character.velocity.x = 0
+		transitioned.emit(self, "wateraimup")
+		return
 	
-	character.animated_sprite.flip_h = direction < 0
+	if Input.is_action_just_pressed("up") and direction != 0 and Input.is_action_just_pressed("shoot"):
+		transitioned.emit(self, "wateraimhigh")
+		
+	if Input.is_action_just_pressed("shoot"):
+		transitioned.emit(self, "wateraimmid")
+	
+	character.torso_animation.flip_h = direction < 0
+	

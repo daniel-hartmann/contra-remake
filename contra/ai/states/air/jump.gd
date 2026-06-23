@@ -5,4 +5,5 @@ class_name Jump extends State
 func enter() -> void:
 	character.velocity.y = character.JUMP_VELOCITY
 	character.is_jumping = true
-	character.animated_sprite.play("jump")
+	character.torso_animation.play("jump")
+	character.legs_animation.play("not_running_legs")

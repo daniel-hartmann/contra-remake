@@ -4,4 +4,5 @@ class_name Fall extends State
 
 func enter() -> void:
 	character.is_jumping = false
-	character.animated_sprite.play("fall")
+	character.torso_animation.play("fall")
+	character.legs_animation.play("not_running_legs")
