@@ -8,4 +8,4 @@ func enter() -> void:
 	character.torso_animation.animation_finished.connect(_on_animation_finished, CONNECT_ONE_SHOT)
 
 func _on_animation_finished() -> void:
-	transitioned.emit(self, "enemydead")
+	transitioned.emit(self, "dead")
