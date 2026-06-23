@@ -377,7 +377,6 @@ size = Vector2(16, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdavw"]
 
 [node name="StageOne" type="Node2D" unique_id=2045241351]
-position = Vector2(-1, 0)
 
 [node name="Tiles" type="TileMapLayer" parent="." unique_id=64333277]
 texture_filter = 1

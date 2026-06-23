@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pb8clpdytpbq"
-path="res://.godot/imported/Bill_and_Lance.png-f9296a7f06d4572028d1bc74cf5d4aff.ctex"
+path="res://.godot/imported/bill_and_lance.png-b262764aceec710209c3c0be2bf88cd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/character/Bill_and_Lance.png"
-dest_files=["res://.godot/imported/Bill_and_Lance.png-f9296a7f06d4572028d1bc74cf5d4aff.ctex"]
+source_file="res://art/character/bill_and_lance.png"
+dest_files=["res://.godot/imported/bill_and_lance.png-b262764aceec710209c3c0be2bf88cd0.ctex"]
 
 [params]
 
