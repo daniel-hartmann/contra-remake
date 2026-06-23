@@ -39,6 +39,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_oyqm6")
 
 [node name="Label" type="Label" parent="VBoxContainer/TextureRect" unique_id=824355178]
+visible = false
 layout_mode = 0
 offset_left = 65.0
 offset_top = 65.0
@@ -48,6 +49,7 @@ theme_override_font_sizes/font_size = 37
 text = "Lontra"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect" unique_id=1043709822]
+visible = false
 layout_mode = 0
 offset_left = 118.0
 offset_top = 86.0
