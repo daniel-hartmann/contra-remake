@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ce0gcf8qwk8io" path="res://scenes/back_to_the_ground.tscn" id="12_vo3vd"]
 [ext_resource type="PackedScene" uid="uid://x1inmewwvvp6" path="res://scenes/enemies/delivery_man.tscn" id="13_cdavw"]
 [ext_resource type="Script" uid="uid://bjfdxg2guqiop" path="res://scripts/death_area.gd" id="14_uk6q6"]
+[ext_resource type="Script" uid="uid://c2chsnwt0mvb2" path="res://scripts/enemy_pool.gd" id="15_n285j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -376,6 +377,7 @@ size = Vector2(16, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdavw"]
 
 [node name="StageOne" type="Node2D" unique_id=2045241351]
+position = Vector2(-1, 0)
 
 [node name="Tiles" type="TileMapLayer" parent="." unique_id=64333277]
 texture_filter = 1
@@ -430,20 +432,23 @@ scale = Vector2(1.5, 1)
 position = Vector2(1824, 225)
 scale = Vector2(3, 1)
 
-[node name="DeliveryManSpawner1" type="Marker2D" parent="." unique_id=878556118 node_paths=PackedStringArray("enemy")]
+[node name="DeliveryManSpawner1" type="Marker2D" parent="." unique_id=878556118 node_paths=PackedStringArray("pool")]
 position = Vector2(273, 97)
 gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
-enemy = NodePath("../DeliveryMan")
+pool = NodePath("../EnemyPool/DeliveryManPool")
 
-[node name="DeliveryManSpawner2" type="Marker2D" parent="." unique_id=210507987 node_paths=PackedStringArray("enemy")]
-position = Vector2(358, 97)
+[node name="DeliveryManSpawner2" type="Marker2D" parent="." unique_id=210507987 node_paths=PackedStringArray("pool")]
+position = Vector2(321, 96)
 gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
-enemy = NodePath("../DeliveryMan")
+pool = NodePath("../EnemyPool/DeliveryManPool")
 
-[node name="DeliveryMan" parent="." unique_id=2049056016 instance=ExtResource("13_cdavw")]
-position = Vector2(300, 298)
+[node name="DeliveryManSpawner3" type="Marker2D" parent="." unique_id=1780138396 node_paths=PackedStringArray("pool")]
+position = Vector2(392, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../EnemyPool/DeliveryManPool")
 
 [node name="WaterArea" parent="." unique_id=1346483048 instance=ExtResource("7_j4x6s")]
 position = Vector2(865.26, 220)
@@ -460,7 +465,25 @@ script = ExtResource("14_uk6q6")
 scale = Vector2(14, 1)
 shape = SubResource("RectangleShape2D_cdavw")
 
+[node name="EnemyPool" type="Node" parent="." unique_id=791551933]
+
+[node name="DeliveryManPool" type="Node" parent="EnemyPool" unique_id=514024726]
+script = ExtResource("15_n285j")
+
+[node name="DeliveryMan1" parent="EnemyPool/DeliveryManPool" unique_id=2049056016 instance=ExtResource("13_cdavw")]
+position = Vector2(299, 298)
+
+[node name="DeliveryMan2" parent="EnemyPool/DeliveryManPool" unique_id=1487208969 instance=ExtResource("13_cdavw")]
+position = Vector2(299, 298)
+
+[node name="DeliveryMan3" parent="EnemyPool/DeliveryManPool" unique_id=1818334053 instance=ExtResource("13_cdavw")]
+position = Vector2(299, 298)
+
+[node name="DeliveryMan4" parent="EnemyPool/DeliveryManPool" unique_id=1476372900 instance=ExtResource("13_cdavw")]
+position = Vector2(299, 298)
+
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround3" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround4" to="Bill" method="_on_back_to_the_ground_body_entered"]
+[connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_body_entered"]

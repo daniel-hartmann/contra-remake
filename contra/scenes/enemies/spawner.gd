@@ -1,6 +1,6 @@
 extends Marker2D
 
-@export var enemy: Enemy
+@export var pool: EnemyPool
 var spawned: bool = false
 
 
@@ -12,6 +12,11 @@ func _process(delta: float) -> void:
 
 
 func spawn() -> void:
+	var enemy = pool.get_available()
+
+	if enemy == null:
+		return
+
 	enemy.global_position = global_position
 	enemy.spawn()
 	spawned = true

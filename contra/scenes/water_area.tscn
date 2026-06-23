@@ -6,7 +6,7 @@
 size = Vector2(20.008865, 7.756241)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unnje"]
-size = Vector2(18.983955, 20)
+size = Vector2(18.983955, 12.105265)
 
 [node name="WaterArea" type="Area2D" unique_id=1346483048]
 scale = Vector2(0.9444444, 0.9499999)
@@ -29,6 +29,6 @@ position = Vector2(16.941177, 12.631579)
 scale = Vector2(3.96, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleFloor" unique_id=1779250314]
-position = Vector2(-4.144389, 0)
-scale = Vector2(1.0000004, 1.0000004)
+position = Vector2(-4.144392, 3.9473743)
+scale = Vector2(1.0000005, 1.0000006)
 shape = SubResource("RectangleShape2D_unnje")
