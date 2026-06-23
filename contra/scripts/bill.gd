@@ -83,6 +83,10 @@ func reset() -> void:
 	is_firing = false
 
 func die() -> void:
+	# Avoid triggering reset and state transitioning more than one time
+	if is_dead:
+		return
+
 	reset()
 	fsm.on_child_transition(fsm.current_state, "death")
 	is_dead = true
@@ -91,7 +95,7 @@ func firing() -> bool:
 	return is_firing
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body is Enemy:
+	if body is Enemy and not body.is_dead:
 		die()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
