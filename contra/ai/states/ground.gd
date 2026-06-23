@@ -7,7 +7,7 @@ func enter() -> void:
 
 func _shared_physics(delta: float) -> void:
 	if character.is_on_water:
-		if character.animated_sprite.animation != "water_in":
+		if character.torso_animation.animation != "water_in":
 			transitioned.emit(self, "water")
 		return
 

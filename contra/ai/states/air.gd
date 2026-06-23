@@ -14,7 +14,7 @@ func _shared_physics(delta: float) -> void:
 		return
 
 	if character.is_on_water:
-		if character.animated_sprite.animation != "water_in":
+		if character.torso_animation.animation != "water_in":
 			transitioned.emit(self, "water")
 		return
 
@@ -22,7 +22,7 @@ func _shared_physics(delta: float) -> void:
 
 	if direction:
 		character.velocity.x = direction * character.SPEED
-		character.animated_sprite.flip_h = direction < 0
+		character.torso_animation.flip_h = direction < 0
 	else:
 		character.velocity.x = move_toward(
 			character.velocity.x,

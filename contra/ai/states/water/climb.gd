@@ -8,7 +8,8 @@ const CLIMB_HEIGHT := 16.0   # how many pixels upward to travel before landing
 var target_y: float = 0.0
 
 func enter() -> void:
-	character.animated_sprite.play("water_out")
+	character.torso_animation.play("water_out")
+	character.legs_animation.play("not_running_legs")
 	character.velocity.x = 0
 	character.velocity.y = CLIMB_SPEED
 	target_y = character.position.y - CLIMB_HEIGHT

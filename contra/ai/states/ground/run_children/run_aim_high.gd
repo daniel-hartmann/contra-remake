@@ -3,7 +3,8 @@ class_name RunAimHigh extends State
 @onready var character := owner as CharacterBody2D
 
 func enter() -> void:
-	character.animated_sprite.play("run_aim_high")
+	character.torso_animation.play("run_aim_high")
+	character.legs_animation.play("not_running_legs")
 
 func physics_update(delta: float) -> void:
 	if Input.is_action_pressed("down"):

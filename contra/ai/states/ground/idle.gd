@@ -4,7 +4,8 @@ class_name Idle extends State
 
 func enter() -> void:
 	character.is_jumping = false
-	character.animated_sprite.play("idle")
+	character.torso_animation.play("idle")
+	character.legs_animation.play("not_running_legs")
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
@@ -29,3 +30,8 @@ func physics_update(delta: float) -> void:
 
 	if direction != 0:
 		transitioned.emit(self, "run")
+
+
+func _on_bill_bullet_fired() -> void:
+	if character.torso_animation.animation == "idle" or character.torso_animation.animation == "idle_firing":
+		character.torso_animation.play("idle_firing")

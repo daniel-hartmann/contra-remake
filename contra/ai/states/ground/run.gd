@@ -24,4 +24,5 @@ func _shared_physics(delta: float) -> void:
 		return
 
 	character.velocity.x = direction * character.SPEED
-	character.animated_sprite.flip_h = direction < 0
+	character.torso_animation.flip_h = direction < 0
+	character.legs_animation.flip_h = direction < 0

@@ -4,7 +4,8 @@ class_name Dive extends State
 
 func enter() -> void:
 	character.velocity.x = 0
-	character.animated_sprite.play("water_dive")
+	character.torso_animation.play("water_dive")
+	character.legs_animation.play("not_running_legs")
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")

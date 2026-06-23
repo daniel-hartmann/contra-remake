@@ -4,7 +4,8 @@ class_name AimUp extends State
 
 func enter() -> void:
 	character.is_jumping = false
-	character.animated_sprite.play("aim_up")
+	character.torso_animation.play("aim_up")
+	character.legs_animation.play("not_running_legs")
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
@@ -29,3 +30,8 @@ func physics_update(delta: float) -> void:
 		
 	if !Input.is_action_pressed("up"):
 		transitioned.emit(self, "idle")
+
+
+func _on_bill_bullet_fired() -> void:
+	if character.torso_animation.animation == "aim_up" or character.torso_animation.animation == "aim_up_firing":
+		character.torso_animation.play("aim_up_firing")

@@ -10,20 +10,22 @@ func _on_body_entered(node):
 		if node.is_dead:
 			return
 		node.is_on_water = true
-		node.animated_sprite.play("water_in")
+		node.torso_animation.play("water_in")
+		node.legs_animation.play("not_running_legs")
 		$WaterTimer.timeout.connect(_player_on_water_timer_timeout.bind(node))
 		$WaterTimer.start()
 		return
 	
 	if node is Enemy:
-		node.animated_sprite.play("water_in")
+		node.torso_animation.play("water_in")
+		node.legs_animation.play("not_running_legs")
 		$WaterTimer.timeout.connect(_enemy_on_water_timer_timeout.bind(node))
 		$WaterTimer.start()
 
 
 func _player_on_water_timer_timeout(node) -> void:
-	node.animated_sprite.play("water")
-
+	node.torso_animation.play("water")
+	node.legs_animation.play("not_running_legs")
 
 func _enemy_on_water_timer_timeout(node) -> void:
 	node.die()
