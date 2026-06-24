@@ -27,6 +27,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
+func toggle_hitbox_collisions(collide: bool) -> void:
+	$Hitbox/CollisionShape2D.set_deferred("disabled", !collide)
+
+
 func _on_drop_timer_timeout() -> void:
 	set_collision_mask_value(1, true)
 
@@ -74,7 +79,7 @@ func shoot():
 
 func respawn() -> void:
 	reset()
-	global_position.y = 10
+	global_position = Vector2(64, 10)
 
 	# set respawn state
 	fsm.on_child_transition(fsm.current_state, "air")
@@ -88,6 +93,7 @@ func reset() -> void:
 	is_climbing = false
 	is_dead = false
 	is_firing = false
+	toggle_hitbox_collisions(true)
 
 func die() -> void:
 	# Avoid triggering reset and state transitioning more than one time
@@ -97,6 +103,7 @@ func die() -> void:
 	reset()
 	fsm.on_child_transition(fsm.current_state, "death")
 	is_dead = true
+	toggle_hitbox_collisions(false)
 
 func firing() -> bool:
 	return is_firing
