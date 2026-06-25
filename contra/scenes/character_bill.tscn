@@ -534,6 +534,10 @@ shape = SubResource("RectangleShape2D_oodf2")
 wait_time = 0.2
 one_shot = true
 
+[node name="RespawnTimer" type="Timer" parent="." unique_id=1143645606]
+wait_time = 2.0
+one_shot = true
+
 [node name="BackToGroundTimer" type="Timer" parent="." unique_id=2075232096]
 wait_time = 0.2
 one_shot = true
@@ -636,6 +640,7 @@ one_shot = true
 [connection signal="bullet_fired" from="." to="FSM/Ground/Idle" method="_on_bill_bullet_fired"]
 [connection signal="bullet_fired" from="." to="FSM/Ground/AimUp" method="_on_bill_bullet_fired"]
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
 [connection signal="timeout" from="BackToGroundTimer" to="." method="_on_back_to_ground_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

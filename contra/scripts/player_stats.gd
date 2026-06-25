@@ -1,5 +1,6 @@
 extends Node
 
+
 var max_lives: int = 5
 var current_lives: int = 3
 

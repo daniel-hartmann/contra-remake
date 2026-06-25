@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 Log="*uid://dcw7t8oeo8opv"
 PlayerStats="*uid://87o3ru2d3vxg"
+Utils="*uid://bo7usslago3rs"
 
 [display]
 
@@ -76,6 +77,7 @@ open_console={
 2d_physics/layer_5="BottomBlock"
 2d_physics/layer_7="DeathArea"
 2d_physics/layer_8="Bullet"
+2d_physics/layer_10="GodMode"
 
 [physics]
 

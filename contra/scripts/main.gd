@@ -19,15 +19,6 @@ func _input(event: InputEvent) -> void:
 		toggle_console()
 
 
-func get_camera_bounds() -> Rect2:
-	var camera = get_viewport().get_camera_2d()
-	var center = camera.get_screen_center_position()
-	var viewport_size = camera.get_viewport_rect().size
-	var visible_size = viewport_size / camera.zoom
-	var top_left = center - (visible_size / 2.0)
-	return Rect2(top_left, visible_size)
-
-
 func toggle_console():
 	if console_is_opened:
 		console_scene.hide()
