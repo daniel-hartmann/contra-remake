@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://x1inmewwvvp6"]
 
 [ext_resource type="Texture2D" uid="uid://tu7jqly61k0y" path="res://art/enemies/delivery_man.png" id="1_g64dx"]
-[ext_resource type="Script" uid="uid://c0norvtpf0nk3" path="res://scripts/delivery_man.gd" id="1_q30k0"]
+[ext_resource type="Script" uid="uid://c0norvtpf0nk3" path="res://scripts/enemy.gd" id="1_q30k0"]
 [ext_resource type="Texture2D" uid="uid://d1b72lesk3mwa" path="res://art/enemies/enemy_explosion.png" id="2_suss3"]
 [ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="3_d0p8y"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="4_ex8cw"]
