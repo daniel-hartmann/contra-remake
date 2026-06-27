@@ -3,6 +3,6 @@ extends Node
 
 func get_available() -> Enemy:
 	for enemy in get_children():
-		if enemy.is_dead:
+		if not enemy.visible and not enemy.disabled:
 			return enemy
 	return null

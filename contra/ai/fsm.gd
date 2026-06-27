@@ -33,7 +33,7 @@ func on_child_transition(state: ParentState, new_state_name: String):
 		return
 
 	var new_state = states.get(new_state_name.to_lower())
-	
+
 	if not new_state:
 		return
 

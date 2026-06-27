@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://x1inmewwvvp6" path="res://scenes/enemies/delivery_man.tscn" id="13_cdavw"]
 [ext_resource type="Script" uid="uid://bjfdxg2guqiop" path="res://scripts/death_area.gd" id="14_uk6q6"]
 [ext_resource type="Script" uid="uid://c2chsnwt0mvb2" path="res://scripts/enemy_pool.gd" id="15_n285j"]
+[ext_resource type="PackedScene" uid="uid://dhrwq2c2pdrii" path="res://scenes/enemies/camper.tscn" id="16_0wxyh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -450,6 +451,12 @@ gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
 pool = NodePath("../EnemyPool/DeliveryManPool")
 
+[node name="CamperSpawner1" type="Marker2D" parent="." unique_id=1852072741 node_paths=PackedStringArray("pool")]
+position = Vector2(321, 195)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../EnemyPool/CamperPool")
+
 [node name="WaterArea" parent="." unique_id=1346483048 instance=ExtResource("7_j4x6s")]
 position = Vector2(865.26, 220)
 scale = Vector2(23.1, 0.95)
@@ -471,16 +478,31 @@ shape = SubResource("RectangleShape2D_cdavw")
 script = ExtResource("15_n285j")
 
 [node name="DeliveryMan1" parent="EnemyPool/DeliveryManPool" unique_id=2049056016 instance=ExtResource("13_cdavw")]
+visible = false
 position = Vector2(299, 298)
 
 [node name="DeliveryMan2" parent="EnemyPool/DeliveryManPool" unique_id=1487208969 instance=ExtResource("13_cdavw")]
+visible = false
 position = Vector2(299, 298)
 
 [node name="DeliveryMan3" parent="EnemyPool/DeliveryManPool" unique_id=1818334053 instance=ExtResource("13_cdavw")]
+visible = false
 position = Vector2(299, 298)
 
 [node name="DeliveryMan4" parent="EnemyPool/DeliveryManPool" unique_id=1476372900 instance=ExtResource("13_cdavw")]
+visible = false
 position = Vector2(299, 298)
+
+[node name="CamperPool" type="Node" parent="EnemyPool" unique_id=1364873090]
+script = ExtResource("15_n285j")
+
+[node name="Camper1" parent="EnemyPool/CamperPool" unique_id=1032629563 instance=ExtResource("16_0wxyh")]
+visible = false
+position = Vector2(-76, -1)
+
+[node name="Camper2" parent="EnemyPool/CamperPool" unique_id=289640532 instance=ExtResource("16_0wxyh")]
+visible = false
+position = Vector2(-76, -1)
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://dhrwq2c2pdrii"]
+
+[ext_resource type="Script" uid="uid://c0norvtpf0nk3" path="res://scripts/enemy.gd" id="1_s3vxe"]
+[ext_resource type="Texture2D" uid="uid://d1b72lesk3mwa" path="res://art/enemies/enemy_explosion.png" id="2_h6vxf"]
+[ext_resource type="Texture2D" uid="uid://tu7jqly61k0y" path="res://art/enemies/delivery_man.png" id="3_rmaq6"]
+[ext_resource type="Texture2D" uid="uid://dtdok2sd3n3v2" path="res://art/enemies/camper.png" id="4_h6vxf"]
+[ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="5_hcvc8"]
+[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="6_s6bdy"]
+[ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="7_78big"]
+[ext_resource type="Script" uid="uid://bk7yisyplab0w" path="res://ai/camper/enemy_aim_mid.gd" id="8_s3vxe"]
+[ext_resource type="Script" uid="uid://c4wmanpie4qqd" path="res://ai/delivery_man/enemy_dying.gd" id="9_5yyki"]
+[ext_resource type="Script" uid="uid://bt7dbb1mqg3hm" path="res://ai/delivery_man/enemy_dead.gd" id="10_cldp5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3vxe"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(68, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6vxf"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(102, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww4hr"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(68, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcvc8"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(0, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6bdy"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(34, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78big"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(0, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmaq6"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(136, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j1wv"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(170, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yyki"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(136, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af202"]
+atlas = ExtResource("2_h6vxf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kli4f"]
+atlas = ExtResource("2_h6vxf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yxhj"]
+atlas = ExtResource("2_h6vxf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdb48"]
+atlas = ExtResource("3_rmaq6")
+region = Rect2(243, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cldp5"]
+atlas = ExtResource("4_h6vxf")
+region = Rect2(204, 0, 34, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdb48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3vxe")
+}],
+"loop": true,
+"name": &"aim_high",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3vxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6vxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww4hr")
+}],
+"loop": true,
+"name": &"aim_high_shooting",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcvc8")
+}],
+"loop": true,
+"name": &"aim_low",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcvc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6bdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78big")
+}],
+"loop": true,
+"name": &"aim_low_shooting",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmaq6")
+}],
+"loop": true,
+"name": &"aim_mid",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmaq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j1wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yyki")
+}],
+"loop": true,
+"name": &"aim_mid_shooting",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_af202")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_kli4f")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_3yxhj")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdb48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cldp5")
+}],
+"loop": false,
+"name": &"dying",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af202"]
+size = Vector2(10, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdb48"]
+size = Vector2(12, 31)
+
+[node name="Camper" type="CharacterBody2D" unique_id=2049056016]
+collision_layer = 8
+collision_mask = 21
+script = ExtResource("1_s3vxe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783436894]
+sprite_frames = SubResource("SpriteFrames_pdb48")
+animation = &"aim_mid_shooting"
+frame_progress = 0.21887189
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489994856]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_af202")
+
+[node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_hcvc8")]
+initial_state = NodePath("DefaultParentState")
+
+[node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("6_s6bdy")]
+script = ExtResource("7_78big")
+initial_state = NodePath("EnemyAimMid")
+
+[node name="EnemyAimMid" parent="FSM/DefaultParentState" unique_id=320077909 instance=ExtResource("6_s6bdy")]
+script = ExtResource("8_s3vxe")
+
+[node name="EnemyDying" parent="FSM/DefaultParentState" unique_id=727090820 instance=ExtResource("6_s6bdy")]
+script = ExtResource("9_5yyki")
+
+[node name="EnemyDead" parent="FSM/DefaultParentState" unique_id=74042519 instance=ExtResource("6_s6bdy")]
+script = ExtResource("10_cldp5")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1961479571]
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2117967310]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_pdb48")
+debug_color = Color(0.9529412, 0, 0, 0.41960785)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

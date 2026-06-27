@@ -12,7 +12,7 @@ func _ready() -> void:
 			child.transitioned.connect(_on_child_transition)
 
 func enter_child(state_name: String) -> void:
-	var s = states.get(state_name)
+	var s = states.get(state_name.to_lower())
 	if s:
 		s.enter()
 		current_state = s

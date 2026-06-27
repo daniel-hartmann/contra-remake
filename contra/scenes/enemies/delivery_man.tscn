@@ -144,8 +144,9 @@ shape = SubResource("RectangleShape2D_af202")
 [node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("4_ex8cw")]
 initial_state = NodePath("DefaultParentState")
 
-[node name="DefaultParentState" parent="FSM" unique_id=2046902714 instance=ExtResource("5_q30k0")]
+[node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_q30k0")]
 script = ExtResource("7_pdb48")
+initial_state = NodePath("EnemyRun")
 
 [node name="EnemyRun" parent="FSM/DefaultParentState" unique_id=320077909 instance=ExtResource("5_q30k0")]
 script = ExtResource("6_pdb48")
