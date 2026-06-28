@@ -76,7 +76,8 @@ open_console={
 2d_physics/layer_4="Enemy"
 2d_physics/layer_5="BottomBlock"
 2d_physics/layer_7="DeathArea"
-2d_physics/layer_8="Bullet"
+2d_physics/layer_8="PlayerBullet"
+2d_physics/layer_9="EnemyBullet"
 2d_physics/layer_10="GodMode"
 
 [physics]

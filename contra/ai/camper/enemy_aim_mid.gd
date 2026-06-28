@@ -5,6 +5,9 @@ class_name EnemyAimMid extends State
 func enter() -> void:
 	character.animated_sprite.play("aim_mid")
 
+
 func physics_update(delta: float) -> void:
-	if character.is_dead:
-		transitioned.emit(self, "enemydying")
+	if character.is_firing and character.animated_sprite.animation != "aim_mid_firing":
+		character.animated_sprite.play("aim_mid_firing")
+	elif not character.is_firing:
+		character.animated_sprite.play("aim_mid")

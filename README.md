@@ -22,7 +22,7 @@ do resto do jogo;
   - [ ] Torre
   - [ ] Tanque
   - [ ] Camper
-  	- [ ] Camper de pé
+  	- [x] Camper de pé
   	- [ ] Camper atrás dos arbustos
   - [ ] Canhões do chefão
 - [ ] Power ups

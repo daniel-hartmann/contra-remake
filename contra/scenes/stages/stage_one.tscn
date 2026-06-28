@@ -496,13 +496,19 @@ position = Vector2(299, 298)
 [node name="CamperPool" type="Node" parent="EnemyPool" unique_id=1364873090]
 script = ExtResource("15_n285j")
 
-[node name="Camper1" parent="EnemyPool/CamperPool" unique_id=1032629563 instance=ExtResource("16_0wxyh")]
+[node name="Camper1" parent="EnemyPool/CamperPool" unique_id=1032629563 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
 visible = false
 position = Vector2(-76, -1)
+disabled = false
+max_bullets = 3
+player = NodePath("../../../Bill")
 
-[node name="Camper2" parent="EnemyPool/CamperPool" unique_id=289640532 instance=ExtResource("16_0wxyh")]
+[node name="Camper2" parent="EnemyPool/CamperPool" unique_id=289640532 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
 visible = false
 position = Vector2(-76, -1)
+disabled = false
+max_bullets = 3
+player = NodePath("../../../Bill")
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

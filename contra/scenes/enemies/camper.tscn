@@ -2,14 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c0norvtpf0nk3" path="res://scripts/enemy.gd" id="1_s3vxe"]
 [ext_resource type="Texture2D" uid="uid://d1b72lesk3mwa" path="res://art/enemies/enemy_explosion.png" id="2_h6vxf"]
-[ext_resource type="Texture2D" uid="uid://tu7jqly61k0y" path="res://art/enemies/delivery_man.png" id="3_rmaq6"]
 [ext_resource type="Texture2D" uid="uid://dtdok2sd3n3v2" path="res://art/enemies/camper.png" id="4_h6vxf"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="5_hcvc8"]
 [ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="6_s6bdy"]
 [ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="7_78big"]
 [ext_resource type="Script" uid="uid://bk7yisyplab0w" path="res://ai/camper/enemy_aim_mid.gd" id="8_s3vxe"]
 [ext_resource type="Script" uid="uid://c4wmanpie4qqd" path="res://ai/delivery_man/enemy_dying.gd" id="9_5yyki"]
+[ext_resource type="Script" uid="uid://ct4453et62nbo" path="res://ai/camper/enemy_aim_high.gd" id="9_rmaq6"]
 [ext_resource type="Script" uid="uid://bt7dbb1mqg3hm" path="res://ai/delivery_man/enemy_dead.gd" id="10_cldp5"]
+[ext_resource type="Script" uid="uid://dprhxky410mfo" path="res://ai/camper/enemy_aim_low.gd" id="10_ww4hr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3vxe"]
 atlas = ExtResource("4_h6vxf")
@@ -59,10 +60,6 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("2_h6vxf")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pdb48"]
-atlas = ExtResource("3_rmaq6")
-region = Rect2(243, 0, 27, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_cldp5"]
 atlas = ExtResource("4_h6vxf")
 region = Rect2(204, 0, 34, 40)
@@ -88,7 +85,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ww4hr")
 }],
 "loop": true,
-"name": &"aim_high_shooting",
+"name": &"aim_high_firing",
 "speed": 6.0
 }, {
 "frames": [{
@@ -110,7 +107,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_78big")
 }],
 "loop": true,
-"name": &"aim_low_shooting",
+"name": &"aim_low_firing",
 "speed": 6.0
 }, {
 "frames": [{
@@ -132,7 +129,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5yyki")
 }],
 "loop": true,
-"name": &"aim_mid_shooting",
+"name": &"aim_mid_firing",
 "speed": 6.0
 }, {
 "frames": [{
@@ -151,9 +148,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pdb48")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_cldp5")
 }],
 "loop": false,
@@ -167,15 +161,17 @@ size = Vector2(10, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdb48"]
 size = Vector2(12, 31)
 
-[node name="Camper" type="CharacterBody2D" unique_id=2049056016]
+[node name="Camper" type="CharacterBody2D" unique_id=2049056016 node_paths=PackedStringArray("weapon_cooldown")]
 collision_layer = 8
 collision_mask = 21
 script = ExtResource("1_s3vxe")
+max_bullets = 3
+weapon_cooldown = NodePath("WeaponCooldown")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783436894]
 sprite_frames = SubResource("SpriteFrames_pdb48")
-animation = &"aim_mid_shooting"
-frame_progress = 0.21887189
+animation = &"aim_low"
+frame_progress = 0.057187438
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489994856]
 position = Vector2(0, 4.5)
@@ -190,6 +186,12 @@ initial_state = NodePath("EnemyAimMid")
 
 [node name="EnemyAimMid" parent="FSM/DefaultParentState" unique_id=320077909 instance=ExtResource("6_s6bdy")]
 script = ExtResource("8_s3vxe")
+
+[node name="EnemyAimHigh" parent="FSM/DefaultParentState" unique_id=1117792977 instance=ExtResource("6_s6bdy")]
+script = ExtResource("9_rmaq6")
+
+[node name="EnemyAimLow" parent="FSM/DefaultParentState" unique_id=1576294802 instance=ExtResource("6_s6bdy")]
+script = ExtResource("10_ww4hr")
 
 [node name="EnemyDying" parent="FSM/DefaultParentState" unique_id=727090820 instance=ExtResource("6_s6bdy")]
 script = ExtResource("9_5yyki")
@@ -206,4 +208,17 @@ position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_pdb48")
 debug_color = Color(0.9529412, 0, 0, 0.41960785)
 
+[node name="WeaponCooldown" type="Timer" parent="." unique_id=884867380]
+one_shot = true
+
+[node name="AimLow" type="Marker2D" parent="." unique_id=1376478962]
+position = Vector2(16, 7)
+
+[node name="AimMid" type="Marker2D" parent="." unique_id=1723188788]
+position = Vector2(17, -7.5)
+
+[node name="AimHigh" type="Marker2D" parent="." unique_id=1431652690]
+position = Vector2(12, -19.5)
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]

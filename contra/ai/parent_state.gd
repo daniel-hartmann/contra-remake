@@ -16,7 +16,7 @@ func enter_child(state_name: String) -> void:
 	if s:
 		s.enter()
 		current_state = s
-		Log.info("on state " + self.name + " -> " + s.name)
+		#Log.info("on state " + self.name + " -> " + s.name)
 
 func _on_child_transition(state: State, new_name: String) -> void:
 	if state != current_state:

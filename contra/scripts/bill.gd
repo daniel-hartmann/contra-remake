@@ -158,8 +158,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		die()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area is DeathArea:
-		print("DeathArea")
+	if area is DeathArea or area is Bullet:
 		die()
 
 func _on_weapon_cooldown_timeout() -> void:
