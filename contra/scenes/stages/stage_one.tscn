@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bjfdxg2guqiop" path="res://scripts/death_area.gd" id="14_uk6q6"]
 [ext_resource type="Script" uid="uid://c2chsnwt0mvb2" path="res://scripts/enemy_pool.gd" id="15_n285j"]
 [ext_resource type="PackedScene" uid="uid://dhrwq2c2pdrii" path="res://scenes/enemies/camper.tscn" id="16_0wxyh"]
+[ext_resource type="PackedScene" uid="uid://cbeuup2440kla" path="res://scenes/enemies/camper_bush.tscn" id="17_1mwjm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -457,6 +458,18 @@ gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
 pool = NodePath("../EnemyPool/CamperPool")
 
+[node name="CamperBushSpawner1" type="Marker2D" parent="." unique_id=1654164428 node_paths=PackedStringArray("pool")]
+position = Vector2(1346, 94)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../EnemyPool/CamperBushPool")
+
+[node name="CamperBushSpawner2" type="Marker2D" parent="." unique_id=718642007 node_paths=PackedStringArray("pool")]
+position = Vector2(1554, 56)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../EnemyPool/CamperBushPool")
+
 [node name="WaterArea" parent="." unique_id=1346483048 instance=ExtResource("7_j4x6s")]
 position = Vector2(865.26, 220)
 scale = Vector2(23.1, 0.95)
@@ -499,15 +512,18 @@ script = ExtResource("15_n285j")
 [node name="Camper1" parent="EnemyPool/CamperPool" unique_id=1032629563 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
 visible = false
 position = Vector2(-76, -1)
-disabled = false
-max_bullets = 3
 player = NodePath("../../../Bill")
 
 [node name="Camper2" parent="EnemyPool/CamperPool" unique_id=289640532 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
 visible = false
 position = Vector2(-76, -1)
-disabled = false
-max_bullets = 3
+player = NodePath("../../../Bill")
+
+[node name="CamperBushPool" type="Node" parent="EnemyPool" unique_id=150618438]
+script = ExtResource("15_n285j")
+
+[node name="CamperBush" parent="EnemyPool/CamperBushPool" unique_id=710614864 node_paths=PackedStringArray("player") instance=ExtResource("17_1mwjm")]
+visible = false
 player = NodePath("../../../Bill")
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]

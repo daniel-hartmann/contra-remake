@@ -100,11 +100,8 @@ func shoot() -> void:
 	bullet.global_position = muzzle.global_position
 
 	bullet.global_rotation = direction_to_player.angle()
-	if $AnimatedSprite2D.flip_h:
-		bullet.global_rotation_degrees = 180 - bullet.global_rotation_degrees
-
-	if $AnimatedSprite2D.flip_h:
-		bullet.global_rotation_degrees = 180 - bullet.global_rotation_degrees
+	#if $AnimatedSprite2D.flip_h:
+		#bullet.global_rotation_degrees = 90 - bullet.global_rotation_degrees
 
 	# Add it to the main scene (instead of the player, so it doesn't move with the player)
 	get_parent().add_child(bullet)

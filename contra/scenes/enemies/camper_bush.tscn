@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cbeuup2440kla"]
+
+[ext_resource type="Script" uid="uid://brkbusmvfqr2y" path="res://scenes/enemies/camper_bush.gd" id="1_uih8q"]
+[ext_resource type="Texture2D" uid="uid://dtdok2sd3n3v2" path="res://art/enemies/camper.png" id="2_45hl7"]
+[ext_resource type="Texture2D" uid="uid://b0poo7n8p7wrq" path="res://art/enemies/camper_bush.png" id="3_00mv5"]
+[ext_resource type="Texture2D" uid="uid://d1b72lesk3mwa" path="res://art/enemies/enemy_explosion.png" id="3_aaeos"]
+[ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="4_00mv5"]
+[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_3krki"]
+[ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="6_ve43v"]
+[ext_resource type="Script" uid="uid://bk7yisyplab0w" path="res://ai/camper/enemy_aim_mid.gd" id="7_3rxn0"]
+[ext_resource type="Script" uid="uid://bd16ui03t06y7" path="res://ai/camper_bush/enemy_hidden.gd" id="7_45hl7"]
+[ext_resource type="Script" uid="uid://c4wmanpie4qqd" path="res://ai/delivery_man/enemy_dying.gd" id="10_bu5wg"]
+[ext_resource type="Script" uid="uid://bt7dbb1mqg3hm" path="res://ai/delivery_man/enemy_dead.gd" id="11_6rnxk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3krki"]
+atlas = ExtResource("3_00mv5")
+region = Rect2(68, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af202"]
+atlas = ExtResource("3_aaeos")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kli4f"]
+atlas = ExtResource("3_aaeos")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yxhj"]
+atlas = ExtResource("3_aaeos")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cldp5"]
+atlas = ExtResource("2_45hl7")
+region = Rect2(204, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve43v"]
+atlas = ExtResource("3_00mv5")
+region = Rect2(34, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgvqb"]
+atlas = ExtResource("3_00mv5")
+region = Rect2(0, 0, 34, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdb48"]
+animations = [{
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_3krki")
+}],
+"loop": true,
+"name": &"aim_mid",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3krki")
+}],
+"loop": true,
+"name": &"aim_mid_firing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_af202")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_kli4f")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_3yxhj")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cldp5")
+}],
+"loop": false,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ve43v")
+}],
+"loop": false,
+"name": &"emerge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_dgvqb")
+}],
+"loop": false,
+"name": &"hidden",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af202"]
+size = Vector2(10, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdb48"]
+size = Vector2(12, 16)
+
+[node name="CamperBush" type="CharacterBody2D" unique_id=2049056016 node_paths=PackedStringArray("weapon_cooldown")]
+collision_layer = 8
+collision_mask = 21
+script = ExtResource("1_uih8q")
+max_bullets = 1
+weapon_cooldown = NodePath("WeaponCooldown")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783436894]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_pdb48")
+animation = &"hidden"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489994856]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_af202")
+
+[node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("4_00mv5")]
+initial_state = NodePath("DefaultParentState")
+
+[node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_3krki")]
+script = ExtResource("6_ve43v")
+initial_state = NodePath("EnemyHidden")
+
+[node name="EnemyHidden" parent="FSM/DefaultParentState" unique_id=1934892568 instance=ExtResource("5_3krki")]
+script = ExtResource("7_45hl7")
+
+[node name="EnemyAimMid" parent="FSM/DefaultParentState" unique_id=320077909 instance=ExtResource("5_3krki")]
+script = ExtResource("7_3rxn0")
+
+[node name="EnemyDying" parent="FSM/DefaultParentState" unique_id=727090820 instance=ExtResource("5_3krki")]
+script = ExtResource("10_bu5wg")
+
+[node name="EnemyDead" parent="FSM/DefaultParentState" unique_id=74042519 instance=ExtResource("5_3krki")]
+script = ExtResource("11_6rnxk")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1961479571]
+position = Vector2(0, -12)
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2117967310]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_pdb48")
+debug_color = Color(0.9529412, 0, 0, 0.41960785)
+
+[node name="WeaponCooldown" type="Timer" parent="." unique_id=884867380]
+one_shot = true
+
+[node name="AimMid" type="Marker2D" parent="." unique_id=1723188788]
+position = Vector2(16, -3.5)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]

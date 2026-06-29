@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
+[ext_resource type="Shape2D" uid="uid://op6cyyogrrgu" path="res://ai/states/ground/collisions/crouch.tres" id="14_t5i3s"]
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
 [ext_resource type="Script" uid="uid://d3l2it1hor3vc" path="res://ai/states/air/respawn.gd" id="18_rxhkk"]
 [ext_resource type="Script" uid="uid://66rta5t80j3g" path="res://mira.gd" id="19_mjc0q"]
@@ -518,7 +519,7 @@ script = ExtResource("1_cap6p")
 [node name="TorsoAnimation" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"dead"
+animation = &"crouch"
 
 [node name="LegsAnimation" type="AnimatedSprite2D" parent="." unique_id=1582006528]
 texture_filter = 1
@@ -566,9 +567,11 @@ script = ExtResource("9_svubs")
 
 [node name="Crouch" parent="FSM/Ground" unique_id=462747480 instance=ExtResource("5_i8x4f")]
 script = ExtResource("6_bqhe4")
+collision_shape = ExtResource("14_t5i3s")
 
 [node name="Idle" parent="FSM/Ground" unique_id=1196879441 instance=ExtResource("5_i8x4f")]
 script = ExtResource("6_i8x4f")
+collision_shape = ExtResource("24_cdaf2")
 
 [node name="AimUp" parent="FSM/Ground" unique_id=57629053 instance=ExtResource("5_i8x4f")]
 script = ExtResource("12_u7r8q")

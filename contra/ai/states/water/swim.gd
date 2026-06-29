@@ -6,7 +6,6 @@ class_name Swim extends State
 func enter() -> void:
 	character.torso_animation.play("water")
 	character.legs_animation.play("not_running_legs")
-	# TODO: set different collision shapes for each state
 	#character.hitbox_shape.shape = collision_shape
 
 

@@ -1,11 +1,13 @@
 class_name Idle extends State
 
 @onready var character := owner as CharacterBody2D
+@export var collision_shape: Shape2D
 
 func enter() -> void:
 	character.is_jumping = false
 	character.torso_animation.play("idle")
 	character.legs_animation.play("not_running_legs")
+	character.hitbox_shape.shape = collision_shape
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
