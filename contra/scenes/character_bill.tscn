@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
 [ext_resource type="Script" uid="uid://d3l2it1hor3vc" path="res://ai/states/air/respawn.gd" id="18_rxhkk"]
 [ext_resource type="Script" uid="uid://66rta5t80j3g" path="res://mira.gd" id="19_mjc0q"]
+[ext_resource type="Shape2D" uid="uid://cmplweo32abks" path="res://ai/states/ground/collisions/jump.tres" id="20_ckdqs"]
 [ext_resource type="Script" uid="uid://ckrm36e73gqv2" path="res://ai/states/death.gd" id="20_nf30t"]
 [ext_resource type="Script" uid="uid://csdkr03n3rrvt" path="res://ai/states/death/dying.gd" id="21_bbfoi"]
 [ext_resource type="Script" uid="uid://dwrwsioxau11l" path="res://ai/states/death/dead.gd" id="22_cdaf2"]
@@ -582,6 +583,7 @@ initial_state = NodePath("Fall")
 
 [node name="Jump" parent="FSM/Air" unique_id=1861781282 instance=ExtResource("5_i8x4f")]
 script = ExtResource("8_wsl5y")
+collision_shape = ExtResource("20_ckdqs")
 
 [node name="Respawn" parent="FSM/Air" unique_id=174505642 instance=ExtResource("5_i8x4f")]
 script = ExtResource("18_rxhkk")

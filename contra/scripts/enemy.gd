@@ -34,6 +34,9 @@ func reset() -> void:
 	toggle_collisions(false)
 	is_dead = true
 	global_position = Vector2(-100, -100)
+	current_bullets = []
+	is_firing = false
+	hide()
 
 
 func spawn():
@@ -115,3 +118,8 @@ func shoot() -> void:
 
 func _on_weapon_cooldown_timeout() -> void:
 	is_firing = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print("Resetting enemy off screen")
+	reset()

@@ -8,11 +8,12 @@ func enter() -> void:
 	character.torso_animation.play("crouch")
 	character.legs_animation.play("not_running_legs")
 	character.hitbox_shape.shape = collision_shape
-	# FIXME: the exit is not guaranteed to be called, so we need to find another way to fix the position
 	character.hitbox_shape.position.y += 8
+
 
 func exit() -> void:
 	character.hitbox_shape.position.y -= 8
+
 
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")

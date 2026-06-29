@@ -458,6 +458,12 @@ gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
 pool = NodePath("../EnemyPool/CamperPool")
 
+[node name="CamperSpawner2" type="Marker2D" parent="." unique_id=345985316 node_paths=PackedStringArray("pool")]
+position = Vector2(643, 196)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../EnemyPool/CamperPool")
+
 [node name="CamperBushSpawner1" type="Marker2D" parent="." unique_id=1654164428 node_paths=PackedStringArray("pool")]
 position = Vector2(1346, 94)
 gizmo_extents = 30.0
@@ -522,7 +528,11 @@ player = NodePath("../../../Bill")
 [node name="CamperBushPool" type="Node" parent="EnemyPool" unique_id=150618438]
 script = ExtResource("15_n285j")
 
-[node name="CamperBush" parent="EnemyPool/CamperBushPool" unique_id=710614864 node_paths=PackedStringArray("player") instance=ExtResource("17_1mwjm")]
+[node name="CamperBush1" parent="EnemyPool/CamperBushPool" unique_id=710614864 node_paths=PackedStringArray("player") instance=ExtResource("17_1mwjm")]
+visible = false
+player = NodePath("../../../Bill")
+
+[node name="CamperBush2" parent="EnemyPool/CamperBushPool" unique_id=2099366755 node_paths=PackedStringArray("player") instance=ExtResource("17_1mwjm")]
 visible = false
 player = NodePath("../../../Bill")
 
