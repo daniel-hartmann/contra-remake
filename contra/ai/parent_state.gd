@@ -14,6 +14,8 @@ func _ready() -> void:
 func enter_child(state_name: String) -> void:
 	var s = states.get(state_name.to_lower())
 	if s:
+		if current_state:
+			current_state.exit()
 		s.enter()
 		current_state = s
 		#Log.info("on state " + self.name + " -> " + s.name)
@@ -23,7 +25,6 @@ func _on_child_transition(state: State, new_name: String) -> void:
 		return
 
 	if states.has(new_name):
-		current_state.exit()
 		enter_child(new_name)
 	else:
 		transitioned.emit(self, new_name)

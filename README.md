@@ -40,6 +40,14 @@ do resto do jogo;
 		- Acertar o tiro - 500 pontos
 		- Coletar - 1000 pontos
 
+### BUGS
+- [ ] durante respawn é possível usar os direcionais para mover a câmera
+- [ ] quando o jogador cai do ultimo bloco para agua, ele cai muito devagar
+- [ ] é possível atirar enquanto jogador tá morrendo
+
+
+
+
 
 
 
