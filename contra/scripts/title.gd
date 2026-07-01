@@ -1,6 +1,6 @@
 extends Control
 
-
+@export var bgm: AudioStream
 @onready var main_container := $MainContainer
 var is_ready := false
 var one_player_selected := true
@@ -34,3 +34,4 @@ func _process(delta: float) -> void:
 	if main_container.global_position.x == 0:
 		is_ready = true
 		%OnePlayerCursor.z_index = 0
+		AudioManager.play_background_music(bgm)

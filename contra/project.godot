@@ -17,11 +17,16 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cguov3ba4qc63"
+
 [autoload]
 
 Log="*uid://dcw7t8oeo8opv"
 PlayerStats="*uid://87o3ru2d3vxg"
 Utils="*uid://bo7usslago3rs"
+AudioManager="*uid://bl0r3tbxgsm4s"
 
 [display]
 
