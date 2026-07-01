@@ -43,6 +43,7 @@ layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 252.0
+theme_override_constants/separation = 0
 
 [node name="TextureRect" type="TextureRect" parent="MainContainer" unique_id=155031255]
 texture_filter = 1
