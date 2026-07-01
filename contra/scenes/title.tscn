@@ -56,6 +56,13 @@ offset_right = 256.0
 offset_bottom = 136.0
 texture = SubResource("AtlasTexture_0jm1l")
 
+[node name="AmericanLogo2" type="TextureRect" parent="MainContainer/TextureRect" unique_id=1751621820]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 136.0
+texture = SubResource("AtlasTexture_0jm1l")
+
 [node name="LontraLogo" type="TextureRect" parent="MainContainer/TextureRect" unique_id=1043709822]
 visible = false
 layout_mode = 0
