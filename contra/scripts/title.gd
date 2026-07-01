@@ -1,0 +1,28 @@
+extends Control
+
+
+@onready var main_container := $MainContainer
+var is_ready := false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("select"):
+		var current_one_player_index = %OnePlayerCursor.z_index
+		%OnePlayerCursor.z_index = %TwoPlayerCursor.z_index
+		%TwoPlayerCursor.z_index = current_one_player_index
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if is_ready:
+		return
+
+	if main_container.global_position.x != 0:
+		main_container.global_position.x -= 1
+
+	if main_container.global_position.x == 0:
+		is_ready = true
+		%OnePlayerCursor.z_index = 0
