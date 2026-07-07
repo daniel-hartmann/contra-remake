@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://d3kbk51wuu6sp"]
+
+[ext_resource type="Script" uid="uid://drkkgg4guh6w7" path="res://bombs.gd" id="1_lsueg"]
+[ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="2_qtm4c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65oqd"]
+atlas = ExtResource("2_qtm4c")
+region = Rect2(231, 875, 33, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs77e"]
+atlas = ExtResource("2_qtm4c")
+region = Rect2(264, 875, 33, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t70cs"]
+atlas = ExtResource("2_qtm4c")
+region = Rect2(210, 874, 21, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqaed"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65oqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs77e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t70cs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Bombs" type="Node2D" unique_id=1037639338]
+script = ExtResource("1_lsueg")
+
+[node name="bomb01" type="AnimatedSprite2D" parent="." unique_id=1037244768]
+visible = false
+position = Vector2(-9, -10)
+sprite_frames = SubResource("SpriteFrames_pqaed")
+autoplay = "default"
+frame = 2
+frame_progress = 0.29740307
+
+[node name="bomb02" type="AnimatedSprite2D" parent="." unique_id=209782259]
+visible = false
+position = Vector2(-9, 11)
+sprite_frames = SubResource("SpriteFrames_pqaed")
+autoplay = "default"
+frame = 1
+frame_progress = 0.5409076
+
+[node name="bomb03" type="AnimatedSprite2D" parent="." unique_id=1124404610]
+visible = false
+position = Vector2(17, -5)
+sprite_frames = SubResource("SpriteFrames_pqaed")
+autoplay = "default"
+frame_progress = 0.34959462
