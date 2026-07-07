@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpmssomwpyo5"
-path="res://.godot/imported/ponte_on.PNG-bea3c52973560ebf01e57c3a7ba13ec0.ctex"
+uid="uid://diijls2xk3or8"
+path="res://.godot/imported/ponteOFF.png-bbdef3f638c814ca36b572495e1e8f0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/stages/ponte_on.PNG"
-dest_files=["res://.godot/imported/ponte_on.PNG-bea3c52973560ebf01e57c3a7ba13ec0.ctex"]
+source_file="res://art/stages/ponteOFF.png"
+dest_files=["res://.godot/imported/ponteOFF.png-bbdef3f638c814ca36b572495e1e8f0d.ctex"]
 
 [params]
 
