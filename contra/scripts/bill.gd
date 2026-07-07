@@ -105,6 +105,13 @@ func shoot():
 	# 2. Set the bullet's position and rotation
 	b.global_position = $Mira.global_position
 	
+	if fsm.current_state.name == "Water":
+		if fsm.current_state.current_state.name == "Dive":
+			b.queue_free()
+			return
+			
+	var direction := Input.get_axis("left", "right")
+	
 	if fsm.current_state.name == "Ground":
 		if fsm.current_state.current_state.name == "Run":
 			if fsm.current_state.current_state.current_state.name == "RunAimHigh":
@@ -113,6 +120,12 @@ func shoot():
 				b.global_rotation_degrees = 40
 		elif fsm.current_state.current_state.name == "AimUp":
 			b.global_rotation_degrees = -90
+	elif fsm.current_state.name == "Water":
+		if fsm.current_state.current_state.name == "Swim":
+			if fsm.current_state.current_state.current_state.name == "WaterAimHigh":
+					b.global_rotation_degrees = -40
+			elif fsm.current_state.current_state.current_state.name == "WaterAimUp":
+				b.global_rotation_degrees = -90
 			
 	if torso_animation.flip_h:
 		b.global_rotation_degrees = 180 - b.global_rotation_degrees
