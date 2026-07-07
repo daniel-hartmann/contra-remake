@@ -70,7 +70,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s3vxe")
 }],
-"loop": true,
+"loop": 1,
 "name": &"aim_high",
 "speed": 5.0
 }, {
@@ -84,7 +84,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ww4hr")
 }],
-"loop": true,
+"loop": 1,
 "name": &"aim_high_firing",
 "speed": 6.0
 }, {
@@ -92,7 +92,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hcvc8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"aim_low",
 "speed": 5.0
 }, {
@@ -106,7 +106,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_78big")
 }],
-"loop": true,
+"loop": 1,
 "name": &"aim_low_firing",
 "speed": 6.0
 }, {
@@ -114,7 +114,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rmaq6")
 }],
-"loop": true,
+"loop": 1,
 "name": &"aim_mid",
 "speed": 5.0
 }, {
@@ -128,7 +128,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5yyki")
 }],
-"loop": true,
+"loop": 1,
 "name": &"aim_mid_firing",
 "speed": 6.0
 }, {
@@ -142,7 +142,7 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_3yxhj")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -150,7 +150,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cldp5")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dying",
 "speed": 5.0
 }]

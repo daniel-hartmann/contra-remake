@@ -78,6 +78,16 @@ func shoot() -> void:
 
 	var direction_to_player = (player.global_position - global_position).normalized()
 
+	# Enemies have 30 degree snapping in their aims
+	# Convert current direction angle to degrees
+	var angle_deg = rad_to_deg(direction_to_player.angle())
+	# Snap the angle to the nearest 30 degrees
+	var snapped_angle_deg = snapped(angle_deg, 30)
+	# Convert back to radians
+	var snapped_angle_rad = deg_to_rad(snapped_angle_deg)
+	# Update the direction vector to match the snapped angle
+	direction_to_player = Vector2.RIGHT.rotated(snapped_angle_rad)
+
 	# flip
 	#$AnimatedSprite2D.flip_h = direction_to_player.x < 0
 	var facing_right = direction_to_player.x >= 0
