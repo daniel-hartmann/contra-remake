@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://d1pgv0jjslh6y"]
 
 [ext_resource type="Texture2D" uid="uid://dg6lvhwj84w2y" path="res://art/stages/tileset_stage_one.png" id="1_3uc7p"]
+[ext_resource type="Script" uid="uid://bkp0qg71cffur" path="res://scenes/stages/stage_one.gd" id="1_d2xia"]
+[ext_resource type="AudioStream" uid="uid://dvljgbq2mw6rr" path="res://audio/songs/stage_one_song.wav" id="2_xnnfl"]
 [ext_resource type="Texture2D" uid="uid://cjl0tofgej0p8" path="res://art/stages/tileset_stage_one_animation.png" id="3_1jgdb"]
 [ext_resource type="Texture2D" uid="uid://cnorwcvtc83f1" path="res://art/enemies/defense_wall.png" id="3_j4x6s"]
 [ext_resource type="Texture2D" uid="uid://bkubv4ulbb88x" path="res://art/stages/Arbustoselva02.png" id="4_3knft"]
@@ -379,6 +381,8 @@ size = Vector2(16, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdavw"]
 
 [node name="StageOne" type="Node2D" unique_id=2045241351]
+script = ExtResource("1_d2xia")
+bgm = ExtResource("2_xnnfl")
 
 [node name="Tiles" type="TileMapLayer" parent="." unique_id=64333277]
 texture_filter = 1
