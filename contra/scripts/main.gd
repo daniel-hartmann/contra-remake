@@ -8,6 +8,7 @@ func _ready() -> void:
 	Log.minimum_level = Log.Level.DEBUG
 
 	change_screen(preload("res://scenes/game.tscn").instantiate())
+	#change_screen(preload("res://scenes/title.tscn").instantiate())
 
 	# Console starts hidden
 	console_scene.hide()

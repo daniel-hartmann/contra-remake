@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cq74ftq3j5bck"]
+
+[ext_resource type="Texture2D" uid="uid://q8o5vu0khkas" path="res://art/enemies/turrets.png" id="1_kov2v"]
+[ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="2_lry1w"]
+[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="3_epnn8"]
+[ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="4_2hgjm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kov2v"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyoou"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(33, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lry1w"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(66, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epnn8"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(99, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hgjm"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(132, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_863yn"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(165, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw48g"]
+atlas = ExtResource("1_kov2v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcspg"]
+animations = [{
+"frames": [{
+"duration": 7.0,
+"texture": SubResource("AtlasTexture_kov2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyoou")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_lry1w")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_epnn8")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_2hgjm")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_epnn8")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_lry1w")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_epnn8")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_2hgjm")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_epnn8")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_lry1w")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_epnn8")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_2hgjm")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_epnn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_863yn")
+}],
+"loop": 1,
+"name": &"animated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw48g")
+}],
+"loop": 1,
+"name": &"closed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcspg"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kov2v"]
+size = Vector2(34, 34)
+
+[node name="PowerUpTurret" type="StaticBody2D" unique_id=829496896]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=864408450]
+sprite_frames = SubResource("SpriteFrames_gcspg")
+animation = &"animated"
+frame_progress = 0.351187
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=87787475]
+shape = SubResource("RectangleShape2D_gcspg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1168369130]
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1266133922]
+shape = SubResource("RectangleShape2D_kov2v")
+debug_color = Color(0.9529412, 0, 0, 0.41960785)
+
+[node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_lry1w")]
+initial_state = NodePath("DefaultParentState")
+
+[node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_epnn8")]
+script = ExtResource("4_2hgjm")
+initial_state = NodePath("PowerUpClosed")
+
+[node name="PowerUpClosed" parent="FSM/DefaultParentState" unique_id=310814077 instance=ExtResource("3_epnn8")]

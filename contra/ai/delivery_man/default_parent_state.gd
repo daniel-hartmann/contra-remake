@@ -9,5 +9,5 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	super(delta)
 
-	if character.visible and character.is_dead and not (current_state is EnemyDying or current_state is EnemyDead):
+	if character is Enemy and character.visible and character.is_dead and not (current_state is EnemyDying or current_state is EnemyDead):
 		enter_child("enemydying")

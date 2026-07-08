@@ -21,16 +21,18 @@ do resto do jogo;
 - [ ] Inimigos
   - [ ] Torre
   - [ ] Tanque
-  - [ ] Camper
+  - [x] Camper
   	- [x] Camper de pé
-  	- [ ] Camper atrás dos arbustos
+  	- [x] Camper atrás dos arbustos
   - [ ] Canhões do chefão
 - [ ] Power ups
   - [ ] Movimentação dos power ups
+  	- Power Up (M)
   - [ ] Efeitos no personagem
   	- Mais tipos de tiros (a definir)
-- [ ] Tela inicial
+- [x] Tela inicial
 - [ ] Pontuação
+- [x] Trilha sonora
 	- Delivery man - 100 pontos
 	- Camper - 500 pontos
 	- Torre - 300 pontos

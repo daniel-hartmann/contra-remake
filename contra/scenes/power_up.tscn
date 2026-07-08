@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://c32r3xcat3t4g"]
+
+[ext_resource type="Texture2D" uid="uid://d3aseaqpjqhkr" path="res://art/weapon_pickups.png" id="1_j7my0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig136"]
+atlas = ExtResource("1_j7my0")
+region = Rect2(100, 0, 24, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iuya"]
+atlas = ExtResource("1_j7my0")
+region = Rect2(25, 0, 24, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk6or"]
+atlas = ExtResource("1_j7my0")
+region = Rect2(0, 0, 24, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmfpq"]
+atlas = ExtResource("1_j7my0")
+region = Rect2(75, 0, 24, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l224l"]
+atlas = ExtResource("1_j7my0")
+region = Rect2(50, 0, 24, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcspg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig136")
+}],
+"loop": 1,
+"name": &"barrier",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iuya")
+}],
+"loop": 1,
+"name": &"fireball_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk6or")
+}],
+"loop": 1,
+"name": &"machine_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmfpq")
+}],
+"loop": 1,
+"name": &"rapid_fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l224l")
+}],
+"loop": 1,
+"name": &"spread_gun",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jm1l"]
+size = Vector2(20, 18)
+
+[node name="PowerUp" type="RigidBody2D" unique_id=1623232568]
+gravity_scale = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=673118366]
+sprite_frames = SubResource("SpriteFrames_gcspg")
+animation = &"machine_gun"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530536279]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_0jm1l")
