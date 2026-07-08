@@ -4,7 +4,8 @@ class_name RunAimMid extends State
 
 func enter() -> void:
 	character.torso_animation.play("run_aim_mid")
-	character.legs_animation.play("running_legs")
+	#if character.legs_animation.is_playing() and character.legs_animation.animation != "running_legs":
+		#character.legs_animation.play("running_legs")
 	
 func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):

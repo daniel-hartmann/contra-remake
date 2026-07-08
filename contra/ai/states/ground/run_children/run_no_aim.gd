@@ -4,6 +4,6 @@ class_name RunNoAim extends State
 
 func enter() -> void:
 	character.torso_animation.play("run_no_aim")
-	character.legs_animation.play("not_running_legs")
+	#character.legs_animation.play("not_running_legs")
 
 	

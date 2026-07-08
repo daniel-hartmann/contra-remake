@@ -4,9 +4,11 @@ class_name Run extends ParentState
 
 func enter() -> void:
 	enter_child("runnoaim")
+	character.legs_animation.play("running_legs")
 	
 func exit() -> void:
 	enter_child("runnoaim")
+	character.legs_animation.play("not_running_legs")
 
 func _shared_physics(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
