@@ -38,3 +38,5 @@ func _shared_physics(delta: float) -> void:
 		enter_child("runaimhigh")
 	elif Input.is_action_pressed("down"):
 		enter_child("runaimlow")
+	elif !character.firing():
+		enter_child("runnoaim")

@@ -119,6 +119,18 @@ region = Rect2(66, 74, 64, 64)
 atlas = ExtResource("3_dhlh0")
 region = Rect2(131, 74, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_h46e4"]
+atlas = ExtResource("3_dhlh0")
+region = Rect2(196, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yeku"]
+atlas = ExtResource("3_dhlh0")
+region = Rect2(261, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wmel"]
+atlas = ExtResource("3_dhlh0")
+region = Rect2(326, 74, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffwte"]
 atlas = ExtResource("3_dhlh0")
 region = Rect2(391, 74, 64, 64)
@@ -130,6 +142,18 @@ region = Rect2(456, 74, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wort"]
 atlas = ExtResource("3_dhlh0")
 region = Rect2(521, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hawpm"]
+atlas = ExtResource("3_dhlh0")
+region = Rect2(586, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xpuv"]
+atlas = ExtResource("3_dhlh0")
+region = Rect2(651, 74, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjhaw"]
+atlas = ExtResource("3_dhlh0")
+region = Rect2(716, 74, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6erko"]
 atlas = ExtResource("3_dhlh0")
@@ -396,6 +420,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_h46e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yeku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wmel")
+}],
+"loop": 0,
+"name": &"run_aim_high_firing",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ffwte")
 }, {
 "duration": 1.0,
@@ -407,6 +445,20 @@ animations = [{
 "loop": 1,
 "name": &"run_aim_low",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hawpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xpuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjhaw")
+}],
+"loop": 0,
+"name": &"run_aim_low_firing",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -574,12 +626,12 @@ script = ExtResource("1_cap6p")
 [node name="TorsoAnimation" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"running_legs"
+animation = &"run_aim_high_firing"
 
 [node name="LegsAnimation" type="AnimatedSprite2D" parent="." unique_id=1582006528]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"running_legs"
+animation = &"run_aim_high_firing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)

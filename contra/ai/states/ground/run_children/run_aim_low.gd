@@ -4,12 +4,8 @@ class_name RunAimLow extends State
 
 func enter() -> void:
 	character.torso_animation.play("run_aim_low")
-	#if character.legs_animation.is_playing() and character.legs_animation.animation != "running_legs":
-		#character.legs_animation.play("running_legs")
 	
 func physics_update(delta: float) -> void:
-	if Input.is_action_pressed("up"):
-		transitioned.emit(self, "runaimhigh")
-	
-	elif !Input.is_action_pressed("down"):
-		transitioned.emit(self, "runnoaim")
+	if Input.is_action_just_pressed("shoot"):
+		character.torso_animation.stop()
+		character.torso_animation.play("run_aim_low_firing")
