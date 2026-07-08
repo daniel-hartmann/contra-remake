@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_cap6p"]
 [ext_resource type="Texture2D" uid="uid://cfroy11dl4bcd" path="res://art/character/bill_and_lance.png" id="2_kvjld"]
-[ext_resource type="Texture2D" uid="uid://c2jn25c8pbs3d" path="res://art/character/Bill_and_Lance - Legs.png" id="2_t5kxd"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="3_0a2dj"]
 [ext_resource type="Texture2D" uid="uid://cgk40eprfc0g0" path="res://art/character/Bill_and_Lance - Torso.png" id="3_dhlh0"]
+[ext_resource type="Texture2D" uid="uid://dh7byu2aur23o" path="res://art/character/Bill_and_Lance - Legs 2.png" id="5_6f52c"]
 [ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_i8x4f"]
 [ext_resource type="Script" uid="uid://dvgoqoq3lbpxy" path="res://ai/states/ground/run.gd" id="5_nvqsm"]
 [ext_resource type="Script" uid="uid://b7pdmf7qf4ra6" path="res://ai/states/ground.gd" id="5_q4383"]
@@ -104,8 +104,8 @@ atlas = ExtResource("2_kvjld")
 region = Rect2(976, 74, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhskq"]
-atlas = ExtResource("2_t5kxd")
-region = Rect2(781, 139, 64, 64)
+atlas = ExtResource("5_6f52c")
+region = Rect2(391, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0c5i7"]
 atlas = ExtResource("3_dhlh0")
@@ -204,27 +204,27 @@ atlas = ExtResource("3_dhlh0")
 region = Rect2(326, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nb6f2"]
-atlas = ExtResource("2_t5kxd")
+atlas = ExtResource("5_6f52c")
 region = Rect2(1, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3u8e"]
-atlas = ExtResource("2_t5kxd")
+atlas = ExtResource("5_6f52c")
 region = Rect2(66, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6y6ax"]
-atlas = ExtResource("2_t5kxd")
+atlas = ExtResource("5_6f52c")
 region = Rect2(131, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_et1i7"]
-atlas = ExtResource("2_t5kxd")
+atlas = ExtResource("5_6f52c")
 region = Rect2(196, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryfo3"]
-atlas = ExtResource("2_t5kxd")
+atlas = ExtResource("5_6f52c")
 region = Rect2(261, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ro3ap"]
-atlas = ExtResource("2_t5kxd")
+atlas = ExtResource("5_6f52c")
 region = Rect2(326, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuy7w"]
@@ -626,12 +626,12 @@ script = ExtResource("1_cap6p")
 [node name="TorsoAnimation" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"run_aim_high_firing"
+animation = &"not_running_legs"
 
 [node name="LegsAnimation" type="AnimatedSprite2D" parent="." unique_id=1582006528]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"run_aim_high_firing"
+animation = &"not_running_legs"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
