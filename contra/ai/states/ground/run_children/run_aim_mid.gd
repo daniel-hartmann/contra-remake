@@ -12,4 +12,5 @@ func physics_update(delta: float) -> void:
 		character.torso_animation.play("run_aim_mid_firing")
 
 func _on_weapon_cooldown_timeout() -> void:
-	transitioned.emit(self, "runnoaim")
+	if character.fsm.current_state.name == "Ground" and character.fsm.current_state.current_state.name == "Run":
+		transitioned.emit(self, "runnoaim")

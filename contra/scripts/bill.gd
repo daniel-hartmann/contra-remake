@@ -109,9 +109,7 @@ func shoot():
 		if fsm.current_state.current_state.name == "Dive":
 			b.queue_free()
 			return
-			
-	var direction := Input.get_axis("left", "right")
-	
+				
 	if fsm.current_state.name == "Ground":
 		if fsm.current_state.current_state.name == "Run":
 			if fsm.current_state.current_state.current_state.name == "RunAimHigh":
@@ -126,6 +124,18 @@ func shoot():
 					b.global_rotation_degrees = -40
 			elif fsm.current_state.current_state.current_state.name == "WaterAimUp":
 				b.global_rotation_degrees = -90
+	
+	var direction := Input.get_axis("left", "right")
+	
+	if fsm.current_state.name == "Air":
+		if Input.is_action_pressed("up") and direction == 0:
+			b.global_rotation_degrees = -90
+		elif Input.is_action_pressed("up") and direction != 0:
+			b.global_rotation_degrees = -40
+		elif Input.is_action_pressed("down") and direction == 0:
+			b.global_rotation_degrees = 90
+		elif Input.is_action_pressed("down") and direction != 0:
+			b.global_rotation_degrees = 40
 			
 	if torso_animation.flip_h:
 		b.global_rotation_degrees = 180 - b.global_rotation_degrees

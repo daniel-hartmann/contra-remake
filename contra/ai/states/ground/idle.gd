@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 		transitioned.emit(self, "crouch")
 		return
 		
-	if Input.is_action_just_pressed("up"):
+	if Input.is_action_pressed("up"):
 		transitioned.emit(self, "aimup")
 		return
 

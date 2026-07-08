@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 		global_position.y = character.global_position.y
 	elif character.fsm.current_state.name == "Water":
 		if character.fsm.current_state.current_state.name == "Swim":
-			if character.fsm.current_state.current_state.current_state.name == "WaterAimMid":
+			if character.fsm.current_state.current_state.current_state.name == "WaterAimMid" or character.fsm.current_state.current_state.current_state.name == "BasicSwim":
 				if !is_facing_left: global_position.x += 17
 				else: global_position.x -= 17
 				global_position.y += -2
