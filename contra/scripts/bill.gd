@@ -23,6 +23,8 @@ signal bullet_fired
 @onready var weapon_cooldown = $WeaponCooldown
 @onready var fsm = $FSM
 
+@export var shoot_fx: AudioStream
+
 var blink_accumulator: float = 0.0
 const BLINK_SPEED: float = 0.02
 
@@ -100,6 +102,9 @@ func toggle_god_mode(value: bool) -> void:
 
 func shoot():
 	bullet_fired.emit()
+
+	AudioManager.play_sound_effect(shoot_fx)
+
 	# 1. Create an instance of the bullet
 	var b = BULLET.instantiate()
 	# 2. Set the bullet's position and rotation
@@ -177,6 +182,9 @@ func firing() -> bool:
 	return is_firing
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body is PowerUp:
+		body.activate()
+
 	if body is Enemy and not body.is_dead:
 		die()
 

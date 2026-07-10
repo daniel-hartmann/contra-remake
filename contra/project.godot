@@ -98,6 +98,7 @@ start={
 2d_physics/layer_8="PlayerBullet"
 2d_physics/layer_9="EnemyBullet"
 2d_physics/layer_10="GodMode"
+2d_physics/layer_11="PowerUp"
 
 [physics]
 

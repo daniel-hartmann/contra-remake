@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ulp856gu8hwl"]
 
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_cap6p"]
+[ext_resource type="AudioStream" uid="uid://ddjocbw4acr1g" path="res://audio/fx/shotgun_1.wav" id="2_6f52c"]
 [ext_resource type="Texture2D" uid="uid://cfroy11dl4bcd" path="res://art/character/bill_and_lance.png" id="2_kvjld"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="3_0a2dj"]
 [ext_resource type="Texture2D" uid="uid://cgk40eprfc0g0" path="res://art/character/Bill_and_Lance - Torso.png" id="3_dhlh0"]
@@ -619,9 +620,11 @@ animations = [{
 size = Vector2(15, 32)
 
 [node name="Bill" type="CharacterBody2D" unique_id=2069213833]
+z_index = 1
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_cap6p")
+shoot_fx = ExtResource("2_6f52c")
 
 [node name="LegsAnimation" type="AnimatedSprite2D" parent="." unique_id=1582006528]
 texture_filter = 1
@@ -634,7 +637,7 @@ frame_progress = 0.72551084
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
 animation = &"run_aim_low"
-frame_progress = 0.45946622
+frame_progress = 0.19334291
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -740,7 +743,7 @@ script = ExtResource("19_mjc0q")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=98476804]
 collision_layer = 32
-collision_mask = 328
+collision_mask = 1352
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1108394438]
 position = Vector2(0, 1.5)
