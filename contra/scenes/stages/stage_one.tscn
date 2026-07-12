@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cbeuup2440kla" path="res://scenes/enemies/camper_bush.tscn" id="17_1mwjm"]
 [ext_resource type="PackedScene" uid="uid://cij1a0jxvwuvh" path="res://ponte.tscn" id="18_d2xia"]
 [ext_resource type="PackedScene" uid="uid://c32r3xcat3t4g" path="res://scenes/power_up.tscn" id="21_ck2ts"]
+[ext_resource type="PackedScene" uid="uid://cq74ftq3j5bck" path="res://scenes/power_up_turret.tscn" id="22_3wao1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -564,6 +565,9 @@ player = NodePath("../../../Bill")
 
 [node name="PowerUp" parent="." unique_id=1623232568 instance=ExtResource("21_ck2ts")]
 position = Vector2(118, 54)
+
+[node name="PowerUpTurret" parent="." unique_id=829496896 instance=ExtResource("22_3wao1")]
+position = Vector2(336, 160)
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

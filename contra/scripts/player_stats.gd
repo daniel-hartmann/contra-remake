@@ -4,6 +4,7 @@ extends Node
 var max_lives: int = 5
 var current_lives: int = 3
 var gun_type: PowerUp.Type
+var gun_damage: float = 1.0
 
 signal lives_changed()
 signal game_over
@@ -22,5 +23,6 @@ func respawn_player():
 	# TODO: move player to new spawn point
 	pass
 
-func set_gun_type(gun_type: PowerUp.Type):
+func set_gun(type: PowerUp.Type, damage: float):
 	self.gun_type = gun_type
+	self.gun_damage = damage

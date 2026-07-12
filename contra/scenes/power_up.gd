@@ -31,6 +31,7 @@ func activate() -> void:
 	AudioManager.play_sound_effect(fx)
 
 	if type in [Type.FIREBALL_GUN, Type.MACHINE_GUN, Type.SPREAD_GUN]:
-		PlayerStats.set_gun_type(type)
-	
+		# TODO: check damage of each gun
+		PlayerStats.set_gun(type, 2)
+
 	queue_free()
