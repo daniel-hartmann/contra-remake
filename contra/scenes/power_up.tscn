@@ -72,7 +72,8 @@ size = Vector2(18, 19)
 
 [node name="PowerUp" type="RigidBody2D" unique_id=1623232568]
 collision_layer = 1024
-gravity_scale = 0.5
+mass = 0.2
+gravity_scale = 0.2
 script = ExtResource("1_ig136")
 fx = ExtResource("2_6iuya")
 type = 2

@@ -23,7 +23,8 @@ signal bullet_fired
 @onready var weapon_cooldown = $WeaponCooldown
 @onready var fsm = $FSM
 
-@export var shoot_fx: AudioStream
+@export var default_shoot_fx: AudioStream
+@export var machine_gun_shoot_fx: AudioStream
 
 var blink_accumulator: float = 0.0
 const BLINK_SPEED: float = 0.02
@@ -103,7 +104,13 @@ func toggle_god_mode(value: bool) -> void:
 func shoot():
 	bullet_fired.emit()
 
-	AudioManager.play_sound_effect(shoot_fx)
+	# different guns have different sound effects
+	if PlayerStats.gun_type == PowerUp.Type.MACHINE_GUN:
+		AudioManager.play_sound_effect(machine_gun_shoot_fx)
+	else:
+		AudioManager.play_sound_effect(default_shoot_fx)
+
+	# TODO: use PlayerStats.gun_type and PlayerStats.gun_damage
 
 	# 1. Create an instance of the bullet
 	var b = BULLET.instantiate()

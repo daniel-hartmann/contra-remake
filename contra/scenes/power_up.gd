@@ -26,8 +26,6 @@ func _process(delta: float) -> void:
 
 func activate() -> void:
 	# Check the type and enable the power up in PlayeStats
-	print(type)
-
 	AudioManager.play_sound_effect(fx)
 
 	if type in [Type.FIREBALL_GUN, Type.MACHINE_GUN, Type.SPREAD_GUN]:

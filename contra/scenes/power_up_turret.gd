@@ -4,6 +4,10 @@ extends Area2D
 var on_screen := false
 var life: float = 3.0
 
+const POWER_UP_SCENE = preload("res://scenes/power_up.tscn")
+
+@export var power_up_type: PowerUp.Type
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

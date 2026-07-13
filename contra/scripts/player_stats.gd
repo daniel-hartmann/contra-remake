@@ -24,5 +24,5 @@ func respawn_player():
 	pass
 
 func set_gun(type: PowerUp.Type, damage: float):
-	self.gun_type = gun_type
+	self.gun_type = type
 	self.gun_damage = damage
