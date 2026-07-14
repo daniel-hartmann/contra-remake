@@ -77,6 +77,9 @@ func _on_back_to_ground_timer_timeout() -> void:
 	fsm.on_child_transition(fsm.current_state, "ground")
 
 func do_shooting() -> void:
+	if is_dead:
+		return
+		
 	match PlayerStats.gun_type:
 		PowerUp.Type.MACHINE_GUN:
 			if Input.is_action_pressed("shoot") and is_gun_firing == false:
@@ -187,6 +190,8 @@ func reset() -> void:
 	is_climbing = false
 	is_dead = false
 	is_firing_animation_active = false
+	is_gun_firing = false
+	PlayerStats.gun_type = PowerUp.Type.DEFAULT_GUN
 	toggle_hitbox_collisions(true)
 
 func die() -> void:

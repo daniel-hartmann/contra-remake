@@ -45,7 +45,7 @@ do resto do jogo;
 ### BUGS
 - [ ] durante respawn é possível usar os direcionais para mover a câmera
 - [ ] quando o jogador cai do ultimo bloco para agua, ele cai muito devagar
-- [ ] é possível atirar enquanto jogador tá morrendo
+- [x] é possível atirar enquanto jogador tá morrendo
 
 
 
