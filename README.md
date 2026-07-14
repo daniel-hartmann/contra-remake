@@ -45,7 +45,7 @@ do resto do jogo;
 		- Coletar - 1000 pontos
 
 ### BUGS
-- [ ] durante respawn é possível usar os direcionais para mover a câmera
+- [x] durante respawn é possível usar os direcionais para mover a câmera
 - [x] quando o jogador cai do ultimo bloco para agua, ele cai muito devagar
 - [x] é possível atirar enquanto jogador tá morrendo
 - [ ] as vezes quando o jogador cai na agua, não é possível voltar
