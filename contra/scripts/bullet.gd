@@ -8,22 +8,20 @@ const MACHINE_GUN_TEXTURE := preload("res://art/bullets/machinegun.png")
 
 var current_texture := DEFAULT_TEXTURE
 
-
-func setup(power_up_type: PowerUp.Type = PowerUp.Type.DEFAULT_GUN) -> void:
-	if power_up_type == PowerUp.Type.MACHINE_GUN:
-		current_texture = MACHINE_GUN_TEXTURE
-	else:
-		current_texture = DEFAULT_TEXTURE
+func setup(texture) -> void:
+	current_texture = texture
 
 
 func _ready() -> void:
-	get_tree().create_timer(3.0).timeout.connect(queue_free)
 	sprite.texture = current_texture
 
 
 func _physics_process(delta):
 	# Move the bullet forward based on its current rotation
 	position += transform.x * speed * delta
+
+	if not Utils.get_camera_bounds().has_point(global_position):
+		queue_free()
 
 
 func _on_body_entered(body):

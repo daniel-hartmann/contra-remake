@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name PowerUp
 
 
+
 enum Type {
 	BARRIER,
 	DEFAULT_GUN,
@@ -10,6 +11,8 @@ enum Type {
 	RAPID_FIRE,
 	SPREAD_GUN,
 }
+
+
 
 @export var fx: AudioStream
 @export var type: Type
@@ -29,8 +32,16 @@ func activate() -> void:
 	# Check the type and enable the power up in PlayeStats
 	AudioManager.play_sound_effect(fx)
 
-	if type in [Type.FIREBALL_GUN, Type.MACHINE_GUN, Type.SPREAD_GUN]:
-		# TODO: check damage of each gun
-		PlayerStats.set_gun(type, 2)
+	var gun = Gun.DefaultGun
+
+	match type:
+		Type.MACHINE_GUN:
+			gun = Gun.MachineGun
+		#Type.FIREBALL_GUN:
+			#gun = Gun.FireballGun
+		#Type.SPREAD_GUN:
+			#gun = Gun.SpreadGun
+
+	PlayerStats.set_gun(gun)
 
 	queue_free()

@@ -13,6 +13,26 @@ func play_background_music(stream: AudioStream, bus: String = "BGM") -> void:
 	bgm_streamer.play()
 
 
+func is_sound_playing(stream: AudioStream) -> bool:
+	for child in get_children():
+		if child is AudioStreamPlayer and child.stream == stream and child.playing:
+			return true
+	return false
+
+
+func stop_sound(stream: AudioStream) -> void:
+	for child in get_children():
+		if child is AudioStreamPlayer and child.stream == stream and child.playing:
+			var tween = create_tween()
+			tween.tween_property(child, "volume_db", -80.0, 0.3)
+			await tween.finished
+			# Check again if it's playing, cause it may have stop during tween
+			if child and child.playing:
+				child.stop()
+			return
+
+
+
 func play_sound_effect(stream: AudioStream, bus: String = "FX") -> void:
 	var new_sfx := AudioStreamPlayer.new()
 	new_sfx.stream = stream

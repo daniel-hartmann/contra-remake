@@ -12,6 +12,7 @@ var is_climbing := false
 var is_dead := false
 var is_firing_animation_active := false
 var is_gun_firing := false
+var bullets_on_screen := 0
 
 var _cheat_buffer := ""
 
@@ -23,9 +24,6 @@ signal bullet_fired
 @onready var weapon_cooldown = $WeaponCooldownAnimation
 @onready var gunfire_cooldown = $GunFireCooldown
 @onready var fsm = $FSM
-
-@export var default_shoot_fx: AudioStream
-@export var machine_gun_shoot_fx: AudioStream
 
 var blink_accumulator: float = 0.0
 const BLINK_SPEED: float = 0.02
@@ -78,20 +76,26 @@ func _on_back_to_ground_timer_timeout() -> void:
 func do_shooting() -> void:
 	if is_dead:
 		return
-		
-	match PlayerStats.gun_type:
-		PowerUp.Type.MACHINE_GUN:
+
+	match PlayerStats.current_gun:
+		Gun.MachineGun:
 			if Input.is_action_pressed("shoot") and is_gun_firing == false:
 				shoot()
 				weapon_cooldown.start(.4)
 				gunfire_cooldown.start(.10)
-			pass
-			
-		PowerUp.Type.DEFAULT_GUN:
+
+			if Input.is_action_pressed("shoot") and is_gun_firing:
+				if not AudioManager.is_sound_playing(PlayerStats.current_gun.FX):
+					AudioManager.play_sound_effect(PlayerStats.current_gun.FX)
+			elif not Input.is_action_pressed("shoot"):
+				AudioManager.stop_sound(PlayerStats.current_gun.FX)
+
+		Gun.DefaultGun:
 			if Input.is_action_just_pressed("shoot") and is_gun_firing == false:
 				shoot()
 				weapon_cooldown.start(.4)
 				gunfire_cooldown.start(.15)
+				AudioManager.play_sound_effect(PlayerStats.current_gun.FX)
 		_:
 			pass
 
@@ -114,21 +118,20 @@ func toggle_god_mode(value: bool) -> void:
 	set_collision_layer_value(10, value)
 
 func shoot():
+	if bullets_on_screen >= PlayerStats.current_gun.MAX_BULLETS:
+		return
+
 	is_firing_animation_active = true
 	is_gun_firing = true
 	bullet_fired.emit()
 
-	# different guns have different sound effects
-	if PlayerStats.gun_type == PowerUp.Type.MACHINE_GUN:
-		AudioManager.play_sound_effect(machine_gun_shoot_fx)
-	else:
-		AudioManager.play_sound_effect(default_shoot_fx)
-
-
 	# 1. Create an instance of the bullet
 	var b = BULLET.instantiate()
 
-	b.setup(PlayerStats.gun_type)
+	b.setup(PlayerStats.current_gun.BULLET_TEXTURE)
+
+	bullets_on_screen += 1
+	b.tree_exiting.connect(func(): bullets_on_screen = max(bullets_on_screen - 1, 0))
 
 	# 2. Set the bullet's position and rotation
 	b.global_position = $Mira.global_position
@@ -190,7 +193,8 @@ func reset() -> void:
 	is_dead = false
 	is_firing_animation_active = false
 	is_gun_firing = false
-	PlayerStats.gun_type = PowerUp.Type.DEFAULT_GUN
+	bullets_on_screen = 0
+	PlayerStats.current_gun = Gun.DefaultGun
 	toggle_hitbox_collisions(true)
 
 func die() -> void:

@@ -10,6 +10,8 @@ var current_lives: int = LIVES
 var gun_type: PowerUp.Type = GUN_TYPE
 var gun_damage: float = GUN_DAMAGE
 
+var current_gun: Variant = Gun.DefaultGun
+
 signal lives_changed()
 signal game_over
 
@@ -22,13 +24,11 @@ func player_died():
 		print("Game Over!")
 
 
-func set_gun(type: PowerUp.Type, damage: float):
-	self.gun_type = type
-	self.gun_damage = damage
+func set_gun(gun: Variant):
+	self.current_gun = gun
 
 
 func restart() -> void:
 	current_lives = LIVES
-	gun_type = GUN_TYPE
-	gun_damage = GUN_DAMAGE
+	current_gun = Gun.DefaultGun
 	
