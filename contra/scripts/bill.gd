@@ -77,11 +77,8 @@ func _on_back_to_ground_timer_timeout() -> void:
 	fsm.on_child_transition(fsm.current_state, "ground")
 
 func do_shooting() -> void:
-	#if Input.is_action_just_pressed("shoot"):
-		#print("gun type = ", PlayerStats.gun_type)
-		
 	match PlayerStats.gun_type:
-		PowerUp.Type.FIREBALL_GUN:
+		PowerUp.Type.MACHINE_GUN:
 			if Input.is_action_pressed("shoot") and is_gun_firing == false:
 				shoot()
 				weapon_cooldown.start(.4)

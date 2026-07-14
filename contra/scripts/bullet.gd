@@ -10,7 +10,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	# Move the bullet forward based on its current rotation
 	position += transform.x * speed * delta
-	if PlayerStats.gun_type == PowerUp.Type.FIREBALL_GUN:
+	if PlayerStats.gun_type == PowerUp.Type.MACHINE_GUN:
 		sprite.texture = load("res://art/bullets/machinegun.png")
 	else:
 		sprite.texture = load("res://art/bullets/standard.png")
