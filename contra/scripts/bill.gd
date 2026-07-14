@@ -122,10 +122,12 @@ func shoot():
 	else:
 		AudioManager.play_sound_effect(default_shoot_fx)
 
-	# TODO: use PlayerStats.gun_type and PlayerStats.gun_damage
 
 	# 1. Create an instance of the bullet
 	var b = BULLET.instantiate()
+
+	b.setup(PlayerStats.gun_type)
+
 	# 2. Set the bullet's position and rotation
 	b.global_position = $Mira.global_position
 	
