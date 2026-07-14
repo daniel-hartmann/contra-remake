@@ -565,6 +565,7 @@ player = NodePath("../../../Bill")
 
 [node name="PowerUp" parent="." unique_id=1623232568 instance=ExtResource("21_ck2ts")]
 position = Vector2(112, 32)
+type = 3
 
 [node name="PowerUpTurret" parent="." unique_id=829496896 instance=ExtResource("22_3wao1")]
 position = Vector2(336, 160)

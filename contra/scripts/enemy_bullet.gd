@@ -1,4 +1,4 @@
-class_name Bullet extends Area2D
+class_name EnemyBullet extends Area2D
 
 @export var speed = 180
 @onready var sprite = $Sprite2D
@@ -10,10 +10,6 @@ func _ready() -> void:
 func _physics_process(delta):
 	# Move the bullet forward based on its current rotation
 	position += transform.x * speed * delta
-	if PlayerStats.gun_type == PowerUp.Type.MACHINE_GUN:
-		sprite.texture = load("res://art/bullets/machinegun.png")
-	else:
-		sprite.texture = load("res://art/bullets/standard.png")
 
 
 func _on_body_entered(body):

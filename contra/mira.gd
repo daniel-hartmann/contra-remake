@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	global_position.x = character.torso_animation.global_position.x
 	global_position.y = character.torso_animation.global_position.y
 	
+	var direction := Input.get_axis("left", "right")
 	var is_facing_left = character.torso_animation.flip_h == true
 	
 	if character.fsm.current_state.name == "Ground":
@@ -44,16 +45,16 @@ func _process(delta: float) -> void:
 		global_position.y = character.global_position.y
 	elif character.fsm.current_state.name == "Water":
 		if character.fsm.current_state.current_state.name == "Swim":
-			if character.fsm.current_state.current_state.current_state.name == "WaterAimMid" or character.fsm.current_state.current_state.current_state.name == "BasicSwim":
-				if !is_facing_left: global_position.x += 17
-				else: global_position.x -= 17
-				global_position.y += -2
-			elif character.fsm.current_state.current_state.current_state.name == "WaterAimHigh":
+			if Input.is_action_pressed("up") and direction != 0:
 				if !is_facing_left: global_position.x += 11
 				else: global_position.x -= 11
 				global_position.y += -14
-			elif character.fsm.current_state.current_state.current_state.name == "WaterAimUp":
+			elif Input.is_action_pressed("up") and direction == 0:
 				if !is_facing_left: global_position.x += 6
 				else: global_position.x -= 6
 				global_position.y += -24
+			else:
+				if !is_facing_left: global_position.x += 17
+				else: global_position.x -= 17
+				global_position.y += -2
 				

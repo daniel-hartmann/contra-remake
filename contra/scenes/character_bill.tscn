@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://dpu0qli6qnafr" path="res://ai/states/ground/run_children/run_no_aim.gd" id="9_svubs"]
 [ext_resource type="Script" uid="uid://ccbsbvnskrlc0" path="res://ai/states/ground/run_children/run_aim_mid.gd" id="9_t5kxd"]
 [ext_resource type="Script" uid="uid://dyjwpfwc8fpy" path="res://ai/states/water.gd" id="12_obin2"]
-[ext_resource type="Script" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
+[ext_resource type="Script" uid="uid://brgfrrte3osso" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 [ext_resource type="Shape2D" uid="uid://op6cyyogrrgu" path="res://ai/states/ground/collisions/crouch.tres" id="14_t5i3s"]
@@ -32,7 +32,7 @@
 [ext_resource type="Script" uid="uid://csdkr03n3rrvt" path="res://ai/states/death/dying.gd" id="21_bbfoi"]
 [ext_resource type="Script" uid="uid://dwrwsioxau11l" path="res://ai/states/death/dead.gd" id="22_cdaf2"]
 [ext_resource type="Shape2D" uid="uid://qw558dln2vm7" path="res://ai/states/ground/collisions/idle.tres" id="24_cdaf2"]
-[ext_resource type="Script" path="res://ai/states/water/water_aim_up.gd" id="26_ckdqs"]
+[ext_resource type="Script" uid="uid://cv45h2ik0u4dq" path="res://ai/states/water/water_aim_up.gd" id="26_ckdqs"]
 [ext_resource type="Script" uid="uid://qdspwcqn3ee4" path="res://ai/states/water/water_aim_high.gd" id="27_mvipy"]
 [ext_resource type="Script" uid="uid://c8xbdssws4jgy" path="res://ai/states/water/basic_swim.gd" id="28_6f52c"]
 [ext_resource type="Script" uid="uid://1wfws030vjhg" path="res://ai/states/water/water_aim_mid.gd" id="28_44nj1"]
@@ -752,8 +752,10 @@ position = Vector2(0, 1.5)
 shape = ExtResource("24_cdaf2")
 debug_color = Color(1, 0, 0, 0.15686275)
 
-[node name="WeaponCooldown" type="Timer" parent="." unique_id=1668074705]
+[node name="WeaponCooldownAnimation" type="Timer" parent="." unique_id=1668074705]
 one_shot = true
+
+[node name="GunFireCooldown" type="Timer" parent="." unique_id=657591678]
 
 [connection signal="bullet_fired" from="." to="FSM/Ground/Crouch" method="_on_bill_bullet_fired"]
 [connection signal="bullet_fired" from="." to="FSM/Ground/Idle" method="_on_bill_bullet_fired"]
@@ -763,7 +765,8 @@ one_shot = true
 [connection signal="timeout" from="BackToGroundTimer" to="." method="_on_back_to_ground_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]
-[connection signal="timeout" from="WeaponCooldown" to="FSM/Ground/Run/RunAimMid" method="_on_weapon_cooldown_timeout"]
-[connection signal="timeout" from="WeaponCooldown" to="FSM/Water/Swim" method="_on_weapon_cooldown_timeout"]
-[connection signal="timeout" from="WeaponCooldown" to="FSM/Water/Swim/WaterAimMid" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="." method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="FSM/Ground/Run/RunAimMid" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="FSM/Water/Swim" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="FSM/Water/Swim/WaterAimMid" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="GunFireCooldown" to="." method="_on_gun_fire_cooldown_timeout"]

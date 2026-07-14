@@ -3,7 +3,7 @@ class_name Enemy extends CharacterBody2D
 
 const SPEED = 60.0
 const JUMP_VELOCITY = -230.0
-const BULLET = preload("res://scenes/Bullet.tscn")
+const BULLET = preload("res://scenes/EnemyBullet.tscn")
 const BULLET_SPEED = 80
 
 @onready var animated_sprite = $AnimatedSprite2D
