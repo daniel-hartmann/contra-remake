@@ -25,7 +25,7 @@ func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	print(area)
 	if area is Bullet:
-		life -= PlayerStats.gun_damage
+		life -= PlayerStats.current_gun.DAMAGE
 
 		# TODO: use the bullet.die or something that will be created
 		area.queue_free()
