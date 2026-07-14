@@ -3,7 +3,6 @@ class_name Player
 
 const SPEED = 60.0
 const JUMP_VELOCITY = -230.0
-
 var god_mode := false
 var blinking_flag := false
 
@@ -35,7 +34,7 @@ const BULLET = preload("res://scenes/Bullet.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity
-	if not is_on_floor() and not is_on_water:
+	if not is_on_floor():
 		velocity += get_gravity() / 2 * delta
 
 	if god_mode:
