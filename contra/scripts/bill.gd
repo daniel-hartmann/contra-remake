@@ -11,7 +11,8 @@ var is_jumping := false
 var is_on_water := false
 var is_climbing := false
 var is_dead := false
-var is_firing := false
+var is_firing_animation_active := false
+var is_gun_firing := false
 
 var _cheat_buffer := ""
 
@@ -20,7 +21,8 @@ signal bullet_fired
 @onready var torso_animation = $TorsoAnimation
 @onready var legs_animation = $LegsAnimation
 @onready var hitbox_shape = $Hitbox/CollisionShape2D
-@onready var weapon_cooldown = $WeaponCooldown
+@onready var weapon_cooldown = $WeaponCooldownAnimation
+@onready var gunfire_cooldown = $GunFireCooldown
 @onready var fsm = $FSM
 
 @export var default_shoot_fx: AudioStream
@@ -52,11 +54,10 @@ func _physics_process(delta: float) -> void:
 			blink_accumulator = 0.0
 
 	move_and_slide()
-
+	do_shooting()
 
 func toggle_hitbox_collisions(collide: bool) -> void:
 	$Hitbox/CollisionShape2D.set_deferred("disabled", !collide)
-
 
 func _on_drop_timer_timeout() -> void:
 	set_collision_mask_value(1, true)
@@ -75,13 +76,27 @@ func _on_back_to_ground_timer_timeout() -> void:
 	global_position.y -= 16
 	fsm.on_child_transition(fsm.current_state, "ground")
 
+func do_shooting() -> void:
+	#if Input.is_action_just_pressed("shoot"):
+		#print("gun type = ", PlayerStats.gun_type)
+		
+	match PlayerStats.gun_type:
+		PowerUp.Type.FIREBALL_GUN:
+			if Input.is_action_pressed("shoot") and is_gun_firing == false:
+				shoot()
+				weapon_cooldown.start(.4)
+				gunfire_cooldown.start(.10)
+			pass
+			
+		PowerUp.Type.DEFAULT_GUN:
+			if Input.is_action_just_pressed("shoot") and is_gun_firing == false:
+				shoot()
+				weapon_cooldown.start(.4)
+				gunfire_cooldown.start(.15)
+		_:
+			pass
 
 func _unhandled_input(event):
-	if event.is_action_pressed("shoot"):
-		shoot()
-		weapon_cooldown.start(.4)
-		is_firing = true
-
 	if event is InputEventKey and event.pressed and not event.echo:
 		var key_char = OS.get_keycode_string(event.physical_keycode).to_lower()
 		if key_char.length() == 1:
@@ -94,14 +109,14 @@ func _unhandled_input(event):
 				Log.debug("GOD MODE ENABLED")
 				toggle_god_mode(true)
 
-
 func toggle_god_mode(value: bool) -> void:
 	god_mode = value
 	toggle_hitbox_collisions(!value)
 	set_collision_layer_value(10, value)
 
-
 func shoot():
+	is_firing_animation_active = true
+	is_gun_firing = true
 	bullet_fired.emit()
 
 	# different guns have different sound effects
@@ -121,7 +136,9 @@ func shoot():
 		if fsm.current_state.current_state.name == "Dive":
 			b.queue_free()
 			return
-				
+			
+	var direction := Input.get_axis("left", "right")
+	
 	if fsm.current_state.name == "Ground":
 		if fsm.current_state.current_state.name == "Run":
 			if fsm.current_state.current_state.current_state.name == "RunAimHigh":
@@ -132,12 +149,10 @@ func shoot():
 			b.global_rotation_degrees = -90
 	elif fsm.current_state.name == "Water":
 		if fsm.current_state.current_state.name == "Swim":
-			if fsm.current_state.current_state.current_state.name == "WaterAimHigh":
-					b.global_rotation_degrees = -40
-			elif fsm.current_state.current_state.current_state.name == "WaterAimUp":
+			if Input.is_action_pressed("up") and direction == 0:
 				b.global_rotation_degrees = -90
-	
-	var direction := Input.get_axis("left", "right")
+			elif Input.is_action_pressed("up") and direction != 0:
+				b.global_rotation_degrees = -40
 	
 	if fsm.current_state.name == "Air":
 		if Input.is_action_pressed("up") and direction == 0:
@@ -172,7 +187,7 @@ func reset() -> void:
 	is_on_water = false
 	is_climbing = false
 	is_dead = false
-	is_firing = false
+	is_firing_animation_active = false
 	toggle_hitbox_collisions(true)
 
 func die() -> void:
@@ -186,7 +201,7 @@ func die() -> void:
 	toggle_hitbox_collisions(false)
 
 func firing() -> bool:
-	return is_firing
+	return is_firing_animation_active
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is PowerUp:
@@ -200,8 +215,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		die()
 
 func _on_weapon_cooldown_timeout() -> void:
-	is_firing = false
+	is_firing_animation_active = false
 
 
 func _on_respawn_timer_timeout() -> void:
 	toggle_god_mode(false)
+
+func _on_gun_fire_cooldown_timeout() -> void:
+	is_gun_firing = false

@@ -3,11 +3,13 @@ class_name Run extends ParentState
 @onready var character := owner as CharacterBody2D
 
 func enter() -> void:
-	enter_child("runnoaim")
+	if !character.firing():
+		enter_child("runnoaim")
+	else:
+		enter_child("runaimmid")
 	character.legs_animation.play("running_legs")
 	
 func exit() -> void:
-	enter_child("runnoaim")
 	character.legs_animation.play("not_running_legs")
 
 func _shared_physics(delta: float) -> void:
