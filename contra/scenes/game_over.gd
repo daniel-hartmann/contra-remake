@@ -15,13 +15,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		continue_selected = !continue_selected
 
 	if event.is_action_pressed("start"):
+		PlayerStats.restart()
 		if continue_selected:
-			PlayerStats.restart()
 			get_parent().change_screen(load("res://scenes/game.tscn").instantiate())
-			queue_free()
+
 		else:
-			# TODO: back to title screen
-			pass
+			get_parent().change_screen(load("res://scenes/title.tscn").instantiate())
+
+		queue_free()
 
 
 func _process(delta: float) -> void:
