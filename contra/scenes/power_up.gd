@@ -4,6 +4,7 @@ class_name PowerUp
 
 enum Type {
 	BARRIER,
+	DEFAULT_GUN,
 	FIREBALL_GUN,
 	MACHINE_GUN,
 	RAPID_FIRE,

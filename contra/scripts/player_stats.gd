@@ -1,10 +1,14 @@
 extends Node
 
+# DEFAULTS
+const LIVES: int = 3
+const GUN_TYPE: PowerUp.Type = PowerUp.Type.DEFAULT_GUN
+const GUN_DAMAGE: float = 1.0
 
 var max_lives: int = 5
-var current_lives: int = 3
-var gun_type: PowerUp.Type
-var gun_damage: float = 1.0
+var current_lives: int = LIVES
+var gun_type: PowerUp.Type = GUN_TYPE
+var gun_damage: float = GUN_DAMAGE
 
 signal lives_changed()
 signal game_over
@@ -16,13 +20,15 @@ func player_died():
 	if current_lives <= 0:
 		game_over.emit()
 		print("Game Over!")
-	else:
-		respawn_player()
 
-func respawn_player():
-	# TODO: move player to new spawn point
-	pass
 
 func set_gun(type: PowerUp.Type, damage: float):
 	self.gun_type = type
 	self.gun_damage = damage
+
+
+func restart() -> void:
+	current_lives = LIVES
+	gun_type = GUN_TYPE
+	gun_damage = GUN_DAMAGE
+	

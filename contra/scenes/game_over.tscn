@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://cn0ipyj5jrujb"]
+
+[ext_resource type="Script" uid="uid://cmj5sx4c6oyw6" path="res://scenes/game_over.gd" id="1_racf3"]
+[ext_resource type="AudioStream" uid="uid://duki10m6vgcxq" path="res://audio/fx/over.wav" id="2_racf3"]
+[ext_resource type="FontFile" uid="uid://c42xi6hlfwogb" path="res://fonts/contra_font.fnt" id="2_tbwuq"]
+[ext_resource type="Texture2D" uid="uid://k21toqkfmov5" path="res://art/title_screens.png" id="3_tbwuq"]
+
+[sub_resource type="Animation" id="Animation_tbwuq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../HighScoreContainer/HighScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_racf3"]
+resource_name = "blink"
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../HighScoreContainer/HighScore:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7m3ot"]
+_data = {
+&"RESET": SubResource("Animation_tbwuq"),
+&"blink": SubResource("Animation_racf3")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_racf3"]
+atlas = ExtResource("3_tbwuq")
+region = Rect2(132, 399, 16, 10)
+
+[node name="GameOver" type="Control" unique_id=193572759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_racf3")
+bgm = ExtResource("2_racf3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1912107706]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PlayerContainer" type="HBoxContainer" parent="." unique_id=372602588]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 42.0
+theme_override_constants/separation = 54
+
+[node name="1PLabel" type="Label" parent="PlayerContainer" unique_id=1864517727]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "1P"
+
+[node name="1PScore" type="Label" parent="PlayerContainer" unique_id=950296905]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerContainer/1PScore" unique_id=844988971]
+libraries/ = SubResource("AnimationLibrary_7m3ot")
+autoplay = &"blink"
+
+[node name="HighScoreContainer" type="HBoxContainer" parent="." unique_id=1644856961]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 77.0
+offset_right = 167.0
+offset_bottom = 86.0
+theme_override_constants/separation = 24
+
+[node name="HighScoreLabel" type="Label" parent="HighScoreContainer" unique_id=1705509004]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "HI"
+
+[node name="HighScore" type="Label" parent="HighScoreContainer" unique_id=1417762746]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "20000"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HighScoreContainer/HighScore" unique_id=1228176363]
+root_node = NodePath("../../../PlayerContainer/1PScore")
+libraries/ = SubResource("AnimationLibrary_7m3ot")
+autoplay = &"blink"
+
+[node name="OptionsMarginContainer" type="MarginContainer" parent="." unique_id=631028570]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -40.0
+offset_right = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 62
+
+[node name="Options" type="VBoxContainer" parent="OptionsMarginContainer" unique_id=2039458143]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="OptionsMarginContainer/Options" unique_id=1015147773]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "GAME OVER"
+
+[node name="Spacer" type="Control" parent="OptionsMarginContainer/Options" unique_id=1797243301]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="OptionsMarginContainer/Options" unique_id=412241148]
+layout_mode = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="OptionsMarginContainer/Options" unique_id=1909940819]
+layout_mode = 2
+
+[node name="ContinueContainer" type="HBoxContainer" parent="OptionsMarginContainer/Options/OptionsContainer" unique_id=1640639139]
+layout_mode = 2
+
+[node name="ContinueCursor" type="TextureRect" parent="OptionsMarginContainer/Options/OptionsContainer/ContinueContainer" unique_id=355571035]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+stretch_mode = 2
+
+[node name="ContinueLabel" type="Label" parent="OptionsMarginContainer/Options/OptionsContainer/ContinueContainer" unique_id=802309285]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "CONTINUE"
+
+[node name="EndContainer" type="HBoxContainer" parent="OptionsMarginContainer/Options/OptionsContainer" unique_id=2060133494]
+layout_mode = 2
+
+[node name="EndCursor" type="TextureRect" parent="OptionsMarginContainer/Options/OptionsContainer/EndContainer" unique_id=1379333728]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+stretch_mode = 2
+
+[node name="EndLabel" type="Label" parent="OptionsMarginContainer/Options/OptionsContainer/EndContainer" unique_id=2055923030]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 8
+text = "END"
