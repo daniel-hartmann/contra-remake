@@ -29,15 +29,15 @@ func _shared_physics(delta: float) -> void:
 func do_shooting() -> void:
 	var direction := Input.get_axis("left", "right")
 	
-	if Input.is_action_just_pressed("shoot") and not Input.is_action_pressed("up"):
+	if Input.is_action_pressed("shoot") and not Input.is_action_pressed("up"):
 		enter_child("wateraimmid")
 		return
 		
-	if Input.is_action_just_pressed("shoot") and Input.is_action_pressed("up") and direction == 0:
+	if Input.is_action_pressed("shoot") and Input.is_action_pressed("up") and direction == 0:
 		enter_child("wateraimup")
 		return
 		
-	if direction != 0 and Input.is_action_just_pressed("shoot") and Input.is_action_pressed("up"):
+	if direction != 0 and Input.is_action_pressed("shoot") and Input.is_action_pressed("up"):
 		enter_child("wateraimhigh")
 		return
 

@@ -34,11 +34,11 @@ func _shared_physics(delta: float) -> void:
 	character.torso_animation.flip_h = direction < 0
 	character.legs_animation.flip_h = direction < 0
 		
-	if Input.is_action_just_pressed("shoot") and not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
+	if Input.is_action_pressed("shoot") and not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
 		enter_child("runaimmid")
-	elif Input.is_action_pressed("up"):
+	elif Input.is_action_pressed("up") and direction != 0:
 		enter_child("runaimhigh")
-	elif Input.is_action_pressed("down"):
+	elif Input.is_action_pressed("down") and direction != 0:
 		enter_child("runaimlow")
 	elif !character.firing():
 		enter_child("runnoaim")
