@@ -417,6 +417,18 @@ light_mask = 4
 visibility_layer = 4
 position = Vector2(880, 120)
 
+[node name="Bridge5" parent="." unique_id=211630347 instance=ExtResource("18_d2xia")]
+position = Vector2(1072, 120)
+
+[node name="Bridge6" parent="." unique_id=133126966 instance=ExtResource("18_d2xia")]
+position = Vector2(1104, 120)
+
+[node name="Bridge7" parent="." unique_id=425800245 instance=ExtResource("18_d2xia")]
+position = Vector2(1135, 120)
+
+[node name="Bridge8" parent="." unique_id=708337390 instance=ExtResource("18_d2xia")]
+position = Vector2(1167, 120)
+
 [node name="Bill" parent="." unique_id=2069213833 instance=ExtResource("5_0f0lc")]
 position = Vector2(49, 100)
 
@@ -491,6 +503,12 @@ gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
 pool = NodePath("../EnemyPool/CamperPool")
 
+[node name="CamperSpawner3" type="Marker2D" parent="." unique_id=68771690 node_paths=PackedStringArray("pool")]
+position = Vector2(1455, 196)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../EnemyPool/CamperPool")
+
 [node name="CamperBushSpawner1" type="Marker2D" parent="." unique_id=1654164428 node_paths=PackedStringArray("pool")]
 position = Vector2(1346, 94)
 gizmo_extents = 30.0
@@ -552,6 +570,11 @@ visible = false
 position = Vector2(-76, -1)
 player = NodePath("../../../Bill")
 
+[node name="Camper3" parent="EnemyPool/CamperPool" unique_id=531339103 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
+visible = false
+position = Vector2(-76, -1)
+player = NodePath("../../../Bill")
+
 [node name="CamperBushPool" type="Node" parent="EnemyPool" unique_id=150618438]
 script = ExtResource("15_n285j")
 
@@ -565,7 +588,6 @@ player = NodePath("../../../Bill")
 
 [node name="PowerUp" parent="." unique_id=1623232568 instance=ExtResource("21_ck2ts")]
 position = Vector2(112, 32)
-type = 3
 
 [node name="PowerUpTurret" parent="." unique_id=829496896 instance=ExtResource("22_3wao1")]
 position = Vector2(336, 160)
