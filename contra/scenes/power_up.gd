@@ -25,7 +25,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if get_contact_count() > 0:
+		linear_velocity = Vector2.ZERO
+		angular_velocity = 0.0
 
 
 func activate() -> void:

@@ -801,7 +801,7 @@ position = Vector2(1161, 31)
 script = ExtResource("24_d0gr7")
 
 [node name="FlyingPowerUpSpawner3" type="Marker2D" parent="FlyingPowerUpSpawners" unique_id=886628875]
-position = Vector2(2248, 42)
+position = Vector2(2248, 50)
 script = ExtResource("24_d0gr7")
 
 [node name="FlyingPowerUpPool" type="Node" parent="." unique_id=2071965644]

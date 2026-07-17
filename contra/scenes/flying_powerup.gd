@@ -6,6 +6,7 @@ var time: float = 0.0
 @export var amplitude: float = 100.0
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var stop = false
+var power_up_instantiated = false
 
 const POWER_UP = preload("res://scenes/power_up.tscn")
 
@@ -32,6 +33,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
+	if power_up_instantiated:
+		return
+		
 	if area is Bullet:
 		stop = true
 		area.queue_free()
@@ -40,6 +44,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		var power_up = POWER_UP.instantiate()
 		power_up.global_position = global_position
 		get_tree().current_scene.add_child(power_up)
+		power_up_instantiated = true
 		
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "exploding":
