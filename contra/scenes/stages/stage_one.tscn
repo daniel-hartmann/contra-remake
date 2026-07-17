@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dhrwq2c2pdrii" path="res://scenes/enemies/camper.tscn" id="16_0wxyh"]
 [ext_resource type="PackedScene" uid="uid://cbeuup2440kla" path="res://scenes/enemies/camper_bush.tscn" id="17_1mwjm"]
 [ext_resource type="PackedScene" uid="uid://cij1a0jxvwuvh" path="res://ponte.tscn" id="18_d2xia"]
-[ext_resource type="PackedScene" uid="uid://c32r3xcat3t4g" path="res://scenes/power_up.tscn" id="21_ck2ts"]
+[ext_resource type="PackedScene" uid="uid://na251hfx7rpx" path="res://defense_wall_cannon.tscn" id="22_3wao1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -562,8 +562,11 @@ player = NodePath("../../../Bill")
 visible = false
 player = NodePath("../../../Bill")
 
-[node name="PowerUp" parent="." unique_id=1623232568 instance=ExtResource("21_ck2ts")]
-position = Vector2(118, 54)
+[node name="defense_wall_cannon" parent="." unique_id=1867072125 instance=ExtResource("22_3wao1")]
+position = Vector2(3382, 138)
+
+[node name="defense_wall_cannon2" parent="." unique_id=181885294 instance=ExtResource("22_3wao1")]
+position = Vector2(3349, 138)
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

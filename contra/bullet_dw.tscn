@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c7sxovd3vap38"]
+
+[ext_resource type="Texture2D" uid="uid://c2g0dhnlgs4vi" path="res://art/bullets/Bill_and_Lance - Legs.png" id="1_bnq0l"]
+[ext_resource type="Script" uid="uid://cp462qptxgaop" path="res://bullet_dw.gd" id="1_l118y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnq0l"]
+atlas = ExtResource("1_bnq0l")
+region = Rect2(262, 811, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l118y"]
+atlas = ExtResource("1_bnq0l")
+region = Rect2(271, 810, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpknx"]
+atlas = ExtResource("1_bnq0l")
+region = Rect2(287, 809, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r7td"]
+atlas = ExtResource("1_bnq0l")
+region = Rect2(296, 809, 8, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uikp1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnq0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnq0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l118y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpknx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r7td")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1rvy"]
+size = Vector2(8, 8)
+
+[node name="BulletDW" type="Area2D" unique_id=862330657]
+light_mask = 407
+visibility_layer = 1023
+script = ExtResource("1_l118y")
+
+[node name="hit" type="AnimatedSprite2D" parent="." unique_id=639506574]
+light_mask = 392
+visibility_layer = 392
+sprite_frames = SubResource("SpriteFrames_uikp1")
+frame_progress = 0.69577926
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=1334962622]
+light_mask = 257
+visibility_layer = 257
+shape = SubResource("RectangleShape2D_c1rvy")
