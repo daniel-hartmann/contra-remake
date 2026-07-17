@@ -384,6 +384,7 @@ size = Vector2(16, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdavw"]
 
 [node name="StageOne" type="Node2D" unique_id=2045241351]
+process_mode = 1
 script = ExtResource("1_d2xia")
 bgm = ExtResource("2_xnnfl")
 

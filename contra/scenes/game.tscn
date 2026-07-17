@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://btvxx767wav5x"]
 
 [ext_resource type="Script" uid="uid://ca8vna6ftvri0" path="res://scripts/game.gd" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://d1pgv0jjslh6y" path="res://scenes/stages/stage_one.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://cfroy11dl4bcd" path="res://art/character/bill_and_lance.png" id="3_lnu2h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbhrr"]
@@ -13,9 +12,8 @@ atlas = ExtResource("3_lnu2h")
 region = Rect2(27, 805, 44, 16)
 
 [node name="Game" type="Node2D" unique_id=990496671]
+process_mode = 3
 script = ExtResource("1_uwrxv")
-
-[node name="StageOne" parent="." unique_id=2045241351 instance=ExtResource("2_yqjtg")]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=569901477]
 
