@@ -2,11 +2,17 @@ extends Node
 
 @onready var hud := $HUD
 @onready var game_over_timer := $GameOverTimer
+const FIRST_STAGE = preload("res://scenes/stages/stage_one.tscn")
 
 func _ready() -> void:
+	add_child(FIRST_STAGE.instantiate())
 	toggle_lives_visibility()
 	PlayerStats.lives_changed.connect(toggle_lives_visibility)
 	PlayerStats.game_over.connect(_on_player_stats_game_over)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("start"):
+		get_tree().paused = !get_tree().paused
 
 
 func toggle_lives_visibility() -> void:
