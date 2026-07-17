@@ -18,19 +18,20 @@
 [ext_resource type="Script" uid="uid://dpu0qli6qnafr" path="res://ai/states/ground/run_children/run_no_aim.gd" id="9_svubs"]
 [ext_resource type="Script" uid="uid://ccbsbvnskrlc0" path="res://ai/states/ground/run_children/run_aim_mid.gd" id="9_t5kxd"]
 [ext_resource type="Script" uid="uid://dyjwpfwc8fpy" path="res://ai/states/water.gd" id="12_obin2"]
-[ext_resource type="Script" uid="uid://brgfrrte3osso" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
+[ext_resource type="Script" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 [ext_resource type="Shape2D" uid="uid://op6cyyogrrgu" path="res://ai/states/ground/collisions/crouch.tres" id="14_t5i3s"]
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
 [ext_resource type="Script" uid="uid://d3l2it1hor3vc" path="res://ai/states/air/respawn.gd" id="18_rxhkk"]
 [ext_resource type="Script" uid="uid://66rta5t80j3g" path="res://mira.gd" id="19_mjc0q"]
-[ext_resource type="Shape2D" uid="uid://cmplweo32abks" path="res://ai/states/ground/collisions/jump.tres" id="20_ckdqs"]
+[ext_resource type="Shape2D" uid="uid://cmplweo32abks" path="res://ai/states/air/collisions/jump.tres" id="20_ckdqs"]
 [ext_resource type="Script" uid="uid://ckrm36e73gqv2" path="res://ai/states/death.gd" id="20_nf30t"]
 [ext_resource type="Script" uid="uid://csdkr03n3rrvt" path="res://ai/states/death/dying.gd" id="21_bbfoi"]
 [ext_resource type="Script" uid="uid://dwrwsioxau11l" path="res://ai/states/death/dead.gd" id="22_cdaf2"]
-[ext_resource type="Shape2D" uid="uid://qw558dln2vm7" path="res://ai/states/ground/collisions/idle.tres" id="24_cdaf2"]
-[ext_resource type="Script" uid="uid://cv45h2ik0u4dq" path="res://ai/states/water/water_aim_up.gd" id="26_ckdqs"]
+[ext_resource type="Shape2D" uid="uid://qw558dln2vm7" path="res://ai/states/ground/collisions/default.tres" id="24_cdaf2"]
+[ext_resource type="Shape2D" uid="uid://bel5auyv0lq1f" path="res://ai/states/water/collisions/water.tres" id="25_6f52c"]
+[ext_resource type="Script" path="res://ai/states/water/water_aim_up.gd" id="26_ckdqs"]
 [ext_resource type="Script" uid="uid://qdspwcqn3ee4" path="res://ai/states/water/water_aim_high.gd" id="27_mvipy"]
 [ext_resource type="Script" uid="uid://c8xbdssws4jgy" path="res://ai/states/water/basic_swim.gd" id="28_6f52c"]
 [ext_resource type="Script" uid="uid://1wfws030vjhg" path="res://ai/states/water/water_aim_mid.gd" id="28_44nj1"]
@@ -662,6 +663,7 @@ initial_state = NodePath("Idle")
 
 [node name="Run" parent="FSM/Ground" unique_id=1973888264 instance=ExtResource("5_i8x4f")]
 script = ExtResource("5_nvqsm")
+collision_shape = ExtResource("24_cdaf2")
 
 [node name="RunAimHigh" parent="FSM/Ground/Run" unique_id=1344852867 instance=ExtResource("5_i8x4f")]
 script = ExtResource("7_xuy7w")
@@ -706,6 +708,7 @@ initial_state = NodePath("Swim")
 
 [node name="Swim" parent="FSM/Water" unique_id=1038560956 instance=ExtResource("5_i8x4f")]
 script = ExtResource("13_bso8a")
+collision_shape = ExtResource("25_6f52c")
 
 [node name="WaterAimMid" parent="FSM/Water/Swim" unique_id=500095785 instance=ExtResource("5_i8x4f")]
 script = ExtResource("28_44nj1")

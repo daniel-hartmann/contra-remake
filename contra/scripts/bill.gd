@@ -25,10 +25,15 @@ signal bullet_fired
 @onready var gunfire_cooldown = $GunFireCooldown
 @onready var fsm = $FSM
 
+var default_hitbox: Vector2
+
 var blink_accumulator: float = 0.0
 const BLINK_SPEED: float = 0.02
 
 const BULLET = preload("res://scenes/Bullet.tscn")
+
+func _ready() -> void:
+	default_hitbox = hitbox_shape.position
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity

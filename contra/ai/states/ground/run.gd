@@ -1,6 +1,7 @@
 class_name Run extends ParentState
 
 @onready var character := owner as CharacterBody2D
+@export var collision_shape: Shape2D
 
 func enter() -> void:
 	if !character.firing():
@@ -8,9 +9,11 @@ func enter() -> void:
 	else:
 		enter_child("runaimmid")
 	character.legs_animation.play("running_legs")
-	
+	character.hitbox_shape.shape = collision_shape
+
 func exit() -> void:
 	character.legs_animation.play("not_running_legs")
+	super()
 
 func _shared_physics(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")

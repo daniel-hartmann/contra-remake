@@ -8,11 +8,12 @@ func enter() -> void:
 	character.torso_animation.play("crouch")
 	character.legs_animation.play("not_running_legs")
 	character.hitbox_shape.shape = collision_shape
-	character.hitbox_shape.position.y += 8
+	character.hitbox_shape.position.x = character.default_hitbox.x - 4
+	character.hitbox_shape.position.y = character.default_hitbox.y + 10
 
 
 func exit() -> void:
-	character.hitbox_shape.position.y -= 8
+	character.hitbox_shape.position = character.default_hitbox
 
 
 func physics_update(delta: float) -> void:
