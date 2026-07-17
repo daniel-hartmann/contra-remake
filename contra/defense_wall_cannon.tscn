@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://di7vxhohy7rb0" path="res://animated_sprite_2d.gd" id="2_8mtqo"]
 [ext_resource type="PackedScene" uid="uid://c7sxovd3vap38" path="res://bullet_dw.tscn" id="3_wv1lf"]
 [ext_resource type="Script" uid="uid://jatx70lirysd" path="res://ray_cast_2d.gd" id="4_ne16u"]
-[ext_resource type="Script" path="res://cannon_2.gd" id="4_vb5ku"]
 [ext_resource type="PackedScene" uid="uid://ulp856gu8hwl" path="res://scenes/character_bill.tscn" id="6_wv1lf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eg6hi"]
@@ -94,15 +93,16 @@ visible = false
 position = Vector2(-25, 0)
 sprite_frames = SubResource("SpriteFrames_ll7d3")
 animation = &"shoot"
-script = ExtResource("4_vb5ku")
 
 [node name="RayCast2D2" type="RayCast2D" parent="cannon2" unique_id=1161367993]
+visible = false
 target_position = Vector2(0, 80)
 collision_mask = 65535
 
 [node name="timer2" type="Timer" parent="cannon2/RayCast2D2" unique_id=41762417]
 
 [node name="damage_box2" type="Area2D" parent="cannon2" unique_id=923815778]
+visible = false
 
 [node name="box2" type="CollisionShape2D" parent="cannon2/damage_box2" unique_id=1063896171]
 shape = SubResource("RectangleShape2D_23wap")
