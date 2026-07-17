@@ -10,9 +10,7 @@ func enter() -> void:
 	character.torso_animation.animation_finished.connect(_on_animation_finished, CONNECT_ONE_SHOT)
 
 func _on_animation_finished() -> void:
-	# TODO: check if player still have lives
-	character.respawn()
-
-
-func physics_update(delta: float) -> void:
-	pass
+	if PlayerStats.current_lives > 0:
+		character.respawn()
+	else:
+		character.hide()

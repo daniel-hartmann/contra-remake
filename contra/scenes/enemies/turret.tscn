@@ -1,0 +1,291 @@
+[gd_scene format=3 uid="uid://o5hmx032gpaa"]
+
+[ext_resource type="Script" uid="uid://c6vb0kygwbage" path="res://scripts/turret.gd" id="1_d5tah"]
+[ext_resource type="Texture2D" uid="uid://q8o5vu0khkas" path="res://art/enemies/turrets.png" id="2_eo4u0"]
+[ext_resource type="Texture2D" uid="uid://en8ai55iw3yt" path="res://art/enemies/explode.png" id="3_6k4ik"]
+[ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="4_fp1kq"]
+[ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_726tt"]
+[ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="6_8c4bs"]
+[ext_resource type="Script" uid="uid://ckd07pk22dpn2" path="res://ai/turret/turret_closed.gd" id="7_d5tah"]
+[ext_resource type="Script" uid="uid://cxyj1rqlnh3df" path="res://ai/turret/turret_opened.gd" id="8_d5tah"]
+[ext_resource type="Script" uid="uid://bso7s30wiqpm1" path="res://ai/turret/turret_explode.gd" id="9_mpvso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1j7hr"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(66, 99, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3drwf"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(0, 132, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygrfe"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(33, 132, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5tah"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(66, 132, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr03i"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(0, 165, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rpki"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(33, 165, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7ilg"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(66, 165, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8vx2"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(0, 198, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68cj5"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(33, 198, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c18"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(66, 198, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyfac"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(0, 99, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qpfo"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(33, 99, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v86k"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(0, 66, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp0by"]
+atlas = ExtResource("3_6k4ik")
+region = Rect2(0, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j46ng"]
+atlas = ExtResource("3_6k4ik")
+region = Rect2(31, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpp0x"]
+atlas = ExtResource("3_6k4ik")
+region = Rect2(62, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vkbn"]
+atlas = ExtResource("3_6k4ik")
+region = Rect2(93, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04ul0"]
+atlas = ExtResource("2_eo4u0")
+region = Rect2(33, 66, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcspg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1j7hr")
+}],
+"loop": 1,
+"name": &"aim_000",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3drwf")
+}],
+"loop": 1,
+"name": &"aim_030",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygrfe")
+}],
+"loop": 1,
+"name": &"aim_060",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5tah")
+}],
+"loop": 1,
+"name": &"aim_090",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr03i")
+}],
+"loop": 1,
+"name": &"aim_120",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rpki")
+}],
+"loop": 1,
+"name": &"aim_150",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7ilg")
+}],
+"loop": 1,
+"name": &"aim_180",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8vx2")
+}],
+"loop": 1,
+"name": &"aim_210",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68cj5")
+}],
+"loop": 1,
+"name": &"aim_240",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7c18")
+}],
+"loop": 1,
+"name": &"aim_270",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyfac")
+}],
+"loop": 1,
+"name": &"aim_300",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qpfo")
+}],
+"loop": 1,
+"name": &"aim_330",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v86k")
+}],
+"loop": 1,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp0by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j46ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpp0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vkbn")
+}],
+"loop": 0,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04ul0")
+}],
+"loop": 0,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcspg"]
+size = Vector2(32, 32)
+
+[node name="Turret" type="Area2D" unique_id=1399494412]
+collision_layer = 8
+collision_mask = 128
+script = ExtResource("1_d5tah")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=864408450]
+sprite_frames = SubResource("SpriteFrames_gcspg")
+animation = &"aim_180"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=87787475]
+shape = SubResource("RectangleShape2D_gcspg")
+
+[node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("4_fp1kq")]
+initial_state = NodePath("DefaultParentState")
+
+[node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_726tt")]
+script = ExtResource("6_8c4bs")
+initial_state = NodePath("TurretClosed")
+
+[node name="TurretClosed" parent="FSM/DefaultParentState" unique_id=310814077 instance=ExtResource("5_726tt")]
+script = ExtResource("7_d5tah")
+
+[node name="TurretOpened" parent="FSM/DefaultParentState" unique_id=282463888 instance=ExtResource("5_726tt")]
+script = ExtResource("8_d5tah")
+
+[node name="TurretExplode" parent="FSM/DefaultParentState" unique_id=960959324 instance=ExtResource("5_726tt")]
+script = ExtResource("9_mpvso")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1877225222]
+
+[node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=2089140269]
+one_shot = true
+
+[node name="Aim000" type="Marker2D" parent="." unique_id=1307796473]
+position = Vector2(16, 0)
+
+[node name="Aim030" type="Marker2D" parent="." unique_id=1307796474]
+position = Vector2(13, -8)
+
+[node name="Aim060" type="Marker2D" parent="." unique_id=1307796475]
+position = Vector2(8, -13)
+
+[node name="Aim090" type="Marker2D" parent="." unique_id=1307796472]
+position = Vector2(-0.5, -14)
+
+[node name="Aim120" type="Marker2D" parent="." unique_id=208265527]
+position = Vector2(-8, -13)
+
+[node name="Aim150" type="Marker2D" parent="." unique_id=902108976]
+position = Vector2(-13, -8)
+
+[node name="Aim180" type="Marker2D" parent="." unique_id=1789950132]
+position = Vector2(-16, 0)
+
+[node name="Aim210" type="Marker2D" parent="." unique_id=704725899]
+position = Vector2(-13, 8)
+
+[node name="Aim240" type="Marker2D" parent="." unique_id=1058289696]
+position = Vector2(-7, 12)
+
+[node name="Aim270" type="Marker2D" parent="." unique_id=1743240623]
+position = Vector2(-0.5, 14)
+
+[node name="Aim300" type="Marker2D" parent="." unique_id=1743240624]
+position = Vector2(7, 12)
+
+[node name="Aim330" type="Marker2D" parent="." unique_id=1743240625]
+position = Vector2(13, 8)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="timeout" from="WeaponCooldownTimer" to="." method="_on_weapon_cooldown_timeout"]

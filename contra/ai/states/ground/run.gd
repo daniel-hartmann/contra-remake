@@ -1,14 +1,19 @@
 class_name Run extends ParentState
 
 @onready var character := owner as CharacterBody2D
+@export var collision_shape: Shape2D
 
 func enter() -> void:
-	enter_child("runnoaim")
+	if !character.firing():
+		enter_child("runnoaim")
+	else:
+		enter_child("runaimmid")
 	character.legs_animation.play("running_legs")
-	
+	character.hitbox_shape.shape = collision_shape
+
 func exit() -> void:
-	enter_child("runnoaim")
 	character.legs_animation.play("not_running_legs")
+	super()
 
 func _shared_physics(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
@@ -32,11 +37,11 @@ func _shared_physics(delta: float) -> void:
 	character.torso_animation.flip_h = direction < 0
 	character.legs_animation.flip_h = direction < 0
 		
-	if Input.is_action_just_pressed("shoot") and not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
+	if Input.is_action_pressed("shoot") and not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
 		enter_child("runaimmid")
-	elif Input.is_action_pressed("up"):
+	elif Input.is_action_pressed("up") and direction != 0:
 		enter_child("runaimhigh")
-	elif Input.is_action_pressed("down"):
+	elif Input.is_action_pressed("down") and direction != 0:
 		enter_child("runaimlow")
 	elif !character.firing():
 		enter_child("runnoaim")

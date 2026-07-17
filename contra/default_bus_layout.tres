@@ -1,5 +1,12 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://cguov3ba4qc63"]
 
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_g28q7"]
+resource_name = "Compressor"
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_j3pel"]
+resource_name = "EQ"
+band_db/32_hz = -60.0
+
 [resource]
 bus/1/name = &"BGM"
 bus/1/solo = false
@@ -11,5 +18,9 @@ bus/2/name = &"FX"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -1.3192663
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectCompressor_g28q7")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectEQ_j3pel")
+bus/2/effect/1/enabled = true

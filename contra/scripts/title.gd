@@ -20,6 +20,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		one_player_selected = !one_player_selected
 
 	if event.is_action_pressed("start"):
+		get_viewport().set_input_as_handled()
 		get_parent().change_screen(preload("res://scenes/game.tscn").instantiate())
 
 

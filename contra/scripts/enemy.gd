@@ -30,6 +30,8 @@ func toggle_collisions(collide: bool) -> void:
 
 func reset() -> void:
 	$FSM.set_physics_process(false)
+	if $FSM.current_state:
+		$FSM.current_state.enter_child($FSM.current_state.initial_state.name)
 	set_physics_process(false)
 	toggle_collisions(false)
 	is_dead = true
@@ -41,7 +43,8 @@ func reset() -> void:
 
 func spawn():
 	$FSM.set_physics_process(true)
-	$FSM.current_state.enter_child($FSM.initial_state.name)
+	if $FSM.current_state:
+		$FSM.current_state.enter_child($FSM.current_state.initial_state.name)
 	set_physics_process(true)
 	toggle_collisions(true)
 	is_dead = false
