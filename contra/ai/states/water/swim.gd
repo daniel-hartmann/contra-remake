@@ -5,6 +5,14 @@ class_name Swim extends ParentState
 
 func enter() -> void:
 	enter_child("basicswim")
+	character.hitbox_shape.shape = collision_shape
+	character.hitbox_shape.position.y = character.default_hitbox.y - 7
+
+
+func exit() -> void:
+	character.hitbox_shape.position = character.default_hitbox
+	super()
+
 
 func _shared_physics(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")

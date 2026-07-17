@@ -29,6 +29,10 @@ func _on_child_transition(state: State, new_name: String) -> void:
 	else:
 		transitioned.emit(self, new_name)
 
+func exit() -> void:
+	if current_state:
+		current_state.exit()
+
 func update(delta: float) -> void:
 	if current_state:
 		current_state.update(delta)
