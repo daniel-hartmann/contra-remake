@@ -16,7 +16,7 @@ var current_muzzle: Marker2D
 
 @export var max_bullets: int = 2
 @export var player: Player
-@export var life: float = 1.0
+@export var life: float = 8
 
 
 func toggle_collisions(collide: bool) -> void:

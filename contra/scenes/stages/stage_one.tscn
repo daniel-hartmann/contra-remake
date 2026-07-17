@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dolmi07sk62ht" path="res://scenes/flying_powerup.tscn" id="23_qn8wv"]
 [ext_resource type="Script" uid="uid://361pv0givrij" path="res://scripts/flying_power_up_pool.gd" id="24_310x2"]
 [ext_resource type="Script" uid="uid://dukxv1pmhry3k" path="res://scenes/stages/flying_power_up_spawner.gd" id="24_d0gr7"]
+[ext_resource type="PackedScene" uid="uid://o5hmx032gpaa" path="res://scenes/enemies/turret.tscn" id="25_310x2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -789,9 +790,6 @@ player = NodePath("../../../Bill")
 visible = false
 player = NodePath("../../../Bill")
 
-[node name="PowerUpTurret" parent="." unique_id=829496896 instance=ExtResource("22_3wao1")]
-position = Vector2(336, 160)
-
 [node name="FlyingPowerUpSpawners" type="Node" parent="." unique_id=859610282]
 
 [node name="FlyingPowerUpSpawner1" type="Marker2D" parent="FlyingPowerUpSpawners" unique_id=1311293731]
@@ -820,6 +818,35 @@ position = Vector2(48, 47)
 [node name="FlyingPowerUp3" parent="FlyingPowerUpPool" unique_id=468807251 instance=ExtResource("23_qn8wv")]
 visible = false
 position = Vector2(48, 47)
+
+[node name="PowerUpTurret1" parent="." unique_id=829496896 instance=ExtResource("22_3wao1")]
+position = Vector2(336, 160)
+
+[node name="PowerUpTurret2" parent="." unique_id=1399494412 instance=ExtResource("22_3wao1")]
+position = Vector2(1584, 161)
+
+[node name="PowerUpTurret3" parent="." unique_id=1598698863 instance=ExtResource("22_3wao1")]
+position = Vector2(2288, 190)
+
+[node name="Turret1" parent="." unique_id=985719866 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(1264, 160)
+player = NodePath("../Bill")
+
+[node name="Turret2" parent="." unique_id=1932886282 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(1649, 128)
+player = NodePath("../Bill")
+
+[node name="Turret3" parent="." unique_id=1524989893 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(1840, 128)
+player = NodePath("../Bill")
+
+[node name="Turret4" parent="." unique_id=1801813529 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(3120, 192)
+player = NodePath("../Bill")
+
+[node name="Turret5" parent="." unique_id=675757839 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(3248, 193)
+player = NodePath("../Bill")
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

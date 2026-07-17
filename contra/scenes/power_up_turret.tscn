@@ -143,9 +143,7 @@ power_up_type = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=864408450]
 sprite_frames = SubResource("SpriteFrames_gcspg")
-animation = &"explode"
-frame = 3
-frame_progress = 1.0
+animation = &"closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=87787475]
 shape = SubResource("RectangleShape2D_gcspg")
