@@ -5,6 +5,7 @@ extends Node
 const FIRST_STAGE = preload("res://scenes/stages/stage_one.tscn")
 
 func _ready() -> void:
+	get_tree().paused = false
 	add_child(FIRST_STAGE.instantiate())
 	toggle_lives_visibility()
 	PlayerStats.lives_changed.connect(toggle_lives_visibility)

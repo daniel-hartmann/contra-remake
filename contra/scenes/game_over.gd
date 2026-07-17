@@ -15,6 +15,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		continue_selected = !continue_selected
 
 	if event.is_action_pressed("start"):
+		get_viewport().set_input_as_handled()
+
 		PlayerStats.restart()
 		if continue_selected:
 			get_parent().change_screen(load("res://scenes/game.tscn").instantiate())
