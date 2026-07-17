@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dolmi07sk62ht"]
+
+[ext_resource type="Script" uid="uid://dineadgtmqk1j" path="res://scenes/flying_powerup.gd" id="1_68tlc"]
+[ext_resource type="Texture2D" uid="uid://d1b72lesk3mwa" path="res://art/enemies/enemy_explosion.png" id="1_606u8"]
+[ext_resource type="Texture2D" uid="uid://ccftl2do3ve6h" path="res://art/flyingpowerup.png" id="2_68tlc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_606u8"]
+atlas = ExtResource("1_606u8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68tlc"]
+atlas = ExtResource("1_606u8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfwad"]
+atlas = ExtResource("1_606u8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwc6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68tlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfwad")
+}],
+"loop": 0,
+"name": &"exploding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_68tlc")
+}],
+"loop": 1,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v40rj"]
+radius = 0.0
+height = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uwc6k"]
+radius = 7.0
+height = 24.0
+
+[node name="FlyingPowerUp" type="CharacterBody2D" unique_id=222882562]
+script = ExtResource("1_68tlc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1897820921]
+sprite_frames = SubResource("SpriteFrames_uwc6k")
+animation = &"flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479590596]
+shape = SubResource("CapsuleShape2D_v40rj")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2096602567]
+light_mask = 0
+visibility_layer = 0
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=597613815]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_uwc6k")
+debug_color = Color(0.8830024, 0.27203116, 0.5075199, 0.41960785)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
