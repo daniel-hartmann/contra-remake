@@ -516,8 +516,32 @@ gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
 pool = NodePath("../../../EnemyPool/DeliveryManPool")
 
+[node name="DeliveryManSpawner17" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1374966318 node_paths=PackedStringArray("pool")]
+position = Vector2(745, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
 [node name="DeliveryManSpawner4" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1162588424 node_paths=PackedStringArray("pool")]
 position = Vector2(952, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner18" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=812603854 node_paths=PackedStringArray("pool")]
+position = Vector2(1191, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner19" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=2073290560 node_paths=PackedStringArray("pool")]
+position = Vector2(1211, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner20" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=857631197 node_paths=PackedStringArray("pool")]
+position = Vector2(1201, 97)
 gizmo_extents = 30.0
 script = ExtResource("11_uk6q6")
 pool = NodePath("../../../EnemyPool/DeliveryManPool")
