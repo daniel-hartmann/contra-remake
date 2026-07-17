@@ -693,46 +693,6 @@ position = Vector2(299, 298)
 visible = false
 position = Vector2(299, 298)
 
-[node name="DeliveryMan7" parent="EnemyPool/DeliveryManPool" unique_id=1286921552 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan8" parent="EnemyPool/DeliveryManPool" unique_id=878365246 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan9" parent="EnemyPool/DeliveryManPool" unique_id=224370152 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan10" parent="EnemyPool/DeliveryManPool" unique_id=466838231 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan11" parent="EnemyPool/DeliveryManPool" unique_id=809476354 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan12" parent="EnemyPool/DeliveryManPool" unique_id=702607296 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan13" parent="EnemyPool/DeliveryManPool" unique_id=25136414 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan14" parent="EnemyPool/DeliveryManPool" unique_id=1798359640 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan15" parent="EnemyPool/DeliveryManPool" unique_id=926412567 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
-[node name="DeliveryMan16" parent="EnemyPool/DeliveryManPool" unique_id=215767792 instance=ExtResource("13_cdavw")]
-visible = false
-position = Vector2(299, 298)
-
 [node name="CamperPool" type="Node" parent="EnemyPool" unique_id=1364873090]
 script = ExtResource("15_n285j")
 
@@ -752,21 +712,6 @@ position = Vector2(-76, -1)
 player = NodePath("../../../Bill")
 
 [node name="Camper4" parent="EnemyPool/CamperPool" unique_id=1253339727 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
-visible = false
-position = Vector2(-76, -1)
-player = NodePath("../../../Bill")
-
-[node name="Camper5" parent="EnemyPool/CamperPool" unique_id=418186026 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
-visible = false
-position = Vector2(-76, -1)
-player = NodePath("../../../Bill")
-
-[node name="Camper6" parent="EnemyPool/CamperPool" unique_id=1315514399 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
-visible = false
-position = Vector2(-76, -1)
-player = NodePath("../../../Bill")
-
-[node name="Camper7" parent="EnemyPool/CamperPool" unique_id=1475957270 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
 visible = false
 position = Vector2(-76, -1)
 player = NodePath("../../../Bill")
@@ -801,7 +746,7 @@ position = Vector2(1161, 31)
 script = ExtResource("24_d0gr7")
 
 [node name="FlyingPowerUpSpawner3" type="Marker2D" parent="FlyingPowerUpSpawners" unique_id=886628875]
-position = Vector2(2248, 50)
+position = Vector2(2248, 42)
 script = ExtResource("24_d0gr7")
 
 [node name="FlyingPowerUpPool" type="Node" parent="." unique_id=2071965644]

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://tu7jqly61k0y" path="res://art/enemies/delivery_man.png" id="1_g64dx"]
 [ext_resource type="Script" uid="uid://c0norvtpf0nk3" path="res://scripts/enemy.gd" id="1_q30k0"]
 [ext_resource type="Texture2D" uid="uid://d1b72lesk3mwa" path="res://art/enemies/enemy_explosion.png" id="2_suss3"]
-[ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="3_d0p8y"]
+[ext_resource type="Texture2D" uid="uid://cfroy11dl4bcd" path="res://art/character/bill_and_lance.png" id="3_d0p8y"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="4_ex8cw"]
 [ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="5_q30k0"]
 [ext_resource type="Script" uid="uid://cxjujif8bm0j7" path="res://ai/delivery_man/enemy_run.gd" id="6_pdb48"]
@@ -71,7 +71,7 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_3yxhj")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -79,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pdb48")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dying",
 "speed": 5.0
 }, {
@@ -87,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jrme8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -110,7 +110,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q30k0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run",
 "speed": 5.0
 }, {
@@ -118,7 +118,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7o7ga")
 }],
-"loop": true,
+"loop": 1,
 "name": &"water_in",
 "speed": 5.0
 }]
@@ -136,7 +136,7 @@ script = ExtResource("1_q30k0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783436894]
 sprite_frames = SubResource("SpriteFrames_pdb48")
-animation = &"dead"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489994856]
 shape = SubResource("RectangleShape2D_af202")
