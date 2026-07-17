@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://c42xi6hlfwogb"
+path="res://.godot/imported/contra_font.fnt-1a4d71ce02ab11297258a993c592d298.fontdata"
+
+[deps]
+
+source_file="res://fonts/contra_font.fnt"
+dest_files=["res://.godot/imported/contra_font.fnt-1a4d71ce02ab11297258a993c592d298.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

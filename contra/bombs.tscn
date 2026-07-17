@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3kbk51wuu6sp"]
 
 [ext_resource type="Script" uid="uid://drkkgg4guh6w7" path="res://bombs.gd" id="1_lsueg"]
-[ext_resource type="Texture2D" uid="uid://pb8clpdytpbq" path="res://art/character/bill_and_lance.png" id="2_qtm4c"]
+[ext_resource type="Texture2D" uid="uid://cfroy11dl4bcd" path="res://art/character/bill_and_lance.png" id="2_qtm4c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65oqd"]
 atlas = ExtResource("2_qtm4c")
@@ -27,7 +27,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t70cs")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 2.0
 }]

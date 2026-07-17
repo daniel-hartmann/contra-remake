@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://cq74ftq3j5bck"]
 
 [ext_resource type="Texture2D" uid="uid://q8o5vu0khkas" path="res://art/enemies/turrets.png" id="1_kov2v"]
+[ext_resource type="Script" uid="uid://p842ioeg0ra7" path="res://scenes/power_up_turret.gd" id="1_sr7uw"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="2_lry1w"]
 [ext_resource type="PackedScene" uid="uid://ncvbl2d7ngqc" path="res://ai/state.tscn" id="3_epnn8"]
+[ext_resource type="Texture2D" uid="uid://en8ai55iw3yt" path="res://art/enemies/explode.png" id="3_wsefw"]
 [ext_resource type="Script" uid="uid://o5oydnhiam38" path="res://ai/delivery_man/default_parent_state.gd" id="4_2hgjm"]
+[ext_resource type="Script" uid="uid://demvp7jtfpaep" path="res://ai/power_up_turret/power_up_turret_closed.gd" id="5_beuw1"]
+[ext_resource type="Script" uid="uid://lnf7wwsw2v8f" path="res://ai/power_up_turret/power_up_turret_opened.gd" id="7_qxa1n"]
+[ext_resource type="Script" uid="uid://cv23oxvme38hg" path="res://ai/power_up_turret/power_up_turret_explode.gd" id="9_sp0by"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kov2v"]
 atlas = ExtResource("1_kov2v")
@@ -32,6 +37,22 @@ region = Rect2(165, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sw48g"]
 atlas = ExtResource("1_kov2v")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp0by"]
+atlas = ExtResource("3_wsefw")
+region = Rect2(0, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j46ng"]
+atlas = ExtResource("3_wsefw")
+region = Rect2(31, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpp0x"]
+atlas = ExtResource("3_wsefw")
+region = Rect2(62, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vkbn"]
+atlas = ExtResource("3_wsefw")
+region = Rect2(93, 0, 31, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gcspg"]
 animations = [{
@@ -92,37 +113,58 @@ animations = [{
 "loop": 1,
 "name": &"closed",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp0by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j46ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpp0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vkbn")
+}],
+"loop": 0,
+"name": &"explode",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcspg"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kov2v"]
-size = Vector2(34, 34)
-
-[node name="PowerUpTurret" type="StaticBody2D" unique_id=829496896]
+[node name="PowerUpTurret" type="Area2D" unique_id=1399494412]
+collision_layer = 8
+collision_mask = 128
+script = ExtResource("1_sr7uw")
+power_up_type = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=864408450]
 sprite_frames = SubResource("SpriteFrames_gcspg")
-animation = &"animated"
-frame_progress = 0.351187
+animation = &"closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=87787475]
 shape = SubResource("RectangleShape2D_gcspg")
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=1168369130]
-collision_layer = 8
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1266133922]
-shape = SubResource("RectangleShape2D_kov2v")
-debug_color = Color(0.9529412, 0, 0, 0.41960785)
 
 [node name="FSM" parent="." unique_id=139887271 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_lry1w")]
 initial_state = NodePath("DefaultParentState")
 
 [node name="DefaultParentState" parent="FSM" unique_id=2046902714 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_epnn8")]
 script = ExtResource("4_2hgjm")
-initial_state = NodePath("PowerUpClosed")
+initial_state = NodePath("PowerUpTurretClosed")
 
-[node name="PowerUpClosed" parent="FSM/DefaultParentState" unique_id=310814077 instance=ExtResource("3_epnn8")]
+[node name="PowerUpTurretClosed" parent="FSM/DefaultParentState" unique_id=310814077 instance=ExtResource("3_epnn8")]
+script = ExtResource("5_beuw1")
+
+[node name="PowerUpTurretOpened" parent="FSM/DefaultParentState" unique_id=469863001 instance=ExtResource("3_epnn8")]
+script = ExtResource("7_qxa1n")
+
+[node name="PowerUpTurretExplode" parent="FSM/DefaultParentState" unique_id=960959324 instance=ExtResource("3_epnn8")]
+script = ExtResource("9_sp0by")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1877225222]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ulp856gu8hwl"]
 
 [ext_resource type="Script" uid="uid://c3525dyv8tev3" path="res://scripts/bill.gd" id="1_cap6p"]
-[ext_resource type="AudioStream" uid="uid://ddjocbw4acr1g" path="res://audio/fx/shotgun_1.wav" id="2_6f52c"]
 [ext_resource type="Texture2D" uid="uid://cfroy11dl4bcd" path="res://art/character/bill_and_lance.png" id="2_kvjld"]
 [ext_resource type="PackedScene" uid="uid://cvg6qvs1cb15p" path="res://ai/fsm.tscn" id="3_0a2dj"]
 [ext_resource type="Texture2D" uid="uid://cgk40eprfc0g0" path="res://art/character/Bill_and_Lance - Torso.png" id="3_dhlh0"]
@@ -26,12 +25,13 @@
 [ext_resource type="Script" uid="uid://0jydygv3bnj" path="res://ai/states/water/climb.gd" id="16_svubs"]
 [ext_resource type="Script" uid="uid://d3l2it1hor3vc" path="res://ai/states/air/respawn.gd" id="18_rxhkk"]
 [ext_resource type="Script" uid="uid://66rta5t80j3g" path="res://mira.gd" id="19_mjc0q"]
-[ext_resource type="Shape2D" uid="uid://cmplweo32abks" path="res://ai/states/ground/collisions/jump.tres" id="20_ckdqs"]
+[ext_resource type="Shape2D" uid="uid://cmplweo32abks" path="res://ai/states/air/collisions/jump.tres" id="20_ckdqs"]
 [ext_resource type="Script" uid="uid://ckrm36e73gqv2" path="res://ai/states/death.gd" id="20_nf30t"]
 [ext_resource type="Script" uid="uid://csdkr03n3rrvt" path="res://ai/states/death/dying.gd" id="21_bbfoi"]
 [ext_resource type="Script" uid="uid://dwrwsioxau11l" path="res://ai/states/death/dead.gd" id="22_cdaf2"]
-[ext_resource type="Shape2D" uid="uid://qw558dln2vm7" path="res://ai/states/ground/collisions/idle.tres" id="24_cdaf2"]
-[ext_resource type="Script" uid="uid://cv45h2ik0u4dq" path="res://ai/states/water/water_aim_up.gd" id="26_ckdqs"]
+[ext_resource type="Shape2D" uid="uid://qw558dln2vm7" path="res://ai/states/ground/collisions/default.tres" id="24_cdaf2"]
+[ext_resource type="Shape2D" uid="uid://bel5auyv0lq1f" path="res://ai/states/water/collisions/water.tres" id="25_6f52c"]
+[ext_resource type="Script" path="res://ai/states/water/water_aim_up.gd" id="26_ckdqs"]
 [ext_resource type="Script" uid="uid://qdspwcqn3ee4" path="res://ai/states/water/water_aim_high.gd" id="27_mvipy"]
 [ext_resource type="Script" uid="uid://c8xbdssws4jgy" path="res://ai/states/water/basic_swim.gd" id="28_6f52c"]
 [ext_resource type="Script" uid="uid://1wfws030vjhg" path="res://ai/states/water/water_aim_mid.gd" id="28_44nj1"]
@@ -624,7 +624,6 @@ z_index = 1
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_cap6p")
-shoot_fx = ExtResource("2_6f52c")
 
 [node name="LegsAnimation" type="AnimatedSprite2D" parent="." unique_id=1582006528]
 texture_filter = 1
@@ -636,8 +635,7 @@ frame_progress = 0.72551084
 [node name="TorsoAnimation" type="AnimatedSprite2D" parent="." unique_id=166215777]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gyhaw")
-animation = &"run_aim_low"
-frame_progress = 0.19334291
+animation = &"water_in"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91697261]
 position = Vector2(0, 2)
@@ -665,6 +663,7 @@ initial_state = NodePath("Idle")
 
 [node name="Run" parent="FSM/Ground" unique_id=1973888264 instance=ExtResource("5_i8x4f")]
 script = ExtResource("5_nvqsm")
+collision_shape = ExtResource("24_cdaf2")
 
 [node name="RunAimHigh" parent="FSM/Ground/Run" unique_id=1344852867 instance=ExtResource("5_i8x4f")]
 script = ExtResource("7_xuy7w")
@@ -709,6 +708,7 @@ initial_state = NodePath("Swim")
 
 [node name="Swim" parent="FSM/Water" unique_id=1038560956 instance=ExtResource("5_i8x4f")]
 script = ExtResource("13_bso8a")
+collision_shape = ExtResource("25_6f52c")
 
 [node name="WaterAimMid" parent="FSM/Water/Swim" unique_id=500095785 instance=ExtResource("5_i8x4f")]
 script = ExtResource("28_44nj1")
@@ -750,9 +750,14 @@ position = Vector2(0, 1.5)
 shape = ExtResource("24_cdaf2")
 debug_color = Color(1, 0, 0, 0.15686275)
 
-[node name="WeaponCooldown" type="Timer" parent="." unique_id=1668074705]
+[node name="WeaponCooldownAnimation" type="Timer" parent="." unique_id=1668074705]
 one_shot = true
 
+[node name="GunFireCooldown" type="Timer" parent="." unique_id=657591678]
+
+[connection signal="bullet_fired" from="." to="FSM/Ground/Run/RunAimHigh" method="_on_bill_bullet_fired"]
+[connection signal="bullet_fired" from="." to="FSM/Ground/Run/RunAimLow" method="_on_bill_bullet_fired"]
+[connection signal="bullet_fired" from="." to="FSM/Ground/Run/RunAimMid" method="_on_bill_bullet_fired"]
 [connection signal="bullet_fired" from="." to="FSM/Ground/Crouch" method="_on_bill_bullet_fired"]
 [connection signal="bullet_fired" from="." to="FSM/Ground/Idle" method="_on_bill_bullet_fired"]
 [connection signal="bullet_fired" from="." to="FSM/Ground/AimUp" method="_on_bill_bullet_fired"]
@@ -761,7 +766,8 @@ one_shot = true
 [connection signal="timeout" from="BackToGroundTimer" to="." method="_on_back_to_ground_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]
-[connection signal="timeout" from="WeaponCooldown" to="FSM/Ground/Run/RunAimMid" method="_on_weapon_cooldown_timeout"]
-[connection signal="timeout" from="WeaponCooldown" to="FSM/Water/Swim" method="_on_weapon_cooldown_timeout"]
-[connection signal="timeout" from="WeaponCooldown" to="FSM/Water/Swim/WaterAimMid" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="." method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="FSM/Ground/Run/RunAimMid" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="FSM/Water/Swim" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="WeaponCooldownAnimation" to="FSM/Water/Swim/WaterAimMid" method="_on_weapon_cooldown_timeout"]
+[connection signal="timeout" from="GunFireCooldown" to="." method="_on_gun_fire_cooldown_timeout"]

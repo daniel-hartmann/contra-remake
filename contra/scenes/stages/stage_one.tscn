@@ -21,6 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://cbeuup2440kla" path="res://scenes/enemies/camper_bush.tscn" id="17_1mwjm"]
 [ext_resource type="PackedScene" uid="uid://cij1a0jxvwuvh" path="res://ponte.tscn" id="18_d2xia"]
 [ext_resource type="PackedScene" uid="uid://na251hfx7rpx" path="res://defense_wall_cannon.tscn" id="22_3wao1"]
+[ext_resource type="PackedScene" uid="uid://cq74ftq3j5bck" path="res://scenes/power_up_turret.tscn" id="22_3wao1"]
+[ext_resource type="PackedScene" uid="uid://dolmi07sk62ht" path="res://scenes/flying_powerup.tscn" id="23_qn8wv"]
+[ext_resource type="Script" uid="uid://361pv0givrij" path="res://scripts/flying_power_up_pool.gd" id="24_310x2"]
+[ext_resource type="Script" uid="uid://dukxv1pmhry3k" path="res://scenes/stages/flying_power_up_spawner.gd" id="24_d0gr7"]
+[ext_resource type="PackedScene" uid="uid://o5hmx032gpaa" path="res://scenes/enemies/turret.tscn" id="25_310x2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pu5s7"]
 texture = ExtResource("1_3uc7p")
@@ -383,6 +388,7 @@ size = Vector2(16, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdavw"]
 
 [node name="StageOne" type="Node2D" unique_id=2045241351]
+process_mode = 1
 script = ExtResource("1_d2xia")
 bgm = ExtResource("2_xnnfl")
 
@@ -396,25 +402,39 @@ texture_filter = 1
 tile_map_data = PackedByteArray("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")
 tile_set = SubResource("TileSet_0f0lc")
 
-[node name="Bridge" parent="." unique_id=731714173 instance=ExtResource("18_d2xia")]
+[node name="Bridges" type="Node" parent="." unique_id=697846952]
+
+[node name="Bridge" parent="Bridges" unique_id=731714173 instance=ExtResource("18_d2xia")]
 light_mask = 524288
 visibility_layer = 524288
 position = Vector2(784, 120)
 
-[node name="Bridge2" parent="." unique_id=1642364780 instance=ExtResource("18_d2xia")]
+[node name="Bridge2" parent="Bridges" unique_id=1642364780 instance=ExtResource("18_d2xia")]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(816, 120)
 
-[node name="Bridge3" parent="." unique_id=1397158163 instance=ExtResource("18_d2xia")]
+[node name="Bridge3" parent="Bridges" unique_id=1397158163 instance=ExtResource("18_d2xia")]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(848, 120)
 
-[node name="Bridge4" parent="." unique_id=101485231 instance=ExtResource("18_d2xia")]
+[node name="Bridge4" parent="Bridges" unique_id=101485231 instance=ExtResource("18_d2xia")]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(880, 120)
+
+[node name="Bridge5" parent="Bridges" unique_id=211630347 instance=ExtResource("18_d2xia")]
+position = Vector2(1072, 120)
+
+[node name="Bridge6" parent="Bridges" unique_id=133126966 instance=ExtResource("18_d2xia")]
+position = Vector2(1104, 120)
+
+[node name="Bridge7" parent="Bridges" unique_id=425800245 instance=ExtResource("18_d2xia")]
+position = Vector2(1135, 120)
+
+[node name="Bridge8" parent="Bridges" unique_id=708337390 instance=ExtResource("18_d2xia")]
+position = Vector2(1167, 120)
 
 [node name="Bill" parent="." unique_id=2069213833 instance=ExtResource("5_0f0lc")]
 position = Vector2(49, 100)
@@ -460,48 +480,6 @@ scale = Vector2(1.5, 1)
 position = Vector2(1824, 225)
 scale = Vector2(3, 1)
 
-[node name="DeliveryManSpawner1" type="Marker2D" parent="." unique_id=878556118 node_paths=PackedStringArray("pool")]
-position = Vector2(273, 97)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/DeliveryManPool")
-
-[node name="DeliveryManSpawner2" type="Marker2D" parent="." unique_id=210507987 node_paths=PackedStringArray("pool")]
-position = Vector2(321, 96)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/DeliveryManPool")
-
-[node name="DeliveryManSpawner3" type="Marker2D" parent="." unique_id=1780138396 node_paths=PackedStringArray("pool")]
-position = Vector2(392, 97)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/DeliveryManPool")
-
-[node name="CamperSpawner1" type="Marker2D" parent="." unique_id=1852072741 node_paths=PackedStringArray("pool")]
-position = Vector2(321, 195)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/CamperPool")
-
-[node name="CamperSpawner2" type="Marker2D" parent="." unique_id=345985316 node_paths=PackedStringArray("pool")]
-position = Vector2(643, 196)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/CamperPool")
-
-[node name="CamperBushSpawner1" type="Marker2D" parent="." unique_id=1654164428 node_paths=PackedStringArray("pool")]
-position = Vector2(1346, 94)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/CamperBushPool")
-
-[node name="CamperBushSpawner2" type="Marker2D" parent="." unique_id=718642007 node_paths=PackedStringArray("pool")]
-position = Vector2(1554, 56)
-gizmo_extents = 30.0
-script = ExtResource("11_uk6q6")
-pool = NodePath("../EnemyPool/CamperBushPool")
-
 [node name="WaterArea" parent="." unique_id=1346483048 instance=ExtResource("7_j4x6s")]
 position = Vector2(865.26, 220)
 scale = Vector2(23.1, 0.95)
@@ -516,6 +494,200 @@ script = ExtResource("14_uk6q6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea" unique_id=703553049]
 scale = Vector2(14, 1)
 shape = SubResource("RectangleShape2D_cdavw")
+
+[node name="EnemySpawners" type="Node" parent="." unique_id=794174832]
+
+[node name="DeliveryManSpawners" type="Node" parent="EnemySpawners" unique_id=60401902]
+
+[node name="DeliveryManSpawner1" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=878556118 node_paths=PackedStringArray("pool")]
+position = Vector2(273, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner2" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=210507987 node_paths=PackedStringArray("pool")]
+position = Vector2(321, 96)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner3" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1780138396 node_paths=PackedStringArray("pool")]
+position = Vector2(392, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner17" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1374966318 node_paths=PackedStringArray("pool")]
+position = Vector2(745, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner4" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1162588424 node_paths=PackedStringArray("pool")]
+position = Vector2(952, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner18" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=812603854 node_paths=PackedStringArray("pool")]
+position = Vector2(1191, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner19" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=2073290560 node_paths=PackedStringArray("pool")]
+position = Vector2(1211, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner20" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=857631197 node_paths=PackedStringArray("pool")]
+position = Vector2(1201, 97)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner5" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=530180134 node_paths=PackedStringArray("pool")]
+position = Vector2(1675, 120)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner6" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=371024776 node_paths=PackedStringArray("pool")]
+position = Vector2(1730, 60)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner7" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=891683870 node_paths=PackedStringArray("pool")]
+position = Vector2(1768, 120)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner8" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1475404377 node_paths=PackedStringArray("pool")]
+position = Vector2(1953, 157)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner9" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1372095811 node_paths=PackedStringArray("pool")]
+position = Vector2(1973, 89)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner10" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=2031714736 node_paths=PackedStringArray("pool")]
+position = Vector2(2128, 138)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner11" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1672004472 node_paths=PackedStringArray("pool")]
+position = Vector2(2272, 87)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner12" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1681274153 node_paths=PackedStringArray("pool")]
+position = Vector2(2401, 87)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner13" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1711655267 node_paths=PackedStringArray("pool")]
+position = Vector2(2624, 87)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner14" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=994044083 node_paths=PackedStringArray("pool")]
+position = Vector2(2751, 87)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner15" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=601336973 node_paths=PackedStringArray("pool")]
+position = Vector2(2795, 125)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="DeliveryManSpawner16" type="Marker2D" parent="EnemySpawners/DeliveryManSpawners" unique_id=1713202772 node_paths=PackedStringArray("pool")]
+position = Vector2(2874, 125)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/DeliveryManPool")
+
+[node name="CamperSpawners" type="Node" parent="EnemySpawners" unique_id=475359960]
+
+[node name="CamperSpawner1" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=1852072741 node_paths=PackedStringArray("pool")]
+position = Vector2(321, 195)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperSpawner2" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=345985316 node_paths=PackedStringArray("pool")]
+position = Vector2(643, 196)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperSpawner3" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=68771690 node_paths=PackedStringArray("pool")]
+position = Vector2(1455, 196)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperSpawner4" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=1995913369 node_paths=PackedStringArray("pool")]
+position = Vector2(1823, 196)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperSpawner5" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=575613201 node_paths=PackedStringArray("pool")]
+position = Vector2(2556, 156)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperSpawner6" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=1710283101 node_paths=PackedStringArray("pool")]
+position = Vector2(2906, 189)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperSpawner7" type="Marker2D" parent="EnemySpawners/CamperSpawners" unique_id=1570095620 node_paths=PackedStringArray("pool")]
+position = Vector2(3006, 156)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperPool")
+
+[node name="CamperBushSpawners" type="Node" parent="EnemySpawners" unique_id=187297075]
+
+[node name="CamperBushSpawner1" type="Marker2D" parent="EnemySpawners/CamperBushSpawners" unique_id=1654164428 node_paths=PackedStringArray("pool")]
+position = Vector2(1346, 94)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperBushPool")
+
+[node name="CamperBushSpawner2" type="Marker2D" parent="EnemySpawners/CamperBushSpawners" unique_id=718642007 node_paths=PackedStringArray("pool")]
+position = Vector2(1554, 56)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperBushPool")
+
+[node name="CamperBushSpawner3" type="Marker2D" parent="EnemySpawners/CamperBushSpawners" unique_id=338298132 node_paths=PackedStringArray("pool")]
+position = Vector2(2141, 64)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperBushPool")
+
+[node name="CamperBushSpawner4" type="Marker2D" parent="EnemySpawners/CamperBushSpawners" unique_id=981208369 node_paths=PackedStringArray("pool")]
+position = Vector2(2657, 64)
+gizmo_extents = 30.0
+script = ExtResource("11_uk6q6")
+pool = NodePath("../../../EnemyPool/CamperBushPool")
 
 [node name="EnemyPool" type="Node" parent="." unique_id=791551933]
 
@@ -538,6 +710,14 @@ position = Vector2(299, 298)
 visible = false
 position = Vector2(299, 298)
 
+[node name="DeliveryMan5" parent="EnemyPool/DeliveryManPool" unique_id=809240349 instance=ExtResource("13_cdavw")]
+visible = false
+position = Vector2(299, 298)
+
+[node name="DeliveryMan6" parent="EnemyPool/DeliveryManPool" unique_id=488521182 instance=ExtResource("13_cdavw")]
+visible = false
+position = Vector2(299, 298)
+
 [node name="CamperPool" type="Node" parent="EnemyPool" unique_id=1364873090]
 script = ExtResource("15_n285j")
 
@@ -547,6 +727,16 @@ position = Vector2(-76, -1)
 player = NodePath("../../../Bill")
 
 [node name="Camper2" parent="EnemyPool/CamperPool" unique_id=289640532 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
+visible = false
+position = Vector2(-76, -1)
+player = NodePath("../../../Bill")
+
+[node name="Camper3" parent="EnemyPool/CamperPool" unique_id=531339103 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
+visible = false
+position = Vector2(-76, -1)
+player = NodePath("../../../Bill")
+
+[node name="Camper4" parent="EnemyPool/CamperPool" unique_id=1253339727 node_paths=PackedStringArray("player") instance=ExtResource("16_0wxyh")]
 visible = false
 position = Vector2(-76, -1)
 player = NodePath("../../../Bill")
@@ -567,6 +757,71 @@ position = Vector2(3382, 138)
 
 [node name="defense_wall_cannon2" parent="." unique_id=181885294 instance=ExtResource("22_3wao1")]
 position = Vector2(3349, 138)
+[node name="CamperBush3" parent="EnemyPool/CamperBushPool" unique_id=1858252180 node_paths=PackedStringArray("player") instance=ExtResource("17_1mwjm")]
+visible = false
+player = NodePath("../../../Bill")
+
+[node name="CamperBush4" parent="EnemyPool/CamperBushPool" unique_id=1276076694 node_paths=PackedStringArray("player") instance=ExtResource("17_1mwjm")]
+visible = false
+player = NodePath("../../../Bill")
+
+[node name="FlyingPowerUpSpawners" type="Node" parent="." unique_id=859610282]
+
+[node name="FlyingPowerUpSpawner1" type="Marker2D" parent="FlyingPowerUpSpawners" unique_id=1311293731]
+position = Vector2(273, 24)
+script = ExtResource("24_d0gr7")
+
+[node name="FlyingPowerUpSpawner2" type="Marker2D" parent="FlyingPowerUpSpawners" unique_id=1267772277]
+position = Vector2(1161, 31)
+script = ExtResource("24_d0gr7")
+
+[node name="FlyingPowerUpSpawner3" type="Marker2D" parent="FlyingPowerUpSpawners" unique_id=886628875]
+position = Vector2(2248, 42)
+script = ExtResource("24_d0gr7")
+
+[node name="FlyingPowerUpPool" type="Node" parent="." unique_id=2071965644]
+script = ExtResource("24_310x2")
+
+[node name="FlyingPowerUp" parent="FlyingPowerUpPool" unique_id=222882562 instance=ExtResource("23_qn8wv")]
+visible = false
+position = Vector2(48, 47)
+
+[node name="FlyingPowerUp2" parent="FlyingPowerUpPool" unique_id=700642939 instance=ExtResource("23_qn8wv")]
+visible = false
+position = Vector2(48, 47)
+
+[node name="FlyingPowerUp3" parent="FlyingPowerUpPool" unique_id=468807251 instance=ExtResource("23_qn8wv")]
+visible = false
+position = Vector2(48, 47)
+
+[node name="PowerUpTurret1" parent="." unique_id=829496896 instance=ExtResource("22_3wao1")]
+position = Vector2(336, 160)
+
+[node name="PowerUpTurret2" parent="." unique_id=1399494412 instance=ExtResource("22_3wao1")]
+position = Vector2(1584, 161)
+
+[node name="PowerUpTurret3" parent="." unique_id=1598698863 instance=ExtResource("22_3wao1")]
+position = Vector2(2288, 190)
+
+[node name="Turret1" parent="." unique_id=985719866 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(1264, 160)
+player = NodePath("../Bill")
+
+[node name="Turret2" parent="." unique_id=1932886282 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(1649, 128)
+player = NodePath("../Bill")
+
+[node name="Turret3" parent="." unique_id=1524989893 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(1840, 128)
+player = NodePath("../Bill")
+
+[node name="Turret4" parent="." unique_id=1801813529 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(3120, 192)
+player = NodePath("../Bill")
+
+[node name="Turret5" parent="." unique_id=675757839 node_paths=PackedStringArray("player") instance=ExtResource("25_310x2")]
+position = Vector2(3248, 193)
+player = NodePath("../Bill")
 
 [connection signal="body_entered" from="BottomTiles/BackToTheGround" to="Bill" method="_on_back_to_the_ground_body_entered"]
 [connection signal="body_entered" from="BottomTiles/BackToTheGround2" to="Bill" method="_on_back_to_the_ground_body_entered"]

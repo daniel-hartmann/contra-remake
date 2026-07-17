@@ -3,7 +3,6 @@ class_name Player
 
 const SPEED = 60.0
 const JUMP_VELOCITY = -230.0
-
 var god_mode := false
 var blinking_flag := false
 
@@ -11,7 +10,9 @@ var is_jumping := false
 var is_on_water := false
 var is_climbing := false
 var is_dead := false
-var is_firing := false
+var is_firing_animation_active := false
+var is_gun_firing := false
+var bullets_on_screen := 0
 
 var _cheat_buffer := ""
 
@@ -20,19 +21,23 @@ signal bullet_fired
 @onready var torso_animation = $TorsoAnimation
 @onready var legs_animation = $LegsAnimation
 @onready var hitbox_shape = $Hitbox/CollisionShape2D
-@onready var weapon_cooldown = $WeaponCooldown
+@onready var weapon_cooldown = $WeaponCooldownAnimation
+@onready var gunfire_cooldown = $GunFireCooldown
 @onready var fsm = $FSM
 
-@export var shoot_fx: AudioStream
+var default_hitbox: Vector2
 
 var blink_accumulator: float = 0.0
 const BLINK_SPEED: float = 0.02
 
 const BULLET = preload("res://scenes/Bullet.tscn")
 
+func _ready() -> void:
+	default_hitbox = hitbox_shape.position
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity
-	if not is_on_floor() and not is_on_water:
+	if not is_on_floor():
 		velocity += get_gravity() / 2 * delta
 
 	if god_mode:
@@ -51,11 +56,10 @@ func _physics_process(delta: float) -> void:
 			blink_accumulator = 0.0
 
 	move_and_slide()
-
+	do_shooting()
 
 func toggle_hitbox_collisions(collide: bool) -> void:
 	$Hitbox/CollisionShape2D.set_deferred("disabled", !collide)
-
 
 func _on_drop_timer_timeout() -> void:
 	set_collision_mask_value(1, true)
@@ -74,13 +78,33 @@ func _on_back_to_ground_timer_timeout() -> void:
 	global_position.y -= 16
 	fsm.on_child_transition(fsm.current_state, "ground")
 
+func do_shooting() -> void:
+	if is_dead:
+		return
+
+	match PlayerStats.current_gun:
+		Gun.MachineGun:
+			if Input.is_action_pressed("shoot") and is_gun_firing == false:
+				shoot()
+				weapon_cooldown.start(.4)
+				gunfire_cooldown.start(.10)
+
+			if Input.is_action_pressed("shoot") and is_gun_firing:
+				if not AudioManager.is_sound_playing(PlayerStats.current_gun.FX):
+					AudioManager.play_sound_effect(PlayerStats.current_gun.FX)
+			elif not Input.is_action_pressed("shoot"):
+				AudioManager.stop_sound(PlayerStats.current_gun.FX)
+
+		Gun.DefaultGun:
+			if Input.is_action_just_pressed("shoot") and is_gun_firing == false:
+				shoot()
+				weapon_cooldown.start(.4)
+				gunfire_cooldown.start(.15)
+				AudioManager.play_sound_effect(PlayerStats.current_gun.FX)
+		_:
+			pass
 
 func _unhandled_input(event):
-	if event.is_action_pressed("shoot"):
-		shoot()
-		weapon_cooldown.start(.4)
-		is_firing = true
-
 	if event is InputEventKey and event.pressed and not event.echo:
 		var key_char = OS.get_keycode_string(event.physical_keycode).to_lower()
 		if key_char.length() == 1:
@@ -93,20 +117,27 @@ func _unhandled_input(event):
 				Log.debug("GOD MODE ENABLED")
 				toggle_god_mode(true)
 
-
 func toggle_god_mode(value: bool) -> void:
 	god_mode = value
 	toggle_hitbox_collisions(!value)
 	set_collision_layer_value(10, value)
 
-
 func shoot():
-	bullet_fired.emit()
+	if bullets_on_screen >= PlayerStats.current_gun.MAX_BULLETS:
+		return
 
-	AudioManager.play_sound_effect(shoot_fx)
+	is_firing_animation_active = true
+	is_gun_firing = true
+	bullet_fired.emit()
 
 	# 1. Create an instance of the bullet
 	var b = BULLET.instantiate()
+
+	b.setup(PlayerStats.current_gun.BULLET_TEXTURE)
+
+	bullets_on_screen += 1
+	b.tree_exiting.connect(func(): bullets_on_screen = max(bullets_on_screen - 1, 0))
+
 	# 2. Set the bullet's position and rotation
 	b.global_position = $Mira.global_position
 	
@@ -114,7 +145,9 @@ func shoot():
 		if fsm.current_state.current_state.name == "Dive":
 			b.queue_free()
 			return
-				
+			
+	var direction := Input.get_axis("left", "right")
+	
 	if fsm.current_state.name == "Ground":
 		if fsm.current_state.current_state.name == "Run":
 			if fsm.current_state.current_state.current_state.name == "RunAimHigh":
@@ -125,12 +158,10 @@ func shoot():
 			b.global_rotation_degrees = -90
 	elif fsm.current_state.name == "Water":
 		if fsm.current_state.current_state.name == "Swim":
-			if fsm.current_state.current_state.current_state.name == "WaterAimHigh":
-					b.global_rotation_degrees = -40
-			elif fsm.current_state.current_state.current_state.name == "WaterAimUp":
+			if Input.is_action_pressed("up") and direction == 0:
 				b.global_rotation_degrees = -90
-	
-	var direction := Input.get_axis("left", "right")
+			elif Input.is_action_pressed("up") and direction != 0:
+				b.global_rotation_degrees = -40
 	
 	if fsm.current_state.name == "Air":
 		if Input.is_action_pressed("up") and direction == 0:
@@ -165,7 +196,10 @@ func reset() -> void:
 	is_on_water = false
 	is_climbing = false
 	is_dead = false
-	is_firing = false
+	is_firing_animation_active = false
+	is_gun_firing = false
+	bullets_on_screen = 0
+	PlayerStats.current_gun = Gun.DefaultGun
 	toggle_hitbox_collisions(true)
 
 func die() -> void:
@@ -179,7 +213,7 @@ func die() -> void:
 	toggle_hitbox_collisions(false)
 
 func firing() -> bool:
-	return is_firing
+	return is_firing_animation_active
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is PowerUp:
@@ -193,8 +227,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		die()
 
 func _on_weapon_cooldown_timeout() -> void:
-	is_firing = false
+	is_firing_animation_active = false
 
 
 func _on_respawn_timer_timeout() -> void:
 	toggle_god_mode(false)
+
+func _on_gun_fire_cooldown_timeout() -> void:
+	is_gun_firing = false

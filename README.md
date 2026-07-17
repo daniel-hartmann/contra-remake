@@ -26,13 +26,15 @@ do resto do jogo;
   	- [x] Camper atrás dos arbustos
   - [ ] Canhões do chefão
 - [ ] Power ups
-  - [ ] Movimentação dos power ups
-  	- Power Up (M)
-  - [ ] Efeitos no personagem
-  	- Mais tipos de tiros (a definir)
+	- [x] Torre de power up
+  - [ ] Movimentação dos power ups que voam
+  - [x] Efeitos no personagem
+    - [x] Power Up (M)
+    - [ ] Mais tipos de tiros (a definir)
 - [x] Tela inicial
-- [ ] Pontuação
+- [x] Tela de game over
 - [x] Trilha sonora
+- [ ] Pontuação
 	- Delivery man - 100 pontos
 	- Camper - 500 pontos
 	- Torre - 300 pontos
@@ -43,10 +45,10 @@ do resto do jogo;
 		- Coletar - 1000 pontos
 
 ### BUGS
-- [ ] durante respawn é possível usar os direcionais para mover a câmera
-- [ ] quando o jogador cai do ultimo bloco para agua, ele cai muito devagar
-- [ ] é possível atirar enquanto jogador tá morrendo
-
+- [x] durante respawn é possível usar os direcionais para mover a câmera
+- [x] quando o jogador cai do ultimo bloco para agua, ele cai muito devagar
+- [x] é possível atirar enquanto jogador tá morrendo
+- [ ] as vezes quando o jogador cai na agua, não é possível voltar
 
 
 

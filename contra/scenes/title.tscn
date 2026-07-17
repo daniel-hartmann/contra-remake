@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://k21toqkfmov5" path="res://art/title_screens.png" id="1_y7k74"]
 [ext_resource type="Texture2D" uid="uid://cbwwe5dyk18mq" path="res://art/otter.png" id="2_oyqm6"]
 [ext_resource type="AudioStream" uid="uid://sdriwmh55d83" path="res://audio/songs/main_title_song.wav" id="2_pyl7j"]
+[ext_resource type="FontFile" uid="uid://c42xi6hlfwogb" path="res://fonts/contra_font.fnt" id="3_b3w7a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oyqm6"]
 atlas = ExtResource("1_y7k74")
@@ -39,6 +40,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1106994118]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=1178929365]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_b3w7a")
+theme_override_font_sizes/font_size = 6
+text = "REMAKE BY
+
+DANIEL HARTMANN
+MATHEUS CASSALI
+MELISSA LOWENHAUPT"
 
 [node name="MainContainer" type="VBoxContainer" parent="." unique_id=1106695997]
 layout_mode = 0

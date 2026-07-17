@@ -20,10 +20,6 @@ scale = Vector2(3.74, 0.95)
 shape = SubResource("RectangleShape2D_0f0lc")
 debug_color = Color(0.047058824, 0.12156863, 0.6117647, 0.41960785)
 
-[node name="WaterTimer" type="Timer" parent="." unique_id=1997797280]
-wait_time = 0.1
-one_shot = true
-
 [node name="InvisibleFloor" type="StaticBody2D" parent="." unique_id=685984257]
 position = Vector2(16.941177, 12.631579)
 scale = Vector2(3.96, 1)

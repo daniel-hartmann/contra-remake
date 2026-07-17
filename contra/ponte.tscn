@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://diijls2xk3or8" path="res://art/stages/ponteOFF.png" id="1_51pmn"]
 [ext_resource type="Texture2D" uid="uid://bkbh7iuifknl7" path="res://art/stages/ponteON.png" id="2_65oqd"]
-[ext_resource type="Script" path="res://ponte.gd" id="3_51pmn"]
-[ext_resource type="PackedScene" path="res://bombs.tscn" id="4_51pmn"]
+[ext_resource type="Script" uid="uid://jvy2rigabk7m" path="res://ponte.gd" id="3_51pmn"]
+[ext_resource type="PackedScene" uid="uid://d3kbk51wuu6sp" path="res://bombs.tscn" id="4_51pmn"]
 [ext_resource type="Texture2D" uid="uid://cbjjugqmlr35d" path="res://art/stages/Ponte meio.png" id="5_65oqd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pk1cw"]
@@ -15,7 +15,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_65oqd")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 1.5
 }]
@@ -24,7 +24,7 @@ animations = [{
 size = Vector2(42, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mueox"]
-radius = 33.600594
+radius = 76.66667
 
 [node name="Bridge" type="AnimatedSprite2D" unique_id=731714173]
 sprite_frames = SubResource("SpriteFrames_pk1cw")
@@ -43,6 +43,7 @@ shape = SubResource("RectangleShape2D_pqaed")
 collision_mask = 2
 
 [node name="trigger" type="CollisionShape2D" parent="trigger_area" unique_id=177911610]
+visible = false
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_mueox")
 
