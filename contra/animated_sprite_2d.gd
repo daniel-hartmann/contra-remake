@@ -1,17 +1,16 @@
 extends AnimatedSprite2D
 
 @export var BULLET: PackedScene
-@export var player: Player
 @export var detection_range: float = 150.0
 
 @onready var reload: Timer = $RayCast2D/timer
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var hurtbox: Area2D = $damage_box
 
-const MAX_HITS: int = 4
+const MAX_HITS: int = 10
 var current_hits: int = 0
 var can_shoot := true
-
+var player: Player
 
 func _ready() -> void:
 	stop()
@@ -20,6 +19,7 @@ func _ready() -> void:
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	reload.one_shot = true
 	reload.wait_time = 1.9
+	player = get_parent().character
 
 
 func _physics_process(_delta: float) -> void:
