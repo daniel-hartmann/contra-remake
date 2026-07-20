@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://dpu0qli6qnafr" path="res://ai/states/ground/run_children/run_no_aim.gd" id="9_svubs"]
 [ext_resource type="Script" uid="uid://ccbsbvnskrlc0" path="res://ai/states/ground/run_children/run_aim_mid.gd" id="9_t5kxd"]
 [ext_resource type="Script" uid="uid://dyjwpfwc8fpy" path="res://ai/states/water.gd" id="12_obin2"]
-[ext_resource type="Script" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
+[ext_resource type="Script" uid="uid://brgfrrte3osso" path="res://ai/states/ground/aim_up.gd" id="12_u7r8q"]
 [ext_resource type="Script" uid="uid://506kshj35ctj" path="res://ai/states/water/swim.gd" id="13_bso8a"]
 [ext_resource type="Script" uid="uid://gugi7qqg0dpy" path="res://ai/states/water/dive.gd" id="14_6x0jv"]
 [ext_resource type="Shape2D" uid="uid://op6cyyogrrgu" path="res://ai/states/ground/collisions/crouch.tres" id="14_t5i3s"]
@@ -282,7 +282,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t5kxd")
 }],
-"loop": 1,
+"loop": true,
 "name": &"aim_up",
 "speed": 5.0
 }, {
@@ -296,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t5kxd")
 }],
-"loop": 0,
+"loop": false,
 "name": &"aim_up_firing",
 "speed": 15.0
 }, {
@@ -304,7 +304,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cap6p")
 }],
-"loop": 1,
+"loop": true,
 "name": &"crouch",
 "speed": 5.0
 }, {
@@ -318,7 +318,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cap6p")
 }],
-"loop": 0,
+"loop": false,
 "name": &"crouch_firing",
 "speed": 15.0
 }, {
@@ -326,7 +326,7 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_cdaf2")
 }],
-"loop": 0,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -346,7 +346,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cdaf2")
 }],
-"loop": 0,
+"loop": false,
 "name": &"dying",
 "speed": 5.0
 }, {
@@ -354,7 +354,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kvjld")
 }],
-"loop": 1,
+"loop": true,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -362,7 +362,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k6e7m")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -376,7 +376,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dhlh0")
 }],
-"loop": 0,
+"loop": false,
 "name": &"idle_firing",
 "speed": 15.0
 }, {
@@ -393,7 +393,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nvqsm")
 }],
-"loop": 1,
+"loop": true,
 "name": &"jump",
 "speed": 6.0
 }, {
@@ -401,7 +401,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jhskq")
 }],
-"loop": 1,
+"loop": true,
 "name": &"not_running_legs",
 "speed": 5.0
 }, {
@@ -415,7 +415,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yw27a")
 }],
-"loop": 1,
+"loop": true,
 "name": &"run_aim_high",
 "speed": 5.0
 }, {
@@ -429,7 +429,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1wmel")
 }],
-"loop": 0,
+"loop": false,
 "name": &"run_aim_high_firing",
 "speed": 15.0
 }, {
@@ -443,7 +443,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5wort")
 }],
-"loop": 1,
+"loop": true,
 "name": &"run_aim_low",
 "speed": 5.0
 }, {
@@ -457,7 +457,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cjhaw")
 }],
-"loop": 0,
+"loop": false,
 "name": &"run_aim_low_firing",
 "speed": 15.0
 }, {
@@ -471,7 +471,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tymye")
 }],
-"loop": 0,
+"loop": false,
 "name": &"run_aim_mid",
 "speed": 5.0
 }, {
@@ -485,7 +485,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gscjb")
 }],
-"loop": 0,
+"loop": false,
 "name": &"run_aim_mid_firing",
 "speed": 15.0
 }, {
@@ -508,7 +508,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qvxx1")
 }],
-"loop": 1,
+"loop": true,
 "name": &"run_no_aim",
 "speed": 5.0
 }, {
@@ -531,7 +531,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ro3ap")
 }],
-"loop": 1,
+"loop": true,
 "name": &"running_legs",
 "speed": 5.0
 }, {
@@ -542,7 +542,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vpwgg")
 }],
-"loop": 1,
+"loop": true,
 "name": &"water",
 "speed": 5.0
 }, {
@@ -556,7 +556,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_44nj1")
 }],
-"loop": 0,
+"loop": false,
 "name": &"water_aim_high",
 "speed": 15.0
 }, {
@@ -570,7 +570,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e45jf")
 }],
-"loop": 0,
+"loop": false,
 "name": &"water_aim_mid",
 "speed": 15.0
 }, {
@@ -584,7 +584,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xvosv")
 }],
-"loop": 0,
+"loop": false,
 "name": &"water_aim_up",
 "speed": 15.0
 }, {
@@ -595,7 +595,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lm2x4")
 }],
-"loop": 1,
+"loop": true,
 "name": &"water_dive",
 "speed": 5.0
 }, {
@@ -603,7 +603,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mjc0q")
 }],
-"loop": 1,
+"loop": true,
 "name": &"water_in",
 "speed": 5.0
 }, {
@@ -611,7 +611,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u7r8q")
 }],
-"loop": 1,
+"loop": true,
 "name": &"water_out",
 "speed": 5.0
 }]

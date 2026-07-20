@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bnn665dxoegai"]
 
 [ext_resource type="Texture2D" uid="uid://cnorwcvtc83f1" path="res://art/enemies/defense_wall.png" id="1_e5l2e"]
-[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="2_8mtqo"]
-[ext_resource type="PackedScene" path="res://bullet_dw.tscn" id="3_wv1lf"]
-[ext_resource type="Script" path="res://ray_cast_2d.gd" id="4_ne16u"]
-[ext_resource type="PackedScene" uid="uid://ulp856gu8hwl" path="res://scenes/character_bill.tscn" id="6_wv1lf"]
+[ext_resource type="Script" uid="uid://y5xxe6f0bypp" path="res://defense_wall_cannon.gd" id="1_wv1lf"]
+[ext_resource type="Script" uid="uid://di7vxhohy7rb0" path="res://animated_sprite_2d.gd" id="2_8mtqo"]
+[ext_resource type="PackedScene" uid="uid://c7sxovd3vap38" path="res://bullet_dw.tscn" id="3_wv1lf"]
+[ext_resource type="Script" uid="uid://jatx70lirysd" path="res://ray_cast_2d.gd" id="4_ne16u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eg6hi"]
 atlas = ExtResource("1_e5l2e")
@@ -31,41 +31,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcq50"]
 size = Vector2(24, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ne16u"]
-atlas = ExtResource("1_e5l2e")
-region = Rect2(113, 63, 21, 10)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wv1lf"]
-atlas = ExtResource("1_e5l2e")
-region = Rect2(113, 74, 22, 10)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ll7d3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ne16u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wv1lf")
-}],
-"loop": 1,
-"name": &"shoot",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_23wap"]
-size = Vector2(22, 11)
-
 [node name="defense_wall_cannon" type="Node2D" unique_id=1867072125]
+script = ExtResource("1_wv1lf")
 
-[node name="cannon1" type="AnimatedSprite2D" parent="." unique_id=1580583985 node_paths=PackedStringArray("player")]
+[node name="cannon1" type="AnimatedSprite2D" parent="." unique_id=1580583985]
 light_mask = 159
 visibility_layer = 159
 sprite_frames = SubResource("SpriteFrames_0ljwj")
 animation = &"shoot"
 script = ExtResource("2_8mtqo")
 BULLET = ExtResource("3_wv1lf")
-player = NodePath("../Bill")
 
 [node name="RayCast2D" type="RayCast2D" parent="cannon1" unique_id=2063022413]
 light_mask = 159
@@ -80,32 +55,12 @@ script = ExtResource("4_ne16u")
 [node name="damage_box" type="Area2D" parent="cannon1" unique_id=2053040862]
 light_mask = 8
 visibility_layer = 128
-collision_layer = 151
-collision_mask = 31
+collision_layer = 8
+collision_mask = 128
 
 [node name="box" type="CollisionShape2D" parent="cannon1/damage_box" unique_id=460340733]
 light_mask = 31
 visibility_layer = 159
 shape = SubResource("RectangleShape2D_gcq50")
-
-[node name="cannon2" type="AnimatedSprite2D" parent="." unique_id=790560187]
-visible = false
-position = Vector2(-25, 0)
-sprite_frames = SubResource("SpriteFrames_ll7d3")
-animation = &"shoot"
-
-[node name="RayCast2D2" type="RayCast2D" parent="cannon2" unique_id=1161367993]
-target_position = Vector2(0, 80)
-collision_mask = 65535
-
-[node name="timer2" type="Timer" parent="cannon2/RayCast2D2" unique_id=41762417]
-
-[node name="damage_box2" type="Area2D" parent="cannon2" unique_id=923815778]
-
-[node name="box2" type="CollisionShape2D" parent="cannon2/damage_box2" unique_id=1063896171]
-shape = SubResource("RectangleShape2D_23wap")
-
-[node name="Bill" parent="." unique_id=2069213833 instance=ExtResource("6_wv1lf")]
-visible = false
 
 [connection signal="animation_finished" from="cannon1" to="cannon1" method="_on_animation_finished"]
